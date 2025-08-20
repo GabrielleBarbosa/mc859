@@ -11,7 +11,9 @@ def printSolution(m: gp.Model, n: int, x):
         
 def main():
     n = int(input())
+
     _ = list(map(int, input().split()))
+
     s = []
     for _ in range(n):
         s.append(list(map(int, input().split())))
@@ -28,12 +30,12 @@ def main():
 
 
     model.setObjective(
-        sum(A[i][j] * y[i,j] for i in range(n) for j in range(n)),
+        sum(A[i][j] * y[i,j] for i in range(n) for j in range(i, n)),
         GRB.MAXIMIZE
     )
 
     for i in range(n):
-        for j in range(n):
+        for j in range(i, n):
             model.addConstr(y[i,j] <= x[i])
             model.addConstr(y[i,j] <= x[j])
             model.addConstr(y[i,j] >= x[i] + x[j] - 1)
@@ -44,9 +46,6 @@ def main():
             if k in s[i]:
                 indexes.append(i)
         model.addConstr(gp.quicksum(x[i] for i in indexes) >= 1)
-
-    print("Vars:", model.NumVars)
-    print("Constraints:", model.NumConstrs)
 
     model.optimize()
     printSolution(model, n, x)
