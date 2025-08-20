@@ -2,6 +2,7 @@ import gurobipy as gp
 from gurobipy import GRB
 
 def printSolution(m: gp.Model, n: int, x):
+    """Prints the solution of the model if it is optimal."""
     if m.status == GRB.OPTIMAL:
         print(f"\nResult: {m.ObjVal:g}\n")
         x_print = [x[i].X for i in range(n)]
@@ -10,20 +11,27 @@ def printSolution(m: gp.Model, n: int, x):
         print("No solution")
         
 def main():
+    # Number of variables
     n = int(input())
 
+    # Number of elements in each set
     _ = list(map(int, input().split()))
 
+    # List of sets
     s = []
+
+    # Read the sets
     for _ in range(n):
         s.append(list(map(int, input().split())))
 
+    # Read the coefficient matrix, which is upper triangular
     A = []
     for i in range(n):
         _a = list(map(int, input().split()))
         a = [0 for _ in range(i)] + _a
         A.append(a)
 
+    # Create the model
     model = gp.Model("max-sc-qbf")   
     x = model.addVars(n, vtype=GRB.BINARY, name="x")
     y = model.addVars(n, n, vtype=GRB.BINARY, name="y")
@@ -34,12 +42,14 @@ def main():
         GRB.MAXIMIZE
     )
 
+    # Constraints
     for i in range(n):
         for j in range(i, n):
             model.addConstr(y[i,j] <= x[i])
             model.addConstr(y[i,j] <= x[j])
             model.addConstr(y[i,j] >= x[i] + x[j] - 1)
 
+    # Add the Set Cover constraints
     for k in range(1, n+1):
         indexes = []
         for i in range(n):

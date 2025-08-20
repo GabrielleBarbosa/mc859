@@ -10,7 +10,9 @@ def main():
 
     files = sorted(glob.glob(os.path.join(input_dir, "*.txt")))
 
+    #For each input file, run the main.py script and log the output.
     for file in files:
+        print(f"Processing file: {file}")
         base = os.path.basename(file).replace(".txt", "")
         log_file = os.path.join(log_dir, f"{base}.log")
 
@@ -41,3 +43,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    print("All files processed. Check the logs directory for outputs.")
