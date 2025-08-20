@@ -12,11 +12,11 @@ def main():
 
     #For each input file, run the main.py script and log the output.
     for file in files:
-        print(f"Processing file: {file}")
         base = os.path.basename(file).replace(".txt", "")
         log_file = os.path.join(log_dir, f"{base}.log")
+        filename = os.path.splitext(os.path.basename(file))[0]
 
-        print(f"Running main.py with input {file}...")
+        print(f"Running main.py with input {filename}...")
 
         start = time.time()
         try:
@@ -28,6 +28,11 @@ def main():
                     stderr=subprocess.STDOUT,
                     timeout=600  # 10 minutes
                 )
+            end = time.time()
+            # Append the time taken to the log file
+            with open(log_file, "a") as fout:
+                fout.write(f"\n--- Finished in {end - start:.2f} seconds ---\n")
+            print(f"Finished {filename} in {end - start:.2f} seconds\n")
         except subprocess.TimeoutExpired:
             with open(log_file, "a") as fout:
                 fout.write("\n--- Execution timed out after 600 seconds ---\n")
@@ -36,9 +41,6 @@ def main():
             with open(log_file, "a") as fout:
                 fout.write(f"\n--- Error: {e} ---\n")
             print(f"❌ Error running {file}: {e}")
-
-        end = time.time()
-        print(f"Finished {file} in {end - start:.2f} seconds\n")
 
 
 if __name__ == "__main__":
