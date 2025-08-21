@@ -46,6 +46,17 @@ def generate_S_random(n, k):
 
     return subsets
 
+def generate_S_ocurrence(n, k=None):
+    """Generate subsets with controlled occurrences for each number, but making sure each number appears at least once and at most in 75% of the subsets."""
+    # Step 1: Decide occurrences for each variable, at most 75% of n
+    occurrences = [random.randint(1, n - n // 4) for _ in range(1, n + 1)]
+    subsets = [[] for _ in range(n)]
+    for i in range(n):
+        selected = random.sample(range(0, n), occurrences[i])
+        for subset in selected:
+            subsets[subset].append(i + 1)  # +1 to match 1-based indexing
+    
+    return subsets
 
 # -----------------------------
 # Matrix generation strategies
@@ -100,6 +111,7 @@ S_strategies = {
     "structured": generate_S_structured,
     "uniform": generate_S_uniform,
     "random": generate_S_random,
+    "occurence": generate_S_ocurrence,
 }
 
 A_strategies = {
@@ -125,15 +137,15 @@ def main():
     sizes = [25, 50, 100, 200, 400]  
     k = 10
     p = 100
-    strategy_s = "random"   # "uniform", "structured", "random"
-    strategy_a = "sparse"  # "dense", "sparse", "negative"
+    strategy_s = "occurence"   # "uniform", "structured", "random"
+    strategy_a = "negative"  # "dense", "sparse", "negative"
 
     for n in sizes:
         S, A = generate_instance(n, k, p, strategy_s, strategy_a)
 
         filename = f"gen_{n}_k{k}_p{p}_{strategy_s}_{strategy_a}"
         write_file(filename, n, S, A)
-
+    
 
 if __name__ == '__main__':
     main()
