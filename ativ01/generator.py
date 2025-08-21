@@ -29,22 +29,9 @@ def generate_S_structured(n, k):
     return [numbers[i:i + k] for i in range(0, n*k, k)]
 
 
-def generate_S_uniform(n, k):
-    """Subsets with uniform random sizes between 1 and k."""
-    return [random.sample(range(1, n + 1), random.randint(1, k)) for _ in range(n)]
-
-
 def generate_S_random(n, k):
     """Randomly decide size and elements of each subset, but keeping all subsets at least 25% smaller than N"""
-    elements = list(range(1, n + 1))
-    subsets = []
-
-    while len(subsets) < n:
-        size = random.randint(1, n - (n // 4))
-        random.shuffle(elements)
-        subsets.append(elements[:size])
-
-    return subsets
+    return [random.sample(range(1, n + 1), random.randint(1, n - (n // 4))) for _ in range(n)]
 
 def generate_S_ocurrence(n, k=None):
     """Generate subsets with controlled occurrences for each number, but making sure each number appears at least once and at most in 75% of the subsets."""
@@ -109,7 +96,6 @@ def generate_A_negative(n, p):
 # -----------------------------
 S_strategies = {
     "structured": generate_S_structured,
-    "uniform": generate_S_uniform,
     "random": generate_S_random,
     "occurence": generate_S_ocurrence,
 }
@@ -121,30 +107,33 @@ A_strategies = {
 }
 
 
-def generate_instance(n, k, p, strategy_s, strategy_a):
+def generate_instance(n, k, strategy_s):
     S = S_strategies[strategy_s](n, k)
-    A = A_strategies[strategy_a](n, p)
 
     # ensure union of S covers 1..n
     covered = set().union(*S)
     missing = set(range(1, n + 1)) - covered
     for m in missing:
         S[random.randint(0, n - 1)].append(m)
-    return S, A
+    return S
 
 
 def main():
     sizes = [25, 50, 100, 200, 400]  
-    k = 10
+    k_strategies = [0,4,0]
     p = 100
-    strategy_s = "occurence"   # "uniform", "structured", "random"
-    strategy_a = "negative"  # "dense", "sparse", "negative"
+    strategies_s = ["occurence", "structured", "random"]
+    strategy_a = "dense"  # "dense", "sparse", "negative"
 
     for n in sizes:
-        S, A = generate_instance(n, k, p, strategy_s, strategy_a)
+        A = A_strategies[strategy_a](n, p)
+        for i, strategy_s in enumerate(strategies_s):
+            k = k_strategies[i]
+            S = generate_instance(n, k, strategy_s)
 
-        filename = f"gen_{n}_k{k}_p{p}_{strategy_s}_{strategy_a}"
-        write_file(filename, n, S, A)
+            n_str = str(n).zfill(3)
+            filename = f"gen_{n_str}_k{k}_p{p}_{strategy_s}_{strategy_a}"
+            write_file(filename, n, S, A)
     
 
 if __name__ == '__main__':
