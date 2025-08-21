@@ -1,0 +1,56 @@
+Set parameter Username
+Set parameter LicenseID to value 2696442
+Academic license - for non-commercial use only - expires 2026-08-18
+Gurobi Optimizer version 12.0.3 build v12.0.3rc0 (linux64 - "Ubuntu 22.04.5 LTS")
+
+CPU model: 13th Gen Intel(R) Core(TM) i5-13450HX, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 6 logical processors, using up to 6 threads
+
+Optimize a model with 1000 rows, 650 columns and 2350 nonzeros
+Model fingerprint: 0x13f3316e
+Variable types: 0 continuous, 650 integer (650 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 2e+00]
+  Objective range  [1e+00, 1e+02]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+00]
+Found heuristic solution: objective -895.0000000
+Found heuristic solution: objective 266.0000000
+Presolve removed 533 rows and 328 columns
+Presolve time: 0.00s
+Presolved: 467 rows, 322 columns, 1136 nonzeros
+Variable types: 0 continuous, 322 integer (322 binary)
+
+Root relaxation: objective 3.484500e+03, 218 iterations, 0.00 seconds (0.00 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 3484.50000    0  170  266.00000 3484.50000  1210%     -    0s
+H    0     0                     625.0000000 3484.50000   458%     -    0s
+H    0     0                    1622.0000000 3484.50000   115%     -    0s
+H    0     0                    1647.0000000 2167.70000  31.6%     -    0s
+     0     0 2167.70000    0  239 1647.00000 2167.70000  31.6%     -    0s
+H    0     0                    1939.0000000 2167.70000  11.8%     -    0s
+     0     0 2167.20000    0  239 1939.00000 2167.20000  11.8%     -    0s
+H    0     0                    2039.0000000 2167.20000  6.29%     -    0s
+
+Cutting planes:
+  Gomory: 21
+  Zero half: 54
+  RLT: 224
+  BQP: 164
+
+Explored 1 nodes (705 simplex iterations) in 0.08 seconds (0.09 work units)
+Thread count was 6 (of 6 available processors)
+
+Solution count 7: 2039 1939 1647 ... -895
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 2.039000000000e+03, best bound 2.039000000000e+03, gap 0.0000%
+
+Result: 2039
+
+X: [1.0, 1.0, 1.0, -0.0, 0.0, 1.0, 1.0, 0.0, 1.0, 1.0, 1.0, 0.0, 1.0, 1.0, 0.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, -0.0]
+
+--- Finished in 0.17 seconds ---

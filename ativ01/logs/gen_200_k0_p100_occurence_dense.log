@@ -1,0 +1,98 @@
+Set parameter Username
+Set parameter LicenseID to value 2696442
+Academic license - for non-commercial use only - expires 2026-08-18
+Gurobi Optimizer version 12.0.3 build v12.0.3rc0 (linux64 - "Ubuntu 22.04.5 LTS")
+
+CPU model: 13th Gen Intel(R) Core(TM) i5-13450HX, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 6 logical processors, using up to 6 threads
+
+Optimize a model with 60500 rows, 40200 columns and 156799 nonzeros
+Model fingerprint: 0x02f0bf20
+Variable types: 0 continuous, 40200 integer (40200 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 2e+00]
+  Objective range  [1e+00, 1e+02]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+00]
+Found heuristic solution: objective 11656.000000
+Presolve removed 31266 rows and 20597 columns
+Presolve time: 0.49s
+Presolved: 29234 rows, 19603 columns, 70124 nonzeros
+Variable types: 0 continuous, 19603 integer (19603 binary)
+
+Root relaxation: objective 2.458945e+05, 19492 iterations, 2.34 seconds (4.27 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 245894.500    0 9973 11656.0000 245894.500  2010%     -    3s
+H    0     0                    13146.000000 245894.500  1770%     -    3s
+H    0     0                    34306.000000 245894.500   617%     -    3s
+     0     0 232629.250    0 9866 34306.0000 232629.250   578%     -    6s
+     0     0 216203.500    0 9925 34306.0000 216203.500   530%     -    9s
+     0     0 210804.000    0 9940 34306.0000 210804.000   514%     -   11s
+     0     0 199726.500    0 10916 34306.0000 199726.500   482%     -   17s
+     0     0 196493.983    0 11420 34306.0000 196493.983   473%     -   22s
+     0     0 196379.833    0 11352 34306.0000 196379.833   472%     -   22s
+     0     0 196359.172    0 11399 34306.0000 196359.172   472%     -   23s
+     0     0 196353.833    0 11368 34306.0000 196353.833   472%     -   23s
+     0     0 196352.833    0 11373 34306.0000 196352.833   472%     -   23s
+     0     0 189726.798    0 11210 34306.0000 189726.798   453%     -   36s
+H    0     0                    35850.000000 178457.388   398%     -   59s
+H    0     0                    38419.000000 178457.388   365%     -   59s
+H    0     0                    39814.000000 178457.388   348%     -   59s
+H    0     0                    41315.000000 178457.388   332%     -   59s
+H    0     0                    41801.000000 178457.388   327%     -   59s
+     0     0 178457.388    0 10892 41801.0000 178457.388   327%     -   60s
+H    0     0                    43583.000000 166445.373   282%     -   85s
+H    0     0                    43933.000000 166445.373   279%     -   85s
+H    0     0                    44174.000000 166445.373   277%     -   85s
+H    0     0                    45423.000000 166445.373   266%     -   85s
+H    0     0                    46043.000000 166445.373   261%     -   85s
+H    0     0                    46499.000000 166445.373   258%     -   85s
+H    0     0                    47038.000000 166445.373   254%     -   85s
+H    0     0                    47118.000000 166445.373   253%     -   85s
+H    0     0                    47678.000000 166445.373   249%     -   85s
+H    0     0                    47901.000000 166445.373   247%     -   85s
+H    0     0                    48762.000000 166445.373   241%     -   85s
+H    0     0                    48937.000000 166445.373   240%     -   85s
+     0     0 166445.373    0 10652 48937.0000 166445.373   240%     -   85s
+     0     0 157395.776    0 11448 48937.0000 157395.776   222%     -  118s
+H    0     0                    49634.000000 151160.941   205%     -  151s
+H    0     0                    49679.000000 151160.941   204%     -  151s
+H    0     0                    49738.000000 151160.941   204%     -  151s
+     0     0 151160.941    0 12016 49738.0000 151160.941   204%     -  151s
+     0     0 149284.214    0 12608 49738.0000 149284.214   200%     -  183s
+     0     0 145460.236    0 12788 49738.0000 145460.236   192%     -  220s
+     0     0 144734.708    0 13058 49738.0000 144734.708   191%     -  240s
+     0     0 144521.354    0 13146 49738.0000 144521.354   191%     -  252s
+     0     0 144447.583    0 13135 49738.0000 144447.583   190%     -  256s
+     0     0 144430.099    0 13071 49738.0000 144430.099   190%     -  258s
+     0     0 133033.846    0 14155 49738.0000 133033.846   167%     -  410s
+     0     0 132570.058    0 14098 49738.0000 132570.058   167%     -  438s
+     0     0 132477.327    0 14214 49738.0000 132477.327   166%     -  449s
+H    0     0                    49896.000000 132477.327   166%     -  469s
+     0     0          -    0      49896.0000 132477.327   166%     -  599s
+
+Cutting planes:
+  Gomory: 1
+  Cover: 1
+  Dual implied bound: 5
+  MIR: 115
+  GUB cover: 1
+  Zero half: 379
+  RLT: 8806
+  BQP: 6456
+
+Explored 1 nodes (443448 simplex iterations) in 599.48 seconds (851.29 work units)
+Thread count was 6 (of 6 available processors)
+
+Solution count 10: 49896 49738 49679 ... 47038
+
+Solve interrupted
+Best objective 4.989600000000e+04, best bound 1.324770000000e+05, gap 165.5063%
+No solution
+
+Interrupt request received
+
+--- Execution timed out after 600 seconds ---
