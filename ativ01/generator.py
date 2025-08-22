@@ -119,7 +119,7 @@ def generate_instance(n, k, strategy_s):
 
 
 def main():
-    sizes = [50]  
+    sizes = [25, 50, 100, 200, 400]  
     k_strategies = [0,4,0]
     p = 100
     strategies_s = ["occurence", "structured", "random"]
