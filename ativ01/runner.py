@@ -9,7 +9,7 @@ def main():
     log_dir = "logs"
     os.makedirs(log_dir, exist_ok=True)
 
-    files = sorted(glob.glob(os.path.join(input_dir, "*.txt")))
+    files = sorted(glob.glob(os.path.join(input_dir, "gen_050*.txt")))
 
     #For each input file, run the main.py script and log the output.
     for file in files:
