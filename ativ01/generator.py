@@ -31,12 +31,13 @@ def generate_S_structured(n, k):
 
 def generate_S_random(n, k):
     """Randomly decide size and elements of each subset, but keeping all subsets at least 25% smaller than N"""
-    return [random.sample(range(1, n + 1), random.randint(1, n - (n // 4))) for _ in range(n)]
+    max_size = max(1, n // 4)
+    return [random.sample(range(1, n + 1), random.randint(1, max_size)) for _ in range(n)]
 
-def generate_S_ocurrence(n, k=None):
-    """Generate subsets with controlled occurrences for each number, but making sure each number appears at least once and at most in 75% of the subsets."""
-    # Step 1: Decide occurrences for each variable, at most 75% of n
-    occurrences = [random.randint(1, n - n // 4) for _ in range(1, n + 1)]
+def generate_S_ocurrence(n, k):
+    """Generate subsets with controlled occurrences for each number, but making sure each number appears at least once and at most in 50% of the subsets."""
+    # Step 1: Decide occurrences for each variable, at most 50% of n
+    occurrences = [random.randint(1, n - n // 2) for _ in range(1, n + 1)]
     subsets = [[] for _ in range(n)]
     for i in range(n):
         selected = random.sample(range(0, n), occurrences[i])
@@ -97,7 +98,7 @@ def generate_A_negative(n, p):
 S_strategies = {
     "structured": generate_S_structured,
     "random": generate_S_random,
-    "occurence": generate_S_ocurrence,
+    "occurrence": generate_S_ocurrence,
 }
 
 A_strategies = {
@@ -119,10 +120,10 @@ def generate_instance(n, k, strategy_s):
 
 
 def main():
-    sizes = [25, 50, 100, 200, 400]  
+    sizes = [25, 50, 100, 200, 400]
     k_strategies = [0,4,0]
     p = 100
-    strategies_s = ["occurence", "structured", "random"]
+    strategies_s = ["occurrence", "structured", "random"]
     strategy_a = "dense"  # "dense", "sparse", "negative"
 
     for n in sizes:
