@@ -74,7 +74,7 @@ Cutting planes:
   RLT: 412
   BQP: 591
 
-Explored 11 nodes (34271 simplex iterations) in 7.35 seconds (10.68 work units)
+Explored 11 nodes (34271 simplex iterations) in 7.44 seconds (10.68 work units)
 Thread count was 12 (of 12 available processors)
 
 Solution count 10: 5618 5603 5512 ... 4801
@@ -86,4 +86,4 @@ Result: 5618
 
 X: [1.0, 0.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 1.0, 1.0, 0.0, 1.0, 1.0, 1.0, 1.0, 0.0, 1.0, 1.0, 0.0, 0.0, 1.0, 1.0, 1.0, 0.0, 0.0, 1.0, 0.0, 1.0, 1.0, 0.0, 0.0, -0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.0]
 
---- Finished in 7.48 seconds ---
+--- Finished in 7.57 seconds ---

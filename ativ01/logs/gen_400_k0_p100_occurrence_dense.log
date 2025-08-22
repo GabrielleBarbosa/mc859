@@ -1,0 +1,79 @@
+Set parameter Username
+Set parameter LicenseID to value 2696986
+Academic license - for non-commercial use only - expires 2026-08-20
+Set parameter TimeLimit to value 600
+Gurobi Optimizer version 12.0.3 build v12.0.3rc0 (win64 - Windows 11.0 (26100.2))
+
+CPU model: AMD Ryzen 5 5600G with Radeon Graphics, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  600
+
+Optimize a model with 241000 rows, 80600 columns and 600272 nonzeros
+Model fingerprint: 0x5182d40c
+Variable types: 0 continuous, 80600 integer (80600 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 2e+00]
+  Objective range  [1e+00, 1e+02]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+00]
+Found heuristic solution: objective 17073.000000
+Presolve removed 123501 rows and 1988 columns
+Presolve time: 3.76s
+Presolved: 117499 rows, 78612 columns, 282278 nonzeros
+Variable types: 0 continuous, 78612 integer (78612 binary)
+Deterministic concurrent LP optimizer: primal and dual simplex
+Showing primal log only...
+
+Warning: Markowitz tolerance tightened to 0.5
+
+Root simplex log...
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+  587874   -1.9705250e+06   0.000000e+00   3.978905e+06      5s
+  697346   -1.8535446e+05   0.000000e+00   5.740189e+06     10s
+  699546   -1.8529459e+05   0.000000e+00   9.119532e+06     15s
+  701046   -1.8526361e+05   0.000000e+00   1.151167e+07     20s
+  702346   -1.8523762e+05   0.000000e+00   1.085523e+07     25s
+  703606   -1.8521408e+05   0.000000e+00   1.356328e+07     31s
+  704776   -1.8519079e+05   0.000000e+00   1.309869e+07     35s
+  705896   -1.8517071e+05   0.000000e+00   1.624647e+07     40s
+  707016   -1.8515004e+05   0.000000e+00   1.427145e+07     45s
+Concurrent spin time: 0.01s
+
+Solved with dual simplex
+
+Root simplex log...
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+   69257    9.9500100e+05   0.000000e+00   0.000000e+00     50s
+
+Root relaxation: objective 9.950010e+05, 69257 iterations, 46.24 seconds (30.34 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 995001.000    0 39524 17073.0000 995001.000  5728%     -   51s
+H    0     0                    91074.000000 995001.000   993%     -   51s
+     0     0 984527.500    0 39456 91074.0000 984527.500   981%     -   82s
+     0     0 975715.500    0 39557 91074.0000 975715.500   971%     -   95s
+     0     0 971825.750    0 39524 91074.0000 971825.750   967%     -  104s
+     0     0 965860.333    0 39513 91074.0000 965860.333   961%     -  111s
+     0     0          -    0      91074.0000 965860.333   961%     - 3020s
+
+Cutting planes:
+  Zero half: 895
+  RLT: 2304
+  BQP: 13413
+
+Explored 1 nodes (82692 simplex iterations) in 3020.85 seconds (74.69 work units)
+Thread count was 12 (of 12 available processors)
+
+Solution count 2: 91074 17073 
+
+Time limit reached
+Best objective 9.107400000000e+04, best bound 9.658603333333e+05, gap 960.5226%
+No solution
+
+--- Finished in 3024.56 seconds ---

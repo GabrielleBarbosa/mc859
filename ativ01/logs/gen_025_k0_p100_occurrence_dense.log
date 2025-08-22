@@ -1,0 +1,56 @@
+Set parameter Username
+Set parameter LicenseID to value 2696986
+Academic license - for non-commercial use only - expires 2026-08-20
+Set parameter TimeLimit to value 600
+Gurobi Optimizer version 12.0.3 build v12.0.3rc0 (win64 - Windows 11.0 (26100.2))
+
+CPU model: AMD Ryzen 5 5600G with Radeon Graphics, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  600
+
+Optimize a model with 1000 rows, 350 columns and 2425 nonzeros
+Model fingerprint: 0x41429f7e
+Variable types: 0 continuous, 350 integer (350 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 2e+00]
+  Objective range  [1e+00, 1e+02]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+00]
+Found heuristic solution: objective -1183.000000
+Found heuristic solution: objective -219.0000000
+Presolve removed 688 rows and 121 columns
+Presolve time: 0.00s
+Presolved: 312 rows, 229 columns, 745 nonzeros
+Variable types: 0 continuous, 229 integer (229 binary)
+
+Root relaxation: objective 2.311000e+03, 124 iterations, 0.00 seconds (0.00 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 2311.00000    0  120 -219.00000 2311.00000  1155%     -    0s
+H    0     0                     728.0000000 2311.00000   217%     -    0s
+H    0     0                    1000.0000000 2311.00000   131%     -    0s
+H    0     0                    1272.0000000 2311.00000  81.7%     -    0s
+
+Cutting planes:
+  Gomory: 1
+  Zero half: 64
+  RLT: 117
+  BQP: 146
+
+Explored 1 nodes (124 simplex iterations) in 0.03 seconds (0.03 work units)
+Thread count was 12 (of 12 available processors)
+
+Solution count 5: 1272 1000 728 ... -1183
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.272000000000e+03, best bound 1.272000000000e+03, gap 0.0000%
+
+Result: 1272
+
+X: [0.0, 1.0, 1.0, 0.0, 1.0, 1.0, 0.0, 0.0, 1.0, 1.0, 1.0, -0.0, 1.0, 1.0, 0.0, 1.0, 1.0, 1.0, 0.0, 1.0, 1.0, 0.0, 1.0, 1.0, 0.0]
+
+--- Finished in 0.17 seconds ---

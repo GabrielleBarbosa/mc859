@@ -21,7 +21,7 @@ Coefficient statistics:
 Found heuristic solution: objective -1183.000000
 Found heuristic solution: objective -194.0000000
 Presolve removed 655 rows and 104 columns
-Presolve time: 0.01s
+Presolve time: 0.00s
 Presolved: 345 rows, 246 columns, 823 nonzeros
 Variable types: 0 continuous, 246 integer (246 binary)
 
@@ -58,4 +58,4 @@ Result: 1316
 
 X: [-0.0, 1.0, 1.0, -0.0, 1.0, 1.0, 1.0, -0.0, 1.0, 1.0, 1.0, -0.0, 1.0, -0.0, -0.0, 1.0, 1.0, -0.0, -0.0, -0.0, 1.0, -0.0, 1.0, 1.0, -0.0]
 
---- Finished in 0.17 seconds ---
+--- Finished in 0.14 seconds ---

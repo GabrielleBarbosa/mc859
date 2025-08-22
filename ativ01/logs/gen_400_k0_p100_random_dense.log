@@ -19,9 +19,9 @@ Coefficient statistics:
   Bounds range     [1e+00, 1e+00]
   RHS range        [1e+00, 1e+00]
 Found heuristic solution: objective 17073.000000
-Presolve removed 121457 rows and 798 columns (presolve time = 5s)...
+Presolve removed 1200 rows and 400 columns (presolve time = 5s)...
 Presolve removed 121457 rows and 798 columns
-Presolve time: 5.42s
+Presolve time: 6.66s
 Presolved: 119543 rows, 79802 columns, 297712 nonzeros
 Variable types: 0 continuous, 79802 integer (79802 binary)
 Deterministic concurrent LP optimizer: primal and dual simplex
@@ -31,17 +31,18 @@ Showing primal log only...
 Root simplex log...
 
 Iteration    Objective       Primal Inf.    Dual Inf.      Time
-       0   -2.0019210e+06   0.000000e+00   4.030861e+06      6s
+       0   -2.0019210e+06   0.000000e+00   4.030861e+06      7s
 Warning: Markowitz tolerance tightened to 0.5
-  706973   -1.8843659e+05   0.000000e+00   5.650916e+06     10s
-  709493   -1.8822290e+05   0.000000e+00   8.019988e+06     15s
-  711213   -1.8819277e+05   0.000000e+00   9.551470e+06     20s
-  712643   -1.8816808e+05   0.000000e+00   1.134335e+07     25s
-  713943   -1.8814476e+05   0.000000e+00   1.294795e+07     30s
-  715343   -1.8811935e+05   0.000000e+00   1.271356e+07     35s
-  716443   -1.8809925e+05   0.000000e+00   1.126010e+07     40s
-  717543   -1.8807839e+05   0.000000e+00   1.614056e+07     45s
-  718663   -1.8804873e+05   0.000000e+00   1.318707e+07     50s
+  704153   -1.8863036e+05   0.000000e+00   5.510178e+06     10s
+  705023   -1.8861450e+05   0.000000e+00   5.713751e+06     15s
+  708073   -1.8825165e+05   0.000000e+00   5.531329e+06     20s
+  710133   -1.8821207e+05   0.000000e+00   9.475267e+06     25s
+  711693   -1.8818618e+05   0.000000e+00   1.056365e+07     30s
+  713043   -1.8816052e+05   0.000000e+00   1.257663e+07     35s
+  714443   -1.8813471e+05   0.000000e+00   1.440080e+07     40s
+  715843   -1.8810946e+05   0.000000e+00   1.602652e+07     45s
+  717243   -1.8808259e+05   0.000000e+00   1.599997e+07     50s
+  718663   -1.8804873e+05   0.000000e+00   1.318707e+07     55s
 Concurrent spin time: 0.00s
 
 Solved with dual simplex
@@ -49,44 +50,21 @@ Solved with dual simplex
 Root simplex log...
 
 Iteration    Objective       Primal Inf.    Dual Inf.      Time
-   70162    1.0094560e+06   0.000000e+00   0.000000e+00     55s
+   70162    1.0094560e+06   0.000000e+00   0.000000e+00     56s
 
-Root relaxation: objective 1.009456e+06, 70162 iterations, 49.22 seconds (33.12 work units)
-Total elapsed time = 55.40s (DegenMoves)
+Root relaxation: objective 1.009456e+06, 70162 iterations, 48.79 seconds (33.12 work units)
 
     Nodes    |    Current Node    |     Objective Bounds      |     Work
  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
 
-     0     0 1009456.00    0 40141 17073.0000 1009456.00  5813%     -   55s
-H    0     0                    20869.000000 1009456.00  4737%     -   55s
-H    0     0                    89824.000000 1009456.00  1024%     -   55s
-H    0     0                    91398.000000 1004212.00   999%     -   82s
-     0     0 1004207.00    0 40087 91398.0000 1004207.00   999%     -   87s
-H    0     0                    92525.000000 1004207.00   985%     -   88s
-     0     0 999389.500    0 40067 92525.0000 999389.500   980%     -   92s
-     0     0 994524.500    0 40045 92525.0000 994524.500   975%     -   99s
-     0     0 980815.031    0 40184 92525.0000 980815.031   960%     -  118s
-     0     0 969884.500    0 40906 92525.0000 969884.500   948%     -  205s
-     0     0 960985.547    0 41732 92525.0000 960985.547   939%     -  315s
-     0     0 960896.344    0 41699 92525.0000 960896.344   939%     -  331s
-     0     0 960888.292    0 41697 92525.0000 960888.292   939%     -  333s
-     0     0 947994.804    0 41460 92525.0000 947994.804   925%     -  479s
+     0     0 1009456.00    0 40141 17073.0000 1009456.00  5813%     -   56s
+H    0     0                    20869.000000 1009456.00  4737%     -   56s
+H    0     0                    89824.000000 1009456.00  1024%     -   56s
+H    0     0                    91398.000000 1004212.00   999%     -   77s
+     0     0 1004207.00    0 40087 91398.0000 1004207.00   999%     -   81s
+H    0     0                    92525.000000 1004207.00   985%     -   82s
+     0     0 999389.500    0 40067 92525.0000 999389.500   980%     -   85s
+     0     0 994524.500    0 40045 92525.0000 994524.500   975%     -   90s
+     0     0 980815.031    0 40184 92525.0000 980815.031   960%     -  101s
 
---- Execution timed out after 600 seconds ---
-     0     0          -    0      92525.0000 947994.804   925%     -  600s
-
-Cutting planes:
-  Gomory: 2
-  Dual implied bound: 16
-  Zero half: 956
-  RLT: 4140
-  BQP: 17041
-
-Explored 1 nodes (129868 simplex iterations) in 600.11 seconds (315.24 work units)
-Thread count was 12 (of 12 available processors)
-
-Solution count 5: 92525 91398 89824 ... 17073
-
-Time limit reached
-Best objective 9.252500000000e+04, best bound 9.479948042028e+05, gap 924.5823%
-No solution
+--- Finished in 157.18 seconds ---
