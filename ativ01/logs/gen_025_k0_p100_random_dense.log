@@ -1,60 +1,61 @@
 Set parameter Username
-Set parameter LicenseID to value 2696442
-Academic license - for non-commercial use only - expires 2026-08-18
-Gurobi Optimizer version 12.0.3 build v12.0.3rc0 (linux64 - "Ubuntu 22.04.5 LTS")
+Set parameter LicenseID to value 2696986
+Academic license - for non-commercial use only - expires 2026-08-20
+Set parameter TimeLimit to value 600
+Gurobi Optimizer version 12.0.3 build v12.0.3rc0 (win64 - Windows 11.0 (26100.2))
 
-CPU model: 13th Gen Intel(R) Core(TM) i5-13450HX, instruction set [SSE2|AVX|AVX2]
-Thread count: 6 physical cores, 6 logical processors, using up to 6 threads
+CPU model: AMD Ryzen 5 5600G with Radeon Graphics, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
 
-Optimize a model with 1000 rows, 650 columns and 2477 nonzeros
-Model fingerprint: 0x2462b279
-Variable types: 0 continuous, 650 integer (650 binary)
+Non-default parameters:
+TimeLimit  600
+
+Optimize a model with 1000 rows, 350 columns and 2332 nonzeros
+Model fingerprint: 0xe247f4c3
+Variable types: 0 continuous, 350 integer (350 binary)
 Coefficient statistics:
   Matrix range     [1e+00, 2e+00]
   Objective range  [1e+00, 1e+02]
   Bounds range     [1e+00, 1e+00]
   RHS range        [1e+00, 1e+00]
-Found heuristic solution: objective -895.0000000
-Found heuristic solution: objective -326.0000000
-Presolve removed 533 rows and 328 columns
-Presolve time: 0.00s
-Presolved: 467 rows, 322 columns, 1263 nonzeros
-Variable types: 0 continuous, 322 integer (322 binary)
+Found heuristic solution: objective -1183.000000
+Found heuristic solution: objective -194.0000000
+Presolve removed 655 rows and 104 columns
+Presolve time: 0.01s
+Presolved: 345 rows, 246 columns, 823 nonzeros
+Variable types: 0 continuous, 246 integer (246 binary)
 
-Root relaxation: objective 3.484500e+03, 223 iterations, 0.00 seconds (0.00 work units)
+Root relaxation: objective 2.674500e+03, 132 iterations, 0.00 seconds (0.00 work units)
 
     Nodes    |    Current Node    |     Objective Bounds      |     Work
  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
 
-     0     0 3484.50000    0  170 -326.00000 3484.50000  1169%     -    0s
-H    0     0                     314.0000000 3484.50000  1010%     -    0s
-H    0     0                    1340.0000000 3484.50000   160%     -    0s
-H    0     0                    1418.0000000 3484.50000   146%     -    0s
-H    0     0                    1448.0000000 3484.50000   141%     -    0s
-H    0     0                    1924.0000000 3484.50000  81.1%     -    0s
-     0     0 2169.50000    0  202 1924.00000 2169.50000  12.8%     -    0s
-H    0     0                    1958.0000000 2169.50000  10.8%     -    0s
-     0     0 2169.50000    0  223 1958.00000 2169.50000  10.8%     -    0s
-H    0     0                    2039.0000000 2039.00000  0.00%     -    0s
-     0     0          -    0      2039.00000 2039.00000  0.00%     -    0s
+     0     0 2674.50000    0  129 -194.00000 2674.50000  1479%     -    0s
+H    0     0                     293.0000000 2674.50000   813%     -    0s
+H    0     0                     617.0000000 2674.50000   333%     -    0s
+H    0     0                     911.0000000 2674.50000   194%     -    0s
+H    0     0                    1258.0000000 2674.50000   113%     -    0s
+H    0     0                    1316.0000000 2674.50000   103%     -    0s
+     0     0 1316.00000    0  127 1316.00000 1316.00000  0.00%     -    0s
 
 Cutting planes:
-  Gomory: 20
-  Dual implied bound: 1
-  Zero half: 50
-  RLT: 224
-  BQP: 146
+  Gomory: 2
+  Clique: 1
+  MIR: 10
+  Zero half: 57
+  RLT: 125
+  BQP: 132
 
-Explored 1 nodes (804 simplex iterations) in 0.08 seconds (0.10 work units)
-Thread count was 6 (of 6 available processors)
+Explored 1 nodes (464 simplex iterations) in 0.05 seconds (0.04 work units)
+Thread count was 12 (of 12 available processors)
 
-Solution count 9: 2039 1958 1924 ... -895
+Solution count 7: 1316 1258 911 ... -1183
 
 Optimal solution found (tolerance 1.00e-04)
-Best objective 2.039000000000e+03, best bound 2.039000000000e+03, gap 0.0000%
+Best objective 1.316000000000e+03, best bound 1.316000000000e+03, gap 0.0000%
 
-Result: 2039
+Result: 1316
 
-X: [1.0, 1.0, 1.0, -0.0, 0.0, 1.0, 1.0, 0.0, 1.0, 1.0, 1.0, 0.0, 1.0, 1.0, 0.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, -0.0]
+X: [-0.0, 1.0, 1.0, -0.0, 1.0, 1.0, 1.0, -0.0, 1.0, 1.0, 1.0, -0.0, 1.0, -0.0, -0.0, 1.0, 1.0, -0.0, -0.0, -0.0, 1.0, -0.0, 1.0, 1.0, -0.0]
 
 --- Finished in 0.17 seconds ---
