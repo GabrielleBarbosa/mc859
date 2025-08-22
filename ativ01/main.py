@@ -34,7 +34,8 @@ def main():
     # Create the model
     model = gp.Model("max-sc-qbf")   
     x = model.addVars(n, vtype=GRB.BINARY, name="x")
-    y = model.addVars(n, n, vtype=GRB.BINARY, name="y")
+    pairs = [(i, j) for i in range(n) for j in range(i, n)]
+    y = model.addVars(pairs, vtype=GRB.BINARY, name="y")
 
 
     model.setObjective(
@@ -57,6 +58,7 @@ def main():
                 indexes.append(i)
         model.addConstr(gp.quicksum(x[i] for i in indexes) >= 1)
 
+    model.setParam('TimeLimit', 600)
     model.optimize()
     printSolution(model, n, x)
 
