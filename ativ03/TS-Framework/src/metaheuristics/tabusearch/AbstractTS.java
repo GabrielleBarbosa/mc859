@@ -237,7 +237,7 @@ public abstract class AbstractTS<E> {
 	 * @return true if the criteria is met.
 	 */
 	public Boolean constructiveStopCriteria() {
-		return (cost > sol.cost) ? false : true;
+		return cost <= sol.cost;
 	}
 
 }
