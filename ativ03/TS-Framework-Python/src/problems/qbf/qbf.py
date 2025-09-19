@@ -39,13 +39,13 @@ class QBF(Evaluator):
         return sol.cost
 
     def evaluate_qbf(self):
-        total = 0.0
-        
-        for i in range(self.size):
-            for j in range(self.size):
-                total += self.variables[i] * self.variables[j] * self.A[i][j]
-        
-        return total
+        # total = 0.0
+        # for i in range(self.size):
+        #     for j in range(self.size):
+        #         total += self.variables[i] * self.variables[j] * self.A[i][j]
+
+        return self.variables @ self.A @ self.variables
+
 
     def evaluate_insertion_cost(self, elem, sol: Solution):
         self.set_variables(sol)
@@ -84,9 +84,14 @@ class QBF(Evaluator):
 
     def _evaluate_contribution_qbf(self, i: int):
         sum_val = 0.0
-        for j in range(self.size):
-            if i != j:
-                sum_val += self.variables[j] * (self.A[i, j] + self.A[j, i])
+        # for j in range(self.size):
+        #     if i != j:
+        #         sum_val += self.variables[j] * (self.A[i, j] + self.A[j, i])
+
+        # using numpy on this step significantly increased performance
+        sum_val = np.dot(self.variables, self.A[i, :] + self.A[:, i])
+        sum_val -= self.variables[i] * (self.A[i, i] + self.A[i, i])
+
         sum_val += self.A[i, i]
         return sum_val
 
