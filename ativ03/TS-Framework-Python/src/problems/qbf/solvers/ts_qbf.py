@@ -90,7 +90,7 @@ if __name__ == '__main__':
     import time
     
     # Adjust the path to the instances folder
-    instances_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..', '..', 'instances', 'qbf', 'qbf100'))
+    instances_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..', '..', 'instances', 'qbf', 'qbf020'))
 
     start_time = time.time()
     tabusearch = TS_QBF(20, 1000, instances_path)

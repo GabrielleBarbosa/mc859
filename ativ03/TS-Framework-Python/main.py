@@ -9,7 +9,7 @@ from src.problems.qbf.solvers.ts_qbf import TS_QBF
 
 def main():
     # Get the absolute path to the instance file
-    instance_file = os.path.join(os.path.dirname(__file__), 'instances', 'qbf', 'qbf100')
+    instance_file = os.path.join(os.path.dirname(__file__), 'instances', 'qbf', 'qbf200')
     
     start_time = time.time()
     tabusearch = TS_QBF(20, 1000, instance_file)

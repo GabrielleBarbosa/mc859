@@ -39,7 +39,13 @@ class QBF(Evaluator):
         return sol.cost
 
     def evaluate_qbf(self):
-        return self.variables @ self.A @ self.variables
+        total = 0.0
+        
+        for i in range(self.size):
+            for j in range(self.size):
+                total += self.variables[i] * self.variables[j] * self.A[i][j]
+        
+        return total
 
     def evaluate_insertion_cost(self, elem, sol: Solution):
         self.set_variables(sol)

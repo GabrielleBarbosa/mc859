@@ -14,7 +14,7 @@ class AbstractTS(abc.ABC):
         self.cl = self.make_cl()
         self.rcl = self.make_rcl()
         self.tl = self.make_tl()
-        self.rng = random.Random(0)
+        self.rng = random.Random(42)
         self.verbose = True
 
     @abc.abstractmethod
@@ -64,9 +64,6 @@ class AbstractTS(abc.ABC):
                 delta_cost = self.obj_function.evaluate_insertion_cost(c, self.sol)
                 if delta_cost <= min_cost:
                     self.rcl.append(c)
-            
-            if not self.rcl:
-                break
 
             rnd_index = self.rng.randint(0, len(self.rcl) - 1)
             in_cand = self.rcl[rnd_index]
@@ -87,6 +84,7 @@ class AbstractTS(abc.ABC):
                 self.best_sol = Solution(self.sol)
                 if self.verbose:
                     print(f"(Iter. {i}) BestSol = {self.best_sol}")
+
         return self.best_sol
 
     def constructive_stop_criteria(self, cost):
