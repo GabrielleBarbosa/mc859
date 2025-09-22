@@ -10,8 +10,9 @@ from src.problems.sc_qbf.sc_qbf_inverse import SC_QBF_Inverse
 from src.solutions.solution import Solution
 
 class TS_SC_QBF(AbstractTS):
-    def __init__(self, tenure: int, iterations: int, filename: str):
+    def __init__(self, tenure: int, iterations: int, filename: str, strategy = "standard"):
         self.fake = -1
+        self.strategy = strategy
         super().__init__(SC_QBF_Inverse(filename), tenure, iterations)
 
     def make_cl(self):
@@ -31,7 +32,6 @@ class TS_SC_QBF(AbstractTS):
         sol.cost = 0.0
         return sol
 
-
     def constructive_stop_criteria(self, cost):
         return self.obj_function.is_feasible(self.sol) and cost <= self.sol.cost
 
@@ -40,14 +40,12 @@ class TS_SC_QBF(AbstractTS):
         best_cand_in = None
         best_cand_out = None
 
+        movements = []
+
         # Evaluate insertions
         for cand_in in self.cl:
             delta_cost = self.obj_function.evaluate_insertion_cost(cand_in, self.sol)
-            if (cand_in not in self.tl) or (self.sol.cost + delta_cost < self.best_sol.cost):
-                if delta_cost < min_delta_cost:
-                    min_delta_cost = delta_cost
-                    best_cand_in = cand_in
-                    best_cand_out = None
+            movements.append((cand_in, None, delta_cost))
 
         # Evaluate removals
         for cand_out in self.sol:
@@ -55,11 +53,7 @@ class TS_SC_QBF(AbstractTS):
             temp_sol.remove(cand_out)
             if self.obj_function.is_feasible(temp_sol):
                 delta_cost = self.obj_function.evaluate_removal_cost(cand_out, self.sol)
-                if (cand_out not in self.tl) or (self.sol.cost + delta_cost < self.best_sol.cost):
-                    if delta_cost < min_delta_cost:
-                        min_delta_cost = delta_cost
-                        best_cand_in = None
-                        best_cand_out = cand_out
+                movements.append((None, cand_out, delta_cost))
 
         # Evaluate exchanges
         for cand_in in self.cl:
@@ -69,12 +63,33 @@ class TS_SC_QBF(AbstractTS):
                 temp_sol.remove(cand_out)
                 if self.obj_function.is_feasible(temp_sol):
                     delta_cost = self.obj_function.evaluate_exchange_cost(cand_in, cand_out, self.sol)
-                    if ((cand_in not in self.tl) and (cand_out not in self.tl)) or \
+                    movements.append((cand_in, cand_out, delta_cost))
+
+
+        if self.strategy == "probabilistic":
+            movements = self.rng.sample(movements, len(movements) // 2)
+        
+        for movement in movements:
+            cand_in, cand_out, delta_cost = movement
+            if cand_in != None and cand_out != None:
+                if ((cand_in not in self.tl) and (cand_out not in self.tl)) or \
                     (self.sol.cost + delta_cost < self.best_sol.cost):
                         if delta_cost < min_delta_cost:
                             min_delta_cost = delta_cost
                             best_cand_in = cand_in
                             best_cand_out = cand_out
+            elif cand_out != None:
+                if (cand_out not in self.tl) or (self.sol.cost + delta_cost < self.best_sol.cost):
+                    if delta_cost < min_delta_cost:
+                        min_delta_cost = delta_cost
+                        best_cand_in = None
+                        best_cand_out = cand_out
+            else:
+                if (cand_in not in self.tl) or (self.sol.cost + delta_cost < self.best_sol.cost):
+                    if delta_cost < min_delta_cost:
+                        min_delta_cost = delta_cost
+                        best_cand_in = cand_in
+                        best_cand_out = None
 
         # Implement the best non-tabu move
         if len(self.tl) >= 2 * self.tenure:
