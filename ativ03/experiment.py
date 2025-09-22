@@ -17,7 +17,7 @@ def main():
 
     results = []
     
-    tenures = [20, 10]  
+    tenures = [0.3, 20]  
     iterations = 1000  
     
     print("Running computational experiments...")
@@ -25,8 +25,8 @@ def main():
     
     configs = [
         ("PADRÃO", tenures[0], "first_improving", "standard"),
-        ("PADRÃO+BEST", tenures[1], "best_improving", "standard"),
-        ("PADRÃO+TENURE", tenures[0], "first_improving", "standard"),
+        ("PADRÃO+BEST", tenures[0], "best_improving", "standard"),
+        ("PADRÃO+TENURE", tenures[1], "first_improving", "standard"),
         ("PADRÃO+METHOD1", tenures[0], "first_improving", "probabilistic"),
         ("PADRÃO+METHOD2", tenures[0], "first_improving", "OTHER"),
     ]

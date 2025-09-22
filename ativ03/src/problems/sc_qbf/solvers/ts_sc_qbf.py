@@ -14,7 +14,11 @@ class TS_SC_QBF(AbstractTS):
         self.fake = -1
         self.strategy = strategy
         self.search_method = search_method
-        super().__init__(SC_QBF_Inverse(filename), tenure, iterations)
+        obj_function = SC_QBF_Inverse(filename)
+        if tenure < 1:
+            tenure = int(tenure * obj_function.get_domain_size())
+        super().__init__(obj_function, tenure, iterations)
+        
 
     def make_cl(self):
         return list(range(self.obj_function.get_domain_size()))
