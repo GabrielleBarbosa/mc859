@@ -12,7 +12,7 @@ def main():
     instance_file = os.path.join(os.path.dirname(__file__), 'instances', 'sc_qbf', 'scqbf_025_1')
     
     start_time = time.time()
-    tabusearch = TS_SC_QBF(20, 1000, instance_file, "probabilistic")
+    tabusearch = TS_SC_QBF(20, 1000, instance_file, "best_improving", "probabilistic")
     best_sol = tabusearch.solve()
     print("maxVal =", best_sol)
     end_time = time.time()

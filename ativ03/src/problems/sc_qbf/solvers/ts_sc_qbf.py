@@ -10,9 +10,10 @@ from src.problems.sc_qbf.sc_qbf_inverse import SC_QBF_Inverse
 from src.solutions.solution import Solution
 
 class TS_SC_QBF(AbstractTS):
-    def __init__(self, tenure: int, iterations: int, filename: str, strategy = "standard"):
+    def __init__(self, tenure: int, iterations: int, filename: str, search_method: str, strategy: str):
         self.fake = -1
         self.strategy = strategy
+        self.search_method = search_method
         super().__init__(SC_QBF_Inverse(filename), tenure, iterations)
 
     def make_cl(self):
@@ -66,6 +67,7 @@ class TS_SC_QBF(AbstractTS):
                     movements.append((cand_in, cand_out, delta_cost))
 
 
+        self.rng.shuffle(movements)
         if self.strategy == "probabilistic":
             movements = self.rng.sample(movements, len(movements) // 2)
         
@@ -78,18 +80,24 @@ class TS_SC_QBF(AbstractTS):
                             min_delta_cost = delta_cost
                             best_cand_in = cand_in
                             best_cand_out = cand_out
+                            if self.search_method == "first_improving":
+                                break
             elif cand_out != None:
                 if (cand_out not in self.tl) or (self.sol.cost + delta_cost < self.best_sol.cost):
                     if delta_cost < min_delta_cost:
                         min_delta_cost = delta_cost
                         best_cand_in = None
                         best_cand_out = cand_out
+                        if self.search_method == "first_improving":
+                            break
             else:
                 if (cand_in not in self.tl) or (self.sol.cost + delta_cost < self.best_sol.cost):
                     if delta_cost < min_delta_cost:
                         min_delta_cost = delta_cost
                         best_cand_in = cand_in
                         best_cand_out = None
+                        if self.search_method == "first_improving":
+                            break
 
         # Implement the best non-tabu move
         if len(self.tl) >= 2 * self.tenure:
