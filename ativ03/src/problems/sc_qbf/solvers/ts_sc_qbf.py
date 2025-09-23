@@ -1,8 +1,4 @@
-import sys
-import os
-
-# Add the project root to the Python path
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..')))
+import math
 
 from collections import deque
 from src.metaheuristics.tabusearch.abstract_ts import AbstractTS
@@ -18,8 +14,24 @@ class TS_SC_QBF(AbstractTS):
         if tenure < 1:
             tenure = int(tenure * obj_function.get_domain_size())
         super().__init__(obj_function, tenure, iterations)
+
+
+        self.iterations_without_new_best_sol = 0
+        self.elements_frequency = self.make_elem_frequency()
+        self.iterations_for_diversification = 100
         
 
+    def make_elem_frequency(self):
+        freq = {}
+        for i in range(self.obj_function.get_domain_size()):
+            freq[i] = 0
+        
+        return freq
+    
+    def update_elem_frequency(self):
+        for i in self.sol:
+            self.elements_frequency[i] += 1
+    
     def make_cl(self):
         return list(range(self.obj_function.get_domain_size()))
 
@@ -30,7 +42,9 @@ class TS_SC_QBF(AbstractTS):
         return deque([self.fake] * (2 * self.tenure), maxlen=2 * self.tenure)
 
     def update_cl(self):
-        pass
+        self.cl = self.make_cl()
+        for i in self.sol:
+            self.cl.remove(i)
 
     def create_empty_sol(self):
         sol = Solution()
@@ -46,6 +60,47 @@ class TS_SC_QBF(AbstractTS):
         best_cand_out = None
 
         movements = []
+        
+        if self.strategy == "diversification_by_restart":
+            if self.iterations_without_new_best_sol >= self.iterations_for_diversification:
+                self.iterations_without_new_best_sol = 0
+                self.iterations_for_diversification *= 2
+                self.sol = Solution(self.best_sol)
+                self.update_cl()
+                previous_cost = self.sol.cost
+
+                sorted_freq = dict(sorted(self.elements_frequency.items(), key=lambda item: item[1]))
+
+                # add to best solution the 5% least frequently used items that are not already in the solution
+                elems_len = math.ceil(len(sorted_freq) / 20)
+                i = 0
+                for k, _ in sorted_freq.items():
+                    if i >= elems_len:
+                        break
+
+                    if k not in self.sol:
+                        self.sol.append(k)
+                        self.cl.remove(k)
+                        self.tl.append(k)
+                        i += 1
+
+                # remove from best solution the 2.5% most frequently used items 
+                elems_len = math.ceil(len(sorted_freq) / 40)
+                i = 0
+                for k, _ in reversed(sorted_freq.items()):
+                    if i >= elems_len:
+                        break
+
+                    if k in self.sol:
+                        self.sol.remove(k)
+                        self.cl.append(k)
+                        self.tl.append(k)
+                        i += 1
+
+                self.obj_function.evaluate(self.sol)
+                if self.verbose:
+                    print(f"(Iter. {self.current_iter}) performed diversification by restart, previous cost = {previous_cost}, sol = {self.sol}, feasible = {self.obj_function.is_feasible(self.sol)}")
+                    
 
         # Evaluate insertions
         for cand_in in self.cl:
@@ -84,7 +139,7 @@ class TS_SC_QBF(AbstractTS):
                             min_delta_cost = delta_cost
                             best_cand_in = cand_in
                             best_cand_out = cand_out
-                            if self.search_method == "first_improving":
+                            if self.search_method == "first_improving" and self.sol.cost + delta_cost < self.sol.cost:
                                 break
             elif cand_out != None:
                 if (cand_out not in self.tl) or (self.sol.cost + delta_cost < self.best_sol.cost):
@@ -92,7 +147,7 @@ class TS_SC_QBF(AbstractTS):
                         min_delta_cost = delta_cost
                         best_cand_in = None
                         best_cand_out = cand_out
-                        if self.search_method == "first_improving":
+                        if self.search_method == "first_improving" and self.sol.cost + delta_cost < self.sol.cost:
                             break
             else:
                 if (cand_in not in self.tl) or (self.sol.cost + delta_cost < self.best_sol.cost):
@@ -100,7 +155,7 @@ class TS_SC_QBF(AbstractTS):
                         min_delta_cost = delta_cost
                         best_cand_in = cand_in
                         best_cand_out = None
-                        if self.search_method == "first_improving":
+                        if self.search_method == "first_improving" and self.sol.cost + delta_cost < self.sol.cost:
                             break
 
         # Implement the best non-tabu move
@@ -119,6 +174,7 @@ class TS_SC_QBF(AbstractTS):
             self.sol.append(best_cand_in)
             self.cl.remove(best_cand_in)
             self.tl.append(best_cand_in)
+            self.elements_frequency[best_cand_in] += 1
         else:
             self.tl.append(self.fake)
 
@@ -127,12 +183,17 @@ class TS_SC_QBF(AbstractTS):
     def solve(self):
         self.best_sol = self.create_empty_sol()
         self.constructive_heuristic()
+        self.update_elem_frequency()
         self.tl = self.make_tl()
         for i in range(self.iterations):
+            self.current_iter = i
             self.neighborhood_move()
-            if self.obj_function.is_feasible(self.sol) and self.best_sol.cost > self.sol.cost:
-                self.best_sol = Solution(self.sol)
-                if self.verbose:
-                    print(f"(Iter. {i}) BestSol = {self.best_sol}")
+            if self.best_sol.cost > self.sol.cost:
+                if self.obj_function.is_feasible(self.sol):
+                    self.best_sol = Solution(self.sol)
+                    if self.verbose:
+                        print(f"(Iter. {i}) BestSol = {self.best_sol}")
+            else:
+                self.iterations_without_new_best_sol += 1
 
         return self.best_sol

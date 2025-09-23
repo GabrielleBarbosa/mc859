@@ -1,5 +1,3 @@
-import math
-
 class Solution(list):
     def __init__(self, solution = None, *args, **kwargs):
         if solution != None :

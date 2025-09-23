@@ -28,7 +28,7 @@ def main():
         ("PADRÃO+BEST", tenures[0], "best_improving", "standard"),
         ("PADRÃO+TENURE", tenures[1], "first_improving", "standard"),
         ("PADRÃO+METHOD1", tenures[0], "first_improving", "probabilistic"),
-        ("PADRÃO+METHOD2", tenures[0], "first_improving", "OTHER"),
+        ("PADRÃO+METHOD2", tenures[0], "first_improving", "diversification_by_restart"),
     ]
     
     for filename in filenames:
