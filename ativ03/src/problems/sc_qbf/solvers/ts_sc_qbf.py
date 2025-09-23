@@ -1,6 +1,6 @@
 import math
 
-from collections import deque
+from collections import deque, defaultdict
 from src.metaheuristics.tabusearch.abstract_ts import AbstractTS
 from src.problems.sc_qbf.sc_qbf_inverse import SC_QBF_Inverse
 from src.solutions.solution import Solution
@@ -64,17 +64,30 @@ class TS_SC_QBF(AbstractTS):
         if self.strategy == "diversification_by_restart":
             if self.iterations_without_new_best_sol >= self.iterations_for_diversification:
                 self.iterations_without_new_best_sol = 0
-                self.iterations_for_diversification *= 2
+                # double the number of iterations to try again diversification, so it can possibly recover to a new minimum
+                self.iterations_for_diversification *= 2 
                 self.sol = Solution(self.best_sol)
                 self.update_cl()
                 previous_cost = self.sol.cost
 
-                sorted_freq = dict(sorted(self.elements_frequency.items(), key=lambda item: item[1]))
+                freq_groups = defaultdict(list)
+                for elem, freq in self.elements_frequency.items():
+                    freq_groups[freq].append(elem)
+
+                # sort frequencies ascending
+                sorted_freqs = sorted(freq_groups.keys())
+
+                # flatten: shuffle within equal-frequency groups
+                sorted_freq = []
+                for f in sorted_freqs:
+                    group = freq_groups[f]
+                    self.rng.shuffle(group)
+                    sorted_freq.extend(group)
 
                 # add to best solution the 5% least frequently used items that are not already in the solution
                 elems_len = math.ceil(len(sorted_freq) / 20)
                 i = 0
-                for k, _ in sorted_freq.items():
+                for k in sorted_freq:
                     if i >= elems_len:
                         break
 
@@ -87,7 +100,7 @@ class TS_SC_QBF(AbstractTS):
                 # remove from best solution the 2.5% most frequently used items 
                 elems_len = math.ceil(len(sorted_freq) / 40)
                 i = 0
-                for k, _ in reversed(sorted_freq.items()):
+                for k in reversed(sorted_freq):
                     if i >= elems_len:
                         break
 
