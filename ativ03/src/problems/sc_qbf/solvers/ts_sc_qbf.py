@@ -1,5 +1,5 @@
 import math
-
+import time
 from collections import deque, defaultdict
 from src.metaheuristics.tabusearch.abstract_ts import AbstractTS
 from src.problems.sc_qbf.sc_qbf_inverse import SC_QBF_Inverse
@@ -198,8 +198,16 @@ class TS_SC_QBF(AbstractTS):
         self.constructive_heuristic()
         self.update_elem_frequency()
         self.tl = self.make_tl()
+
+        time_limit = time.time() + 30 * 60  # 30 minutes timeout
+
         for i in range(self.iterations):
             self.current_iter = i
+            if time.time() >= time_limit:
+                if self.verbose:
+                    print(f"(Iter. {i}) Time limit reached. Stopping early.")
+                break
+
             self.neighborhood_move()
             if self.best_sol.cost > self.sol.cost:
                 if self.obj_function.is_feasible(self.sol):

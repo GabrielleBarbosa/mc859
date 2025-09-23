@@ -55,7 +55,7 @@ def main():
                 'cost': best_sol.cost,
                 'size': len(best_sol),
                 'time': end_time - start_time,
-                'iterations': ts.iterations,
+                'iterations': ts.current_iter + 1,
                 'feasible': ts.obj_function.is_feasible(best_sol),
             })
             
