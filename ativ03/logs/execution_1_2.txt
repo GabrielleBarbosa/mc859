@@ -1686,65 +1686,65 @@ Cost: -512189.0, Size: 235, Iterations: 2000, Time: 1817.196s
 ================================================================================
 RESULTS SUMMARY
 ================================================================================
-Configuration   Cost       Size   Time(s)  Iterations Feasible  
+File                Configuration   Cost       Size   Time(s)  Iterations Feasible  
 --------------------------------------------------------------------------------
-PADRÃO          -1316.00   14     1.767    2000       1         
-PADRÃO+BEST     -1316.00   14     1.653    2000       1         
-PADRÃO+TENURE   -1316.00   14     1.626    2000       1         
-PADRÃO+METHOD1  -1316.00   14     1.743    2000       1         
-PADRÃO+METHOD2  -1316.00   14     1.718    2000       1         
-PADRÃO+METHOD3  -1316.00   14     1.690    2000       1         
-PADRÃO          -395.00    12     2.589    2000       1         
-PADRÃO+BEST     -395.00    12     2.577    2000       1         
-PADRÃO+TENURE   -395.00    12     2.566    2000       1         
-PADRÃO+METHOD1  -395.00    12     2.632    2000       1         
-PADRÃO+METHOD2  -395.00    12     2.604    2000       1         
-PADRÃO+METHOD3  -395.00    12     2.534    2000       1         
-PADRÃO          -5257.00   29     15.545   2000       1         
-PADRÃO+BEST     -5257.00   29     15.636   2000       1         
-PADRÃO+TENURE   -5257.00   29     15.468   2000       1         
-PADRÃO+METHOD1  -5257.00   29     15.435   2000       1         
-PADRÃO+METHOD2  -5257.00   29     15.569   2000       1         
-PADRÃO+METHOD3  -5257.00   29     15.439   2000       1         
-PADRÃO          -3267.00   32     19.774   2000       1         
-PADRÃO+BEST     -3267.00   32     19.971   2000       1         
-PADRÃO+TENURE   -3267.00   32     19.713   2000       1         
-PADRÃO+METHOD1  -3267.00   32     19.691   2000       1         
-PADRÃO+METHOD2  -3267.00   32     19.893   2000       1         
-PADRÃO+METHOD3  -3267.00   32     19.769   2000       1         
-PADRÃO          -16665.00  68     145.120  2000       1         
-PADRÃO+BEST     -16665.00  68     144.991  2000       1         
-PADRÃO+TENURE   -16665.00  68     144.392  2000       1         
-PADRÃO+METHOD1  -16602.00  67     143.784  2000       1         
-PADRÃO+METHOD2  -16665.00  68     144.904  2000       1         
-PADRÃO+METHOD3  -16665.00  68     145.109  2000       1         
-PADRÃO          -20455.00  70     181.533  2000       1         
-PADRÃO+BEST     -20455.00  70     181.487  2000       1         
-PADRÃO+TENURE   -20455.00  70     181.100  2000       1         
-PADRÃO+METHOD1  -20322.00  70     182.828  2000       1         
-PADRÃO+METHOD2  -20455.00  70     182.874  2000       1         
-PADRÃO+METHOD3  -20455.00  70     184.250  2000       1         
-PADRÃO          -47904.00  121    1483.733 2000       1         
-PADRÃO+BEST     -48639.00  120    1491.405 2000       1         
-PADRÃO+TENURE   -48906.00  127    1499.934 2000       1         
-PADRÃO+METHOD1  -48319.00  123    1491.159 2000       1         
-PADRÃO+METHOD2  -48818.00  127    1506.389 2000       1         
-PADRÃO+METHOD3  -48639.00  120    1511.793 2000       1         
-PADRÃO          -99261.00  123    1800.317 1674       1         
-PADRÃO+BEST     -99201.00  125    1801.192 1676       1         
-PADRÃO+TENURE   -99459.00  126    1801.172 1675       1         
-PADRÃO+METHOD1  -98478.00  125    1801.121 1682       1         
-PADRÃO+METHOD2  -99261.00  123    1800.913 1680       1         
-PADRÃO+METHOD3  -99201.00  125    1800.287 1675       1         
-PADRÃO          -140024.00 255    1805.930 127        1         
-PADRÃO+BEST     -141226.00 256    1813.206 130        1         
-PADRÃO+TENURE   -140165.00 250    1814.180 127        1         
-PADRÃO+METHOD1  -141226.00 256    1805.555 126        1         
-PADRÃO+METHOD2  -140024.00 255    1812.644 128        1         
-PADRÃO+METHOD3  -141226.00 256    1805.555 124        1         
-PADRÃO          -506136.00 236    1823.497 65         1         
-PADRÃO+BEST     -512189.00 235    1806.682 64         1         
-PADRÃO+TENURE   -506115.00 236    1815.679 64         1         
-PADRÃO+METHOD1  -505367.00 236    1808.144 64         1         
-PADRÃO+METHOD2  -506115.00 236    1827.586 64         1         
-PADRÃO+METHOD3  -512189.00 235    1817.196 65         1         
+scqbf_025_1.txt     PADRÃO          -1316.00   14     1.767    2000       1         
+scqbf_025_1.txt     PADRÃO+BEST     -1316.00   14     1.653    2000       1         
+scqbf_025_1.txt     PADRÃO+TENURE   -1316.00   14     1.626    2000       1         
+scqbf_025_1.txt     PADRÃO+METHOD1  -1316.00   14     1.743    2000       1         
+scqbf_025_1.txt     PADRÃO+METHOD2  -1316.00   14     1.718    2000       1         
+scqbf_025_1.txt     PADRÃO+METHOD3  -1316.00   14     1.690    2000       1         
+scqbf_025_2.txt     PADRÃO          -395.00    12     2.589    2000       1         
+scqbf_025_2.txt     PADRÃO+BEST     -395.00    12     2.577    2000       1         
+scqbf_025_2.txt     PADRÃO+TENURE   -395.00    12     2.566    2000       1         
+scqbf_025_2.txt     PADRÃO+METHOD1  -395.00    12     2.632    2000       1         
+scqbf_025_2.txt     PADRÃO+METHOD2  -395.00    12     2.604    2000       1         
+scqbf_025_2.txt     PADRÃO+METHOD3  -395.00    12     2.534    2000       1         
+scqbf_050_1.txt     PADRÃO          -5257.00   29     15.545   2000       1         
+scqbf_050_1.txt     PADRÃO+BEST     -5257.00   29     15.636   2000       1         
+scqbf_050_1.txt     PADRÃO+TENURE   -5257.00   29     15.468   2000       1         
+scqbf_050_1.txt     PADRÃO+METHOD1  -5257.00   29     15.435   2000       1         
+scqbf_050_1.txt     PADRÃO+METHOD2  -5257.00   29     15.569   2000       1         
+scqbf_050_1.txt     PADRÃO+METHOD3  -5257.00   29     15.439   2000       1         
+scqbf_050_2.txt     PADRÃO          -3267.00   32     19.774   2000       1         
+scqbf_050_2.txt     PADRÃO+BEST     -3267.00   32     19.971   2000       1         
+scqbf_050_2.txt     PADRÃO+TENURE   -3267.00   32     19.713   2000       1         
+scqbf_050_2.txt     PADRÃO+METHOD1  -3267.00   32     19.691   2000       1         
+scqbf_050_2.txt     PADRÃO+METHOD2  -3267.00   32     19.893   2000       1         
+scqbf_050_2.txt     PADRÃO+METHOD3  -3267.00   32     19.769   2000       1         
+scqbf_100_1.txt     PADRÃO          -16665.00  68     145.120  2000       1         
+scqbf_100_1.txt     PADRÃO+BEST     -16665.00  68     144.991  2000       1         
+scqbf_100_1.txt     PADRÃO+TENURE   -16665.00  68     144.392  2000       1         
+scqbf_100_1.txt     PADRÃO+METHOD1  -16602.00  67     143.784  2000       1         
+scqbf_100_1.txt     PADRÃO+METHOD2  -16665.00  68     144.904  2000       1         
+scqbf_100_1.txt     PADRÃO+METHOD3  -16665.00  68     145.109  2000       1         
+scqbf_100_2.txt     PADRÃO          -20455.00  70     181.533  2000       1         
+scqbf_100_2.txt     PADRÃO+BEST     -20455.00  70     181.487  2000       1         
+scqbf_100_2.txt     PADRÃO+TENURE   -20455.00  70     181.100  2000       1         
+scqbf_100_2.txt     PADRÃO+METHOD1  -20322.00  70     182.828  2000       1         
+scqbf_100_2.txt     PADRÃO+METHOD2  -20455.00  70     182.874  2000       1         
+scqbf_100_2.txt     PADRÃO+METHOD3  -20455.00  70     184.250  2000       1         
+scqbf_200_1.txt     PADRÃO          -47904.00  121    1483.733 2000       1         
+scqbf_200_1.txt     PADRÃO+BEST     -48639.00  120    1491.405 2000       1         
+scqbf_200_1.txt     PADRÃO+TENURE   -48906.00  127    1499.934 2000       1         
+scqbf_200_1.txt     PADRÃO+METHOD1  -48319.00  123    1491.159 2000       1         
+scqbf_200_1.txt     PADRÃO+METHOD2  -48818.00  127    1506.389 2000       1         
+scqbf_200_1.txt     PADRÃO+METHOD3  -48639.00  120    1511.793 2000       1         
+scqbf_200_2.txt     PADRÃO          -99261.00  123    1800.317 1674       1         
+scqbf_200_2.txt     PADRÃO+BEST     -99201.00  125    1801.192 1676       1         
+scqbf_200_2.txt     PADRÃO+TENURE   -99459.00  126    1801.172 1675       1         
+scqbf_200_2.txt     PADRÃO+METHOD1  -98478.00  125    1801.121 1682       1         
+scqbf_200_2.txt     PADRÃO+METHOD2  -99261.00  123    1800.913 1680       1         
+scqbf_200_2.txt     PADRÃO+METHOD3  -99201.00  125    1800.287 1675       1         
+scqbf_400_1.txt     PADRÃO          -140024.00 255    1805.930 127        1         
+scqbf_400_1.txt     PADRÃO+BEST     -141226.00 256    1813.206 130        1         
+scqbf_400_1.txt     PADRÃO+TENURE   -140165.00 250    1814.180 127        1         
+scqbf_400_1.txt     PADRÃO+METHOD1  -141226.00 256    1805.555 126        1         
+scqbf_400_1.txt     PADRÃO+METHOD2  -140024.00 255    1812.644 128        1         
+scqbf_400_1.txt     PADRÃO+METHOD3  -141226.00 256    1805.555 124        1         
+scqbf_400_2.txt     PADRÃO          -506136.00 236    1823.497 65         1         
+scqbf_400_2.txt     PADRÃO+BEST     -512189.00 235    1806.682 64         1         
+scqbf_400_2.txt     PADRÃO+TENURE   -506115.00 236    1815.679 64         1         
+scqbf_400_2.txt     PADRÃO+METHOD1  -505367.00 236    1808.144 64         1         
+scqbf_400_2.txt     PADRÃO+METHOD2  -506115.00 236    1827.586 64         1         
+scqbf_400_2.txt     PADRÃO+METHOD3  -512189.00 235    1817.196 65         1         

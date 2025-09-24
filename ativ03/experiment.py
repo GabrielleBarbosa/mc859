@@ -52,6 +52,7 @@ def main():
             end_time = time.time()
             
             results.append({
+                'file': filename.split("/")[-1],
                 'config': config_name,
                 'cost': best_sol.cost,
                 'size': len(best_sol),
@@ -67,11 +68,11 @@ def main():
     print("\n" + "=" * 80)
     print("RESULTS SUMMARY")
     print("=" * 80)
-    print(f"{'Configuration':<15} {'Cost':<10} {'Size':<6} {'Time(s)':<8} {'Iterations':<10} {'Feasible':<10}")
+    print(f"{'File':<20} {'Configuration':<15} {'Cost':<10} {'Size':<6} {'Time(s)':<8} {'Iterations':<10} {'Feasible':<10}")
     print("-" * 80)
     
     for result in results:
-        print(f"{result['config']:<15} {result['cost']:<10.2f} {result['size']:<6} "
+        print(f"{result['file']:<20} {result['config']:<15} {result['cost']:<10.2f} {result['size']:<6} "
               f"{result['time']:<8.3f} {result['iterations']:<10} {result['feasible']:<10}")
     
     return results
