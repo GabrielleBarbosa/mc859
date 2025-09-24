@@ -53,6 +53,9 @@ class AbstractTS(abc.ABC):
             cost = self.sol.cost
             self.update_cl()
 
+            if not self.cl:
+                break
+
             for c in self.cl:
                 delta_cost = self.obj_function.evaluate_insertion_cost(c, self.sol)
                 if delta_cost < min_cost:
