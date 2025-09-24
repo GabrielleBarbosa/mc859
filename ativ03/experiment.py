@@ -18,7 +18,7 @@ def main():
     results = []
     
     tenures = [0.2, 10]  
-    iterations = 1000  
+    iterations = 2000  
     
     print("Running computational experiments...")
     print("=" * 60)
