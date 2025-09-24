@@ -17,7 +17,7 @@ def main():
 
     results = []
     
-    tenures = [0.3, 20]  
+    tenures = [0.2, 10]  
     iterations = 1000  
     
     print("Running computational experiments...")
@@ -29,6 +29,7 @@ def main():
         ("PADRÃO+TENURE", tenures[1], "first_improving", "standard"),
         ("PADRÃO+METHOD1", tenures[0], "first_improving", "probabilistic"),
         ("PADRÃO+METHOD2", tenures[0], "first_improving", "diversification_by_restart"),
+        ("PADRÃO+METHOD3", tenures[0], "best_improving", "diversification_by_restart"),
     ]
     
     for filename in filenames:

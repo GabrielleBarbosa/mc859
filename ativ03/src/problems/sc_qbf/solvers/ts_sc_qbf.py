@@ -66,8 +66,8 @@ class TS_SC_QBF(AbstractTS):
                 self.iterations_without_new_best_sol = 0
                 # double the number of iterations to try again diversification, so it can possibly recover to a new minimum
                 self.iterations_for_diversification *= 2 
-                self.sol = Solution(self.best_sol)
-                self.update_cl()
+                # self.sol = Solution(self.best_sol)
+                # self.update_cl()
                 previous_cost = self.sol.cost
 
                 freq_groups = defaultdict(list)
@@ -97,18 +97,18 @@ class TS_SC_QBF(AbstractTS):
                         self.tl.append(k)
                         i += 1
 
-                # remove from best solution the 2.5% most frequently used items 
-                elems_len = math.ceil(len(sorted_freq) / 40)
-                i = 0
-                for k in reversed(sorted_freq):
-                    if i >= elems_len:
-                        break
+                # # remove from best solution the 2.5% most frequently used items 
+                # elems_len = math.ceil(len(sorted_freq) / 40)
+                # i = 0
+                # for k in reversed(sorted_freq):
+                #     if i >= elems_len:
+                #         break
 
-                    if k in self.sol:
-                        self.sol.remove(k)
-                        self.cl.append(k)
-                        self.tl.append(k)
-                        i += 1
+                #     if k in self.sol:
+                #         self.sol.remove(k)
+                #         self.cl.append(k)
+                #         self.tl.append(k)
+                #         i += 1
 
                 self.obj_function.evaluate(self.sol)
                 if self.verbose:
