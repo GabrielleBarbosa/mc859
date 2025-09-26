@@ -48,11 +48,6 @@ class SC_QBF(Evaluator):
         return sol.cost
 
     def evaluate_qbf(self):
-        # total = 0.0
-        # for i in range(self.size):
-        #     for j in range(self.size):
-        #         total += self.variables[i] * self.variables[j] * self.A[i][j]
-
         return self.variables @ self.A @ self.variables
 
 
@@ -105,6 +100,7 @@ class SC_QBF(Evaluator):
     def print_matrix(self):
         print(self.A)
 
+    # added method to verify solution feasibility (set coverage)
     def is_feasible(self, sol : Solution) -> bool:
         covered = set().union(*(self.S[v] for v in sol))
 

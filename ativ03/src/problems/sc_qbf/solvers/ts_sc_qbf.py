@@ -15,7 +15,7 @@ class TS_SC_QBF(AbstractTS):
             tenure = int(tenure * obj_function.get_domain_size())
         super().__init__(obj_function, tenure, iterations)
 
-
+        # Parameters used on diversification tecnique
         self.iterations_without_new_best_sol = 0
         self.elements_frequency = self.make_elem_frequency()
         self.iterations_for_diversification = 50
@@ -66,8 +66,6 @@ class TS_SC_QBF(AbstractTS):
                 self.iterations_without_new_best_sol = 0
                 # double the number of iterations to try again diversification, so it can possibly recover to a new minimum
                 self.iterations_for_diversification *= 2 
-                # self.sol = Solution(self.best_sol)
-                # self.update_cl()
                 previous_cost = self.sol.cost
 
                 freq_groups = defaultdict(list)
@@ -97,42 +95,30 @@ class TS_SC_QBF(AbstractTS):
                         self.tl.append(k)
                         i += 1
 
-                # # remove from best solution the 2.5% most frequently used items 
-                # elems_len = math.ceil(len(sorted_freq) / 40)
-                # i = 0
-                # for k in reversed(sorted_freq):
-                #     if i >= elems_len:
-                #         break
-
-                #     if k in self.sol:
-                #         self.sol.remove(k)
-                #         self.cl.append(k)
-                #         self.tl.append(k)
-                #         i += 1
-
                 self.obj_function.evaluate(self.sol)
                 if self.verbose:
                     print(f"(Iter. {self.current_iter}) performed diversification by restart, previous cost = {previous_cost}, sol = {self.sol}, feasible = {self.obj_function.is_feasible(self.sol)}")
                     
 
-        # Evaluate insertions
+        # append insertions
         for cand_in in self.cl:
             movements.append((cand_in, None))
 
-        # Evaluate removals
+        # append removals
         for cand_out in self.sol:
             movements.append((None, cand_out))
 
-        # Evaluate exchanges
+        # append exchanges
         for cand_in in self.cl:
             for cand_out in self.sol:
                 movements.append((cand_in, cand_out))
 
-
+        # shuffle movements to avoid bias
         self.rng.shuffle(movements)
         if self.strategy == "probabilistic":
             movements = self.rng.sample(movements, len(movements) // 2)
         
+        # search for best
         for movement in movements:
             cand_in, cand_out = movement
             if cand_in != None and cand_out != None:
