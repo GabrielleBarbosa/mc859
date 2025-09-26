@@ -18,17 +18,17 @@ def main():
     results = []
     
     tenures = [0.2, 10]  
-    iterations = 2000  
+    iterations = 10000  
     
     print("Running computational experiments...")
     print("=" * 60)
     
     configs = [
-        ("PADRÃO", tenures[0], "first_improving", "standard"),
-        ("PADRÃO+BEST", tenures[0], "best_improving", "standard"),
-        ("PADRÃO+TENURE", tenures[1], "first_improving", "standard"),
-        ("PADRÃO+METHOD1", tenures[0], "first_improving", "probabilistic"),
-        ("PADRÃO+METHOD2", tenures[0], "first_improving", "diversification_by_restart"),
+        # ("PADRÃO", tenures[0], "first_improving", "standard"),
+        # ("PADRÃO+BEST", tenures[0], "best_improving", "standard"),
+        # ("PADRÃO+TENURE", tenures[1], "first_improving", "standard"),
+        # ("PADRÃO+METHOD1", tenures[0], "first_improving", "probabilistic"),
+        # ("PADRÃO+METHOD2", tenures[0], "first_improving", "diversification_by_restart"),
         ("PADRÃO+METHOD3", tenures[0], "best_improving", "diversification_by_restart"),
     ]
     
@@ -61,7 +61,7 @@ def main():
                 'feasible': ts.obj_function.is_feasible(best_sol),
             })
             
-            print(f"Cost: {best_sol.cost}, Size: {len(best_sol)}, Iterations: {ts.iterations}, Time: {end_time - start_time:.3f}s")
+            print(f"Cost: {best_sol.cost}, Size: {len(best_sol)}, Iterations: {ts.current_iter + 1}, Time: {end_time - start_time:.3f}s")
             
 
     # Print results table

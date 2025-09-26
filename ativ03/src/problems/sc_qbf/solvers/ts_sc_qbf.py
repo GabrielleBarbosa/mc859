@@ -18,7 +18,7 @@ class TS_SC_QBF(AbstractTS):
 
         self.iterations_without_new_best_sol = 0
         self.elements_frequency = self.make_elem_frequency()
-        self.iterations_for_diversification = 100
+        self.iterations_for_diversification = 50
         
 
     def make_elem_frequency(self):
@@ -117,26 +117,16 @@ class TS_SC_QBF(AbstractTS):
 
         # Evaluate insertions
         for cand_in in self.cl:
-            delta_cost = self.obj_function.evaluate_insertion_cost(cand_in, self.sol)
-            movements.append((cand_in, None, delta_cost))
+            movements.append((cand_in, None))
 
         # Evaluate removals
         for cand_out in self.sol:
-            temp_sol = Solution(self.sol)
-            temp_sol.remove(cand_out)
-            if self.obj_function.is_feasible(temp_sol):
-                delta_cost = self.obj_function.evaluate_removal_cost(cand_out, self.sol)
-                movements.append((None, cand_out, delta_cost))
+            movements.append((None, cand_out))
 
         # Evaluate exchanges
         for cand_in in self.cl:
             for cand_out in self.sol:
-                temp_sol = Solution(self.sol)
-                temp_sol.append(cand_in)
-                temp_sol.remove(cand_out)
-                if self.obj_function.is_feasible(temp_sol):
-                    delta_cost = self.obj_function.evaluate_exchange_cost(cand_in, cand_out, self.sol)
-                    movements.append((cand_in, cand_out, delta_cost))
+                movements.append((cand_in, cand_out))
 
 
         self.rng.shuffle(movements)
@@ -144,25 +134,34 @@ class TS_SC_QBF(AbstractTS):
             movements = self.rng.sample(movements, len(movements) // 2)
         
         for movement in movements:
-            cand_in, cand_out, delta_cost = movement
+            cand_in, cand_out = movement
             if cand_in != None and cand_out != None:
-                if ((cand_in not in self.tl) and (cand_out not in self.tl)) or \
-                    (self.sol.cost + delta_cost < self.best_sol.cost):
-                        if delta_cost < min_delta_cost:
+                delta_cost = self.obj_function.evaluate_exchange_cost(cand_in, cand_out, self.sol)
+                if ((cand_in not in self.tl) and (cand_out not in self.tl)) or (self.sol.cost + delta_cost < self.best_sol.cost):
+                    if delta_cost < min_delta_cost:
+                        temp_sol = Solution(self.sol)
+                        temp_sol.append(cand_in)
+                        temp_sol.remove(cand_out)
+                        if self.obj_function.is_feasible(temp_sol):
                             min_delta_cost = delta_cost
                             best_cand_in = cand_in
                             best_cand_out = cand_out
                             if self.search_method == "first_improving" and self.sol.cost + delta_cost < self.sol.cost:
                                 break
             elif cand_out != None:
+                delta_cost = self.obj_function.evaluate_removal_cost(cand_out, self.sol)
                 if (cand_out not in self.tl) or (self.sol.cost + delta_cost < self.best_sol.cost):
                     if delta_cost < min_delta_cost:
-                        min_delta_cost = delta_cost
-                        best_cand_in = None
-                        best_cand_out = cand_out
-                        if self.search_method == "first_improving" and self.sol.cost + delta_cost < self.sol.cost:
-                            break
+                        temp_sol = Solution(self.sol)
+                        temp_sol.remove(cand_out)
+                        if self.obj_function.is_feasible(temp_sol):
+                            min_delta_cost = delta_cost
+                            best_cand_in = None
+                            best_cand_out = cand_out
+                            if self.search_method == "first_improving" and self.sol.cost + delta_cost < self.sol.cost:
+                                break
             else:
+                delta_cost = self.obj_function.evaluate_insertion_cost(cand_in, self.sol)
                 if (cand_in not in self.tl) or (self.sol.cost + delta_cost < self.best_sol.cost):
                     if delta_cost < min_delta_cost:
                         min_delta_cost = delta_cost

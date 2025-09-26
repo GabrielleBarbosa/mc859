@@ -106,9 +106,7 @@ class SC_QBF(Evaluator):
         print(self.A)
 
     def is_feasible(self, sol : Solution) -> bool:
-        covered = set()
-        for v in sol:
-            covered = covered.union(self.S[v])
+        covered = set().union(*(self.S[v] for v in sol))
 
         return len(covered) == self.size
 
