@@ -1,4 +1,4 @@
-# MO824 - Atividade 3: Metaheurística Tabu Search para o Problema do Set Covering com Fórmula Booleana Quantificada (SC-QBF)
+# MO824 - Atividade 3: Metaheurística Tabu Search para o Problema MAX-SC-QBF
 
 Este projeto implementa uma metaheurística de Busca Tabu (Tabu Search) para resolver o Problema MAX-SC-QBF.
 
