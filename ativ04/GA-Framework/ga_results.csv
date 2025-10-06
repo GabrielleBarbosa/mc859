@@ -1,0 +1,11 @@
+Configuration,Instance,BestSolution,Time_ms,Generations,StopReason
+STANDARD,instances/scqbf/n25p1.txt,-141.62,449,123,NO_IMPROVEMENT
+STANDARD,instances/scqbf/n25p2.txt,-193.29,339,179,NO_IMPROVEMENT
+STANDARD,instances/scqbf/n25p3.txt,-166.06,204,117,NO_IMPROVEMENT
+STANDARD,instances/scqbf/n50p1.txt,-351.69,542,142,NO_IMPROVEMENT
+STANDARD,instances/scqbf/n50p2.txt,-665.84,641,143,NO_IMPROVEMENT
+STANDARD,instances/scqbf/n50p3.txt,-675.33,753,160,NO_IMPROVEMENT
+STANDARD,instances/scqbf/n100p1.txt,-1642.60,2845,287,NO_IMPROVEMENT
+STANDARD,instances/scqbf/n100p2.txt,-1564.19,6019,342,NO_IMPROVEMENT
+STANDARD,instances/scqbf/n100p3.txt,-1496.09,4094,219,NO_IMPROVEMENT
+STANDARD,instances/scqbf/n200p1.txt,-2153.19,6510,782,NO_IMPROVEMENT
