@@ -21,8 +21,8 @@ public class GA_SC_QBF extends AbstractGA<Integer, Integer> {
     
     // Stopping criteria constants
     private static final long MAX_TIME_MS = 30 * 60 * 1000; // 30 minutes
-    private static final int MAX_GENERATIONS = 1000;
-    private static final int MAX_GENERATIONS_NO_IMPROVEMENT = 100;
+    private static final int MAX_GENERATIONS = 10000;
+    private static final int MAX_GENERATIONS_NO_IMPROVEMENT = 200;
     
     // Statistics tracking
     private long startTime;
