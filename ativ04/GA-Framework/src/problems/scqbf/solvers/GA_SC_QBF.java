@@ -17,6 +17,7 @@ public class GA_SC_QBF extends AbstractGA<Integer, Integer> {
     // Configuration parameters
     private boolean usePopulationFunction; // For population variation
     private boolean useMutationFunction; // For Mutation variation
+    private boolean useUniformCrossover; // For Crossover variation
     
     // Stopping criteria constants
     private static final long MAX_TIME_MS = 30 * 60 * 1000; // 30 minutes
@@ -30,10 +31,11 @@ public class GA_SC_QBF extends AbstractGA<Integer, Integer> {
     private String stopReason;
     
     public GA_SC_QBF(Evaluator<Integer> objFunction, Integer generations, Integer popSize, 
-                     Double mutationRate, boolean usePopFunction, boolean useMutFunction) {
+                     Double mutationRate, boolean usePopFunction, boolean useMutFunction, boolean useUniformCross) {
         super(objFunction, generations, popSize, mutationRate);
         this.usePopulationFunction = usePopFunction;
         this.useMutationFunction = useMutFunction;
+        this.useUniformCrossover = useUniformCross;
         
         if (usePopulationFunction) {
             this.popSize = calculatePopulationSize(chromosomeSize);
@@ -105,6 +107,37 @@ public class GA_SC_QBF extends AbstractGA<Integer, Integer> {
     @Override
     protected void mutateGene(Chromosome chromosome, Integer locus) {
         chromosome.set(locus, 1 - chromosome.get(locus));
+    }
+
+    @Override
+    protected Population crossover(Population parents) {
+        if (!useUniformCrossover) {
+            return super.crossover(parents);
+        }
+
+        Population offsprings = new Population();
+        for (int i = 0; i < popSize; i += 2) {
+            Chromosome parent1 = parents.get(i);
+            Chromosome parent2 = parents.get(i + 1);
+
+            Chromosome offspring1 = new Chromosome();
+            Chromosome offspring2 = new Chromosome();
+
+            for (int j = 0; j < chromosomeSize; j++) {
+                if (rng.nextDouble() < 0.5) {
+                    offspring1.add(parent1.get(j));
+                    offspring2.add(parent2.get(j));
+                } else {
+                    offspring1.add(parent2.get(j));
+                    offspring2.add(parent1.get(j));
+                }
+            }
+
+            offsprings.add(offspring1);
+            offsprings.add(offspring2);
+        }
+
+        return offsprings;
     }
     
     @Override
@@ -227,11 +260,12 @@ public class GA_SC_QBF extends AbstractGA<Integer, Integer> {
         };
         
         Object[][] configs = {
-            {"STANDARD", 100, 0.01, false, false},
-            {"STANDARD_P2", 200, 0.01, false, false},
-            {"STANDARD_M2", 100, 0.05, false, false},
-            {"FUNC_POP", 100, 0.01, true, false},
-            {"FUNC_MUT", 100, 0.01, false, true}
+            {"STANDARD", 100, 0.01, false, false, false},
+            {"STANDARD_P2", 200, 0.01, false, false, false},
+            {"STANDARD_M2", 100, 0.05, false, false, false},
+            {"FUNC_POP", 100, 0.01, true, false, false},
+            {"FUNC_MUT", 100, 0.01, false, true, false},
+            {"STANDARD_EVOL1", 100, 0.01, false, false, true},
         };
         
         PrintWriter csvWriter = new PrintWriter(new FileWriter("ga_results.csv"));
@@ -243,6 +277,7 @@ public class GA_SC_QBF extends AbstractGA<Integer, Integer> {
             double mutRate = (Double) config[2];
             boolean usePopFunc = (Boolean) config[3];
             boolean useMutFunc = (Boolean) config[4];
+            boolean useUniCross = (Boolean) config[5];
             
             for (String instanceFile : instances) {
                 System.out.println("\n" + "=".repeat(50));
@@ -251,7 +286,7 @@ public class GA_SC_QBF extends AbstractGA<Integer, Integer> {
                 
                 SC_QBF_Inverse scqbf = new SC_QBF_Inverse(instanceFile);
                 GA_SC_QBF ga = new GA_SC_QBF(scqbf, MAX_GENERATIONS, popSize, mutRate, 
-                                              usePopFunc, useMutFunc);
+                                              usePopFunc, useMutFunc, useUniCross);
                 
                 Solution<Integer> solution = ga.solve();
                 
