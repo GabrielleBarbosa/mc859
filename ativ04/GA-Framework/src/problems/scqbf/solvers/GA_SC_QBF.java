@@ -99,11 +99,6 @@ public class GA_SC_QBF extends AbstractGA<Integer, Integer> {
     protected Double fitness(Chromosome chromosome) {
         Solution<Integer> solution = decode(chromosome);
         
-        // Heavily penalize invalid solutions
-        if (solution.cost.equals(Double.POSITIVE_INFINITY)) {
-            return Double.NEGATIVE_INFINITY;
-        }
-        
         return solution.cost;
     }
     
