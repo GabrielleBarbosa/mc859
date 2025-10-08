@@ -270,9 +270,10 @@ public class GA_SC_QBF extends AbstractGA<Integer, Integer> {
             {"FUNC_POP", 100, 0.01, true, false, "standard"},
             {"FUNC_MUT", 100, 0.01, false, true, "standard"},
             {"STANDARD_EVOL1", 100, 0.01, false, false, "uniform_crossover"},
+            {"STANDARD_MUT_EVOL1", 100, 0.01, false, true, "uniform_crossover"},
         };
         
-        PrintWriter csvWriter = new PrintWriter(new FileWriter("ga_results.csv"));
+        PrintWriter csvWriter = new PrintWriter(new FileWriter("ga_results_2.csv"));
         csvWriter.println("Configuration,Instance,BestSolution,Time_ms,Generations,StopReason");
 
         for (String instanceFile : instances) {
