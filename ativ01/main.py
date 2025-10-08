@@ -27,7 +27,7 @@ def main():
     # Read the coefficient matrix, which is upper triangular
     A = []
     for i in range(n):
-        _a = list(map(int, input().split()))
+        _a = list(map(float, input().split()))
         a = [0 for _ in range(i)] + _a
         A.append(a)
 

@@ -22,11 +22,7 @@ public class SC_QBF_Inverse extends SC_QBF {
      */
     @Override
     public Double evaluate(Solution<Integer> sol) {
-        if (!isCoverValid(sol)) {
-            return sol.cost = Double.POSITIVE_INFINITY;
-        }
-        setVariables(sol);
-        return sol.cost = -evaluateQBF();
+        return -super.evaluate(sol);
     }
     
     /**
@@ -34,15 +30,7 @@ public class SC_QBF_Inverse extends SC_QBF {
      */
     @Override
     public Double evaluateInsertionCost(Integer elem, Solution<Integer> sol) {
-        Solution<Integer> tempSol = new Solution<>(sol);
-        tempSol.add(elem);
-        
-        if (!isCoverValid(tempSol)) {
-            return -1000000.0;
-        }
-        
-        setVariables(sol);
-        return -evaluateInsertionQBF(elem);
+        return -super.evaluateInsertionCost(elem, sol);
     }
     
     /**
@@ -50,15 +38,7 @@ public class SC_QBF_Inverse extends SC_QBF {
      */
     @Override
     public Double evaluateRemovalCost(Integer elem, Solution<Integer> sol) {
-        Solution<Integer> tempSol = new Solution<>(sol);
-        tempSol.remove(elem);
-        
-        if (!isCoverValid(tempSol)) {
-            return Double.POSITIVE_INFINITY;
-        }
-        
-        setVariables(sol);
-        return -evaluateRemovalQBF(elem);
+        return -super.evaluateRemovalCost(elem, sol);
     }
     
     /**
@@ -66,15 +46,6 @@ public class SC_QBF_Inverse extends SC_QBF {
      */
     @Override
     public Double evaluateExchangeCost(Integer elemIn, Integer elemOut, Solution<Integer> sol) {
-        Solution<Integer> tempSol = new Solution<>(sol);
-        tempSol.remove(elemOut);
-        tempSol.add(elemIn);
-        
-        if (!isCoverValid(tempSol)) {
-            return Double.POSITIVE_INFINITY;
-        }
-        
-        setVariables(sol);
-        return -evaluateExchangeQBF(elemIn, elemOut);
+        return -super.evaluateExchangeCost(elemIn, elemOut, sol);
     }
 }

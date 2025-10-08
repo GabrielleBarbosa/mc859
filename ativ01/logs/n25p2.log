@@ -1,0 +1,60 @@
+Set parameter Username
+Set parameter LicenseID to value 2696442
+Academic license - for non-commercial use only - expires 2026-08-18
+Set parameter TimeLimit to value 600
+Gurobi Optimizer version 12.0.3 build v12.0.3rc0 (linux64 - "Ubuntu 22.04.5 LTS")
+
+CPU model: 13th Gen Intel(R) Core(TM) i5-13450HX, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 6 logical processors, using up to 6 threads
+
+Non-default parameters:
+TimeLimit  600
+
+Optimize a model with 1000 rows, 350 columns and 2336 nonzeros
+Model fingerprint: 0x6904d068
+Variable types: 0 continuous, 350 integer (350 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 2e+00]
+  Objective range  [5e-02, 1e+01]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+00]
+Found heuristic solution: objective 72.2232582
+Presolve removed 533 rows and 28 columns
+Presolve time: 0.00s
+Presolved: 467 rows, 322 columns, 1099 nonzeros
+Variable types: 0 continuous, 322 integer (322 binary)
+
+Root relaxation: objective 3.913801e+02, 251 iterations, 0.00 seconds (0.00 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0  391.38011    0  178   72.22326  391.38011   442%     -    0s
+H    0     0                      97.3464646  391.38011   302%     -    0s
+H    0     0                     249.5832876  391.38011  56.8%     -    0s
+H    0     0                     254.3059917  391.38011  53.9%     -    0s
+H    0     0                     257.8259942  391.38011  51.8%     -    0s
+H    0     0                     274.6856537  391.38011  42.5%     -    0s
+H    0     0                     295.0321028  391.38011  32.7%     -    0s
+
+Cutting planes:
+  Gomory: 1
+  Clique: 1
+  MIR: 6
+  Zero half: 86
+  RLT: 165
+  BQP: 160
+
+Explored 1 nodes (251 simplex iterations) in 0.03 seconds (0.05 work units)
+Thread count was 6 (of 6 available processors)
+
+Solution count 7: 295.032 274.686 257.826 ... 72.2233
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 2.950321028351e+02, best bound 2.950321028351e+02, gap 0.0000%
+
+Result: 295.032
+
+X: [1.0, 1.0, 0.0, 1.0, 1.0, 0.0, 0.0, 1.0, 1.0, 1.0, 0.0, 1.0, -0.0, 1.0, -0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+
+--- Finished in 0.11 seconds ---

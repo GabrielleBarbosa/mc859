@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 
 import metaheuristics.ga.AbstractGA;
 import problems.Evaluator;
+import problems.scqbf.SC_QBF;
 import problems.scqbf.SC_QBF_Inverse;
 import solutions.Solution;
 
@@ -278,36 +279,36 @@ public class GA_SC_QBF extends AbstractGA<Integer, Integer> {
         
         PrintWriter csvWriter = new PrintWriter(new FileWriter("ga_results.csv"));
         csvWriter.println("Configuration,Instance,BestSolution,Time_ms,Generations,StopReason");
-        
-        for (Object[] config : configs) {
-            String configName = (String) config[0];
-            int popSize = (Integer) config[1];
-            double mutRate = (Double) config[2];
-            boolean usePopFunc = (Boolean) config[3];
-            boolean useMutFunc = (Boolean) config[4];
-            String strategy = (String) config[5];
-            
-            for (String instanceFile : instances) {
+
+        for (String instanceFile : instances) {
+            for (Object[] config : configs) {
+                String configName = (String) config[0];
+                int popSize = (Integer) config[1];
+                double mutRate = (Double) config[2];
+                boolean usePopFunc = (Boolean) config[3];
+                boolean useMutFunc = (Boolean) config[4];
+                String strategy = (String) config[5];
+
                 System.out.println("\n" + "=".repeat(50));
                 System.out.println("Config: " + configName + " | Instance: " + instanceFile);
                 System.out.println("=".repeat(50));
-                
-                SC_QBF_Inverse scqbf = new SC_QBF_Inverse(instanceFile);
-                GA_SC_QBF ga = new GA_SC_QBF(scqbf, MAX_GENERATIONS, popSize, mutRate, 
+
+                SC_QBF scqbf = new SC_QBF(instanceFile);
+                GA_SC_QBF ga = new GA_SC_QBF(scqbf, MAX_GENERATIONS, popSize, mutRate,
                                               usePopFunc, useMutFunc, strategy);
-                
+
                 Solution<Integer> solution = ga.solve();
-                
+
                 csvWriter.printf("%s,%s,%.2f,%d,%d,%s%n",
                     configName,
-                    instanceFile,
-                    -solution.cost,
+                    instanceFile.split("/")[2],
+                    solution.cost,
                     ga.getElapsedTime(),
                     ga.getActualGenerations(),
                     ga.getStopReason()
                 );
                 csvWriter.flush();
-                
+
                 System.out.println("Final: " + solution);
                 System.out.println("Time: " + ga.getElapsedTime() + " ms | Stop: " + ga.getStopReason());
             }

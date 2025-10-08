@@ -99,7 +99,7 @@ public class SC_QBF extends QBF {
         tempSol.remove(elem);
         
         if (!isCoverValid(tempSol)) {
-            return Double.POSITIVE_INFINITY;
+            return Double.NEGATIVE_INFINITY;
         }
         
         return super.evaluateRemovalCost(elem, sol);
@@ -115,7 +115,7 @@ public class SC_QBF extends QBF {
         tempSol.add(elemIn);
         
         if (!isCoverValid(tempSol)) {
-            return Double.POSITIVE_INFINITY;
+            return Double.NEGATIVE_INFINITY;
         }
         
         return super.evaluateExchangeCost(elemIn, elemOut, sol);
