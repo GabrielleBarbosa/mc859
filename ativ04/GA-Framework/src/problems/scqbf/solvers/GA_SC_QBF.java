@@ -7,7 +7,6 @@ import java.io.PrintWriter;
 import metaheuristics.ga.AbstractGA;
 import problems.Evaluator;
 import problems.scqbf.SC_QBF;
-import problems.scqbf.SC_QBF_Inverse;
 import solutions.Solution;
 
 /**
@@ -20,11 +19,12 @@ public class GA_SC_QBF extends AbstractGA<Integer, Integer> {
     // Configuration parameters
     private boolean usePopulationFunction; // For population variation
     private boolean useMutationFunction; // For Mutation variation
-    private String strategy; // For Crossover variation
+    private String crossoverStrategy; // For Crossover variation
+    private String mutationStrategy; // For Mutation variation
     
     // Stopping criteria constants
     private static final long MAX_TIME_MS = 30 * 60 * 1000; // 30 minutes
-    private static final int MAX_GENERATIONS = 1000;
+    private static final int MAX_GENERATIONS = 2000;
     private static final int MAX_GENERATIONS_NO_IMPROVEMENT = 200;
     
     // Statistics tracking
@@ -32,18 +32,17 @@ public class GA_SC_QBF extends AbstractGA<Integer, Integer> {
     private int generationsNoImprovement;
     private int actualGenerations;
     private String stopReason;
-    
+
     public GA_SC_QBF(Evaluator<Integer> objFunction, Integer generations, Integer popSize, 
-                     Double mutationRate, boolean usePopFunction, boolean useMutFunction, String strategy) {
+                     Double mutationRate, boolean usePopFunction, boolean useMutFunction, String crossoverStrategy, String mutationStrategy) {
         super(objFunction, generations, popSize, mutationRate);
         this.usePopulationFunction = usePopFunction;
         this.useMutationFunction = useMutFunction;
-        this.strategy = strategy;
-        
+        this.crossoverStrategy = crossoverStrategy;
+        this.mutationStrategy = mutationStrategy;
         if (usePopulationFunction) {
             this.popSize = calculatePopulationSize(chromosomeSize);
         }
-        
         if (useMutationFunction) {
             this.mutationRate = calculateMutationRate(chromosomeSize);
         }
@@ -109,11 +108,11 @@ public class GA_SC_QBF extends AbstractGA<Integer, Integer> {
 
     @Override
     protected Population crossover(Population parents) {
-        if (this.strategy.equals("standard")) {
+        if (this.crossoverStrategy.equals("standard")) {
             return super.crossover(parents);
         }
 
-        if (this.strategy.equals("uniform_crossover")) {
+        if (this.crossoverStrategy.equals("uniform_crossover")) {
             Population offsprings = new Population();
             for (int i = 0; i < popSize; i += 2) {
                 Chromosome parent1 = parents.get(i);
@@ -144,6 +143,42 @@ public class GA_SC_QBF extends AbstractGA<Integer, Integer> {
         return null;
     }
     
+    @Override
+    protected Population mutate(Population offsprings) {
+        if ("adaptive_mutation".equals(this.mutationStrategy)) {
+            return adaptiveMutate(offsprings);
+        } else {
+            return super.mutate(offsprings);
+        }
+    }
+
+    protected Population adaptiveMutate(Population offsprings) {
+        double meanFitness = 0.0;
+        for (Chromosome c : offsprings) {
+            meanFitness += fitness(c);
+        }
+        meanFitness /= offsprings.size();
+
+        double stdDev = 0.0;
+        for (Chromosome c : offsprings) {
+            stdDev += Math.pow(fitness(c) - meanFitness, 2);
+        }
+        stdDev = Math.sqrt(stdDev / offsprings.size());
+
+        double coefficientOfVariation = stdDev / meanFitness;
+        double adjustedMutationRate = this.mutationRate * (1 - coefficientOfVariation);
+
+        for (Chromosome c : offsprings) {
+            for (int locus = 0; locus < chromosomeSize; locus++) {
+                if (rng.nextDouble() < adjustedMutationRate) {
+                    mutateGene(c, locus);
+                }
+            }
+        }
+
+        return offsprings;
+    }
+
     @Override
     protected Population initializePopulation() {
         Population population = new Population();
@@ -252,25 +287,27 @@ public class GA_SC_QBF extends AbstractGA<Integer, Integer> {
             "instances/scqbf/n50p1.txt",
             "instances/scqbf/n50p2.txt",
             "instances/scqbf/n50p3.txt",
-            "instances/scqbf/n100p1.txt",
-            "instances/scqbf/n100p2.txt",
-            "instances/scqbf/n100p3.txt",
-            "instances/scqbf/n200p1.txt",
-            "instances/scqbf/n200p2.txt",
-            "instances/scqbf/n200p3.txt",
-            "instances/scqbf/n400p1.txt",
-            "instances/scqbf/n400p2.txt",
-            "instances/scqbf/n400p3.txt"
+            // "instances/scqbf/n100p1.txt",
+            // "instances/scqbf/n100p2.txt",
+            // "instances/scqbf/n100p3.txt",
+            // "instances/scqbf/n200p1.txt",
+            // "instances/scqbf/n200p2.txt",
+            // "instances/scqbf/n200p3.txt",
+            // "instances/scqbf/n400p1.txt",
+            // "instances/scqbf/n400p2.txt",
+            // "instances/scqbf/n400p3.txt"
         };
         
         Object[][] configs = {
-            {"STANDARD", 100, 0.01, false, false, "standard"},
-            {"STANDARD_P2", 200, 0.01, false, false, "standard"},
-            {"STANDARD_M2", 100, 0.05, false, false, "standard"},
-            {"FUNC_POP", 100, 0.01, true, false, "standard"},
-            {"FUNC_MUT", 100, 0.01, false, true, "standard"},
-            {"STANDARD_EVOL1", 100, 0.01, false, false, "uniform_crossover"},
-            {"STANDARD_MUT_EVOL1", 100, 0.01, false, true, "uniform_crossover"},
+            {"STANDARD", 100, 0.01, false, false, "standard", "standard"},
+            {"STANDARD_P2", 200, 0.01, false, false, "standard", "standard"},
+            {"STANDARD_M2", 100, 0.05, false, false, "standard", "standard"},
+            {"FUNC_POP", 100, 0.01, true, false, "standard", "standard"},
+            {"FUNC_MUT", 100, 0.01, false, true, "standard", "standard"},
+            {"STANDARD_EVOL1", 100, 0.01, false, false, "uniform_crossover", "standard"},
+            {"STANDARD_MUT_EVOL1", 100, 0.01, false, true, "uniform_crossover", "standard"},
+            {"STANDARD_EVOL_2", 100, 0.01, false, false, "standard", "adaptive_mutation"},
+            {"POP_EVOL_2", 100, 0.01, true, false, "standard", "adaptive_mutation"},
         };
         
         PrintWriter csvWriter = new PrintWriter(new FileWriter("ga_results.csv"));
@@ -283,15 +320,18 @@ public class GA_SC_QBF extends AbstractGA<Integer, Integer> {
                 double mutRate = (Double) config[2];
                 boolean usePopFunc = (Boolean) config[3];
                 boolean useMutFunc = (Boolean) config[4];
-                String strategy = (String) config[5];
+                String crossoverStrategy = (String) config[5];
+                String mutationStrategy = (String) config[6];
 
                 System.out.println("\n" + "=".repeat(50));
                 System.out.println("Config: " + configName + " | Instance: " + instanceFile);
                 System.out.println("=".repeat(50));
 
                 SC_QBF scqbf = new SC_QBF(instanceFile);
-                GA_SC_QBF ga = new GA_SC_QBF(scqbf, MAX_GENERATIONS, popSize, mutRate,
-                                              usePopFunc, useMutFunc, strategy);
+                GA_SC_QBF ga;
+
+                ga = new GA_SC_QBF(scqbf, MAX_GENERATIONS, popSize, mutRate,
+                        usePopFunc, useMutFunc, crossoverStrategy, mutationStrategy);
 
                 Solution<Integer> solution = ga.solve();
 
