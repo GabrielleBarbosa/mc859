@@ -24,7 +24,7 @@ public class GA_SC_QBF extends AbstractGA<Integer, Integer> {
     
     // Stopping criteria constants
     private static final long MAX_TIME_MS = 30 * 60 * 1000; // 30 minutes
-    private static final int MAX_GENERATIONS = 10000;
+    private static final int MAX_GENERATIONS = 1000;
     private static final int MAX_GENERATIONS_NO_IMPROVEMENT = 200;
     
     // Statistics tracking
@@ -273,7 +273,7 @@ public class GA_SC_QBF extends AbstractGA<Integer, Integer> {
             {"STANDARD_MUT_EVOL1", 100, 0.01, false, true, "uniform_crossover"},
         };
         
-        PrintWriter csvWriter = new PrintWriter(new FileWriter("ga_results_2.csv"));
+        PrintWriter csvWriter = new PrintWriter(new FileWriter("ga_results.csv"));
         csvWriter.println("Configuration,Instance,BestSolution,Time_ms,Generations,StopReason");
 
         for (String instanceFile : instances) {
