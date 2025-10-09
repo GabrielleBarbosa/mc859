@@ -8,7 +8,7 @@ ga_results['MS_GA'] = ga_results['BestSol']
 
 ga_subset = ga_results[['Instance', 'MS_GA', 'T_GA']]
 
-merged_df = pd.merge(old_results, ga_subset, on='Instance', how='left')
+merged_df = pd.merge(ga_subset, old_results, on='Instance', how='left')
 
 merged_df.to_csv("out/merged_results_with_ga.csv", index=False)
 
