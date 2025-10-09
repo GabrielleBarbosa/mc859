@@ -1,6 +1,6 @@
 import pandas as pd
 
-df = pd.read_csv("../GA-Framework/ga_results.csv")  
+df = pd.read_csv("data/ga_results.csv")  
 
 instances = df['Instance'].unique()
 methods = df['Configuration'].unique()
@@ -20,5 +20,5 @@ for inst in instances:
 
 df_max = pd.DataFrame(results)
 
-df_max.to_csv("data/best_results_by_instance.csv", index=False)
+df_max.to_csv("out/best_results_by_instance.csv", index=False)
 

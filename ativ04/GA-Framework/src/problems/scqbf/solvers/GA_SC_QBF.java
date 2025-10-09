@@ -108,10 +108,6 @@ public class GA_SC_QBF extends AbstractGA<Integer, Integer> {
 
     @Override
     protected Population crossover(Population parents) {
-        if (this.crossoverStrategy.equals("standard")) {
-            return super.crossover(parents);
-        }
-
         if (this.crossoverStrategy.equals("uniform_crossover")) {
             Population offsprings = new Population();
             for (int i = 0; i < popSize; i += 2) {
@@ -138,14 +134,14 @@ public class GA_SC_QBF extends AbstractGA<Integer, Integer> {
             }
 
             return offsprings;
+        } else {
+            return super.crossover(parents);
         }
-
-        return null;
     }
     
     @Override
     protected Population mutate(Population offsprings) {
-        if ("adaptive_mutation".equals(this.mutationStrategy)) {
+        if (this.mutationStrategy.equals("adaptative_mutation")) {
             return adaptiveMutate(offsprings);
         } else {
             return super.mutate(offsprings);
@@ -287,15 +283,15 @@ public class GA_SC_QBF extends AbstractGA<Integer, Integer> {
             "instances/scqbf/n50p1.txt",
             "instances/scqbf/n50p2.txt",
             "instances/scqbf/n50p3.txt",
-            // "instances/scqbf/n100p1.txt",
-            // "instances/scqbf/n100p2.txt",
-            // "instances/scqbf/n100p3.txt",
-            // "instances/scqbf/n200p1.txt",
-            // "instances/scqbf/n200p2.txt",
-            // "instances/scqbf/n200p3.txt",
-            // "instances/scqbf/n400p1.txt",
-            // "instances/scqbf/n400p2.txt",
-            // "instances/scqbf/n400p3.txt"
+             "instances/scqbf/n100p1.txt",
+             "instances/scqbf/n100p2.txt",
+             "instances/scqbf/n100p3.txt",
+             "instances/scqbf/n200p1.txt",
+             "instances/scqbf/n200p2.txt",
+             "instances/scqbf/n200p3.txt",
+             "instances/scqbf/n400p1.txt",
+             "instances/scqbf/n400p2.txt",
+             "instances/scqbf/n400p3.txt"
         };
         
         Object[][] configs = {
@@ -305,9 +301,9 @@ public class GA_SC_QBF extends AbstractGA<Integer, Integer> {
             {"FUNC_POP", 100, 0.01, true, false, "standard", "standard"},
             {"FUNC_MUT", 100, 0.01, false, true, "standard", "standard"},
             {"STANDARD_EVOL1", 100, 0.01, false, false, "uniform_crossover", "standard"},
-            {"STANDARD_MUT_EVOL1", 100, 0.01, false, true, "uniform_crossover", "standard"},
+            {"POP_MUT_EVOL1", 100, 0.01, true, true, "uniform_crossover", "standard"},
             {"STANDARD_EVOL_2", 100, 0.01, false, false, "standard", "adaptive_mutation"},
-            {"POP_EVOL_2", 100, 0.01, true, false, "standard", "adaptive_mutation"},
+            {"POP_MUT_EVOL_2", 100, 0.01, true, true, "standard", "adaptive_mutation"},
         };
         
         PrintWriter csvWriter = new PrintWriter(new FileWriter("ga_results.csv"));

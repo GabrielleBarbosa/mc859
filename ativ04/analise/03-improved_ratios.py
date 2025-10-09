@@ -1,6 +1,6 @@
 import pandas as pd
 
-df = pd.read_csv("data/merged_results_with_ga.csv")
+df = pd.read_csv("out/merged_results_with_ga.csv")
 
 results = []
 
@@ -23,4 +23,4 @@ df_ratios = pd.DataFrame(results)
 
 df_ratios = df_ratios.round(4)
 
-df_ratios.to_csv("data/ga_improvement_ratios.csv", index=False)
+df_ratios.to_csv("out/ga_improvement_ratios.csv", index=False)
