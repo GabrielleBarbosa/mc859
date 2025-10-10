@@ -39,3 +39,7 @@ The solver produces two main outputs:
     - `Time_ms`: The execution time in milliseconds.
     - `Generations`: The number of generations the GA ran for.
     - `StopReason`: The criterion that caused the execution to stop (e.g., time limit, max generations, no improvement).
+
+## Result Analisys
+
+The directory "analise" contains python scripts to process and compile different views of the ga_result.csv obtained running the experiment. The "data" directory contains the GA results and the results obtained in other activities, using an exact method and other frameworks (GRASP and Tabu) and the "out" directory is where the python scripts generate their results. 

@@ -1,0 +1,13 @@
+Configuration,BestSolution,Time_ms,Generations,StopReason
+Padrão,604.28,0.939,239,Sem Melhoria
+Padrão+P2,604.28,2.082,256,Sem Melhoria
+Padrão+M2,568.3,2.599,631,Sem Melhoria
+FuncPop,604.28,1.095,276,Sem Melhoria
+FuncMut,604.28,1.086,275,Sem Melhoria
+Padrão+Alt1,604.28,0.947,241,Sem Melhoria
+Pop+Mut+Alt1,604.28,1.422,354,Sem Melhoria
+Padrão+Alt2,561.96,0.931,261,Sem Melhoria
+Pop+Alt2,604.28,0.841,239,Sem Melhoria
+Padrão+Alt3,604.28,1.55,436,Sem Melhoria
+Pop+Alt3,604.28,2.623,688,Sem Melhoria
+Mut+Alt3,563.39,1.422,398,Sem Melhoria

@@ -1,0 +1,13 @@
+Configuration,BestSolution,Time_ms,Generations,StopReason
+Padrão,4225.22,9.207,1440,Sem Melhoria
+Padrão+P2,4120.03,19.26,1588,Sem Melhoria
+Padrão+M2,2287.43,4.098,639,Sem Melhoria
+FuncPop,3926.97,36.525,1576,Sem Melhoria
+FuncMut,4935.83,15.286,550,Sem Melhoria
+Padrão+Alt1,1841.4,3.573,533,Sem Melhoria
+Pop+Mut+Alt1,1551.36,4.979,201,Sem Melhoria
+Padrão+Alt2,4484.52,10.624,1718,Sem Melhoria
+Pop+Alt2,4031.68,33.991,1494,Sem Melhoria
+Padrão+Alt3,2889.29,4.741,770,Sem Melhoria
+Pop+Alt3,2796.85,21.622,971,Sem Melhoria
+Mut+Alt3,3909.44,11.849,2000,Máximo de gerações
