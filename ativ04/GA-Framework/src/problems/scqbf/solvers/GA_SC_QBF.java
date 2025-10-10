@@ -21,6 +21,7 @@ public class GA_SC_QBF extends AbstractGA<Integer, Integer> {
     private boolean useMutationFunction; // For Mutation variation
     private String crossoverStrategy; // For Crossover variation
     private String mutationStrategy; // For Mutation variation
+    private String parentSelectStrategy; // For Parent selection variation
     
     // Stopping criteria constants
     private static final long MAX_TIME_MS = 30 * 60 * 1000; // 30 minutes
@@ -34,12 +35,15 @@ public class GA_SC_QBF extends AbstractGA<Integer, Integer> {
     private String stopReason;
 
     public GA_SC_QBF(Evaluator<Integer> objFunction, Integer generations, Integer popSize, 
-                     Double mutationRate, boolean usePopFunction, boolean useMutFunction, String crossoverStrategy, String mutationStrategy) {
+                     Double mutationRate, boolean usePopFunction, boolean useMutFunction,
+                     String crossoverStrategy, String mutationStrategy, String parentSelectStrategy) {
         super(objFunction, generations, popSize, mutationRate);
         this.usePopulationFunction = usePopFunction;
         this.useMutationFunction = useMutFunction;
         this.crossoverStrategy = crossoverStrategy;
         this.mutationStrategy = mutationStrategy;
+        this.parentSelectStrategy = parentSelectStrategy;
+
         if (usePopulationFunction) {
             this.popSize = calculatePopulationSize(chromosomeSize);
         }
@@ -142,37 +146,34 @@ public class GA_SC_QBF extends AbstractGA<Integer, Integer> {
     @Override
     protected Population mutate(Population offsprings) {
         if (this.mutationStrategy.equals("adaptative_mutation")) {
-            return adaptiveMutate(offsprings);
+            double meanFitness = 0.0;
+            for (Chromosome c : offsprings) {
+                meanFitness += fitness(c);
+            }
+            meanFitness /= offsprings.size();
+
+            double stdDev = 0.0;
+            for (Chromosome c : offsprings) {
+                stdDev += Math.pow(fitness(c) - meanFitness, 2);
+            }
+            stdDev = Math.sqrt(stdDev / offsprings.size());
+
+            double coefficientOfVariation = stdDev / meanFitness;
+            double adjustedMutationRate = 0.5 * (1 - coefficientOfVariation);
+            adjustedMutationRate = Math.max(0.0, Math.min(1.0, adjustedMutationRate));
+
+            for (Chromosome c : offsprings) {
+                for (int locus = 0; locus < chromosomeSize; locus++) {
+                    if (rng.nextDouble() < adjustedMutationRate) {
+                        mutateGene(c, locus);
+                    }
+                }
+            }
+
+            return offsprings;
         } else {
             return super.mutate(offsprings);
         }
-    }
-
-    protected Population adaptiveMutate(Population offsprings) {
-        double meanFitness = 0.0;
-        for (Chromosome c : offsprings) {
-            meanFitness += fitness(c);
-        }
-        meanFitness /= offsprings.size();
-
-        double stdDev = 0.0;
-        for (Chromosome c : offsprings) {
-            stdDev += Math.pow(fitness(c) - meanFitness, 2);
-        }
-        stdDev = Math.sqrt(stdDev / offsprings.size());
-
-        double coefficientOfVariation = stdDev / meanFitness;
-        double adjustedMutationRate = this.mutationRate * (1 - coefficientOfVariation);
-
-        for (Chromosome c : offsprings) {
-            for (int locus = 0; locus < chromosomeSize; locus++) {
-                if (rng.nextDouble() < adjustedMutationRate) {
-                    mutateGene(c, locus);
-                }
-            }
-        }
-
-        return offsprings;
     }
 
     @Override
@@ -192,6 +193,46 @@ public class GA_SC_QBF extends AbstractGA<Integer, Integer> {
         }
         
         return population;
+    }
+
+    @Override
+    protected Population selectParents(Population pop) {
+        if (this.parentSelectStrategy.equals("stochastic_universal_selection")) {
+            int P = popSize, N = pop.size();
+            Population parents = new Population();
+
+            double[] w = new double[N];
+            double minF = Double.POSITIVE_INFINITY, total = 0.0;
+            for (int i = 0; i < N; i++) minF = Math.min(minF, fitness(pop.get(i)));
+            double eps = 1e-9;
+            for (int i = 0; i < N; i++) {
+                w[i] = Math.max(0.0, fitness(pop.get(i)) - minF + eps);
+                total += w[i];
+            }
+
+            if (total <= 0.0) {
+                for (int k = 0; k < P; k++) parents.add(pop.get(rng.nextInt(N)));
+                return parents;
+            }
+
+            double step = total / P;
+            double start = rng.nextDouble() * step;
+
+            double acc = 0.0;
+            int k = 0;
+            for (int i = 0; i < N && k < P; i++) {
+                acc += w[i];
+                while (k < P && acc >= start + k * step) {
+                    parents.add(pop.get(i));
+                    k++;
+                }
+            }
+
+            while (parents.size() < P) parents.add(pop.get(rng.nextInt(N)));
+            return parents;
+        } else {
+            return super.selectParents(pop);
+        }
     }
     
     @Override
@@ -295,15 +336,18 @@ public class GA_SC_QBF extends AbstractGA<Integer, Integer> {
         };
         
         Object[][] configs = {
-            {"STANDARD", 100, 0.01, false, false, "standard", "standard"},
-            {"STANDARD_P2", 200, 0.01, false, false, "standard", "standard"},
-            {"STANDARD_M2", 100, 0.05, false, false, "standard", "standard"},
-            {"FUNC_POP", 100, 0.01, true, false, "standard", "standard"},
-            {"FUNC_MUT", 100, 0.01, false, true, "standard", "standard"},
-            {"STANDARD_EVOL1", 100, 0.01, false, false, "uniform_crossover", "standard"},
-            {"POP_MUT_EVOL1", 100, 0.01, true, true, "uniform_crossover", "standard"},
-            {"STANDARD_EVOL_2", 100, 0.01, false, false, "standard", "adaptive_mutation"},
-            {"POP_MUT_EVOL_2", 100, 0.01, true, true, "standard", "adaptive_mutation"},
+//            {"STANDARD", 100, 0.01, false, false, "standard", "standard", "standard"},
+//            {"STANDARD_P2", 200, 0.01, false, false, "standard", "standard", "standard"},
+//            {"STANDARD_M2", 100, 0.05, false, false, "standard", "standard", "standard"},
+//            {"FUNC_POP", 100, 0.01, true, false, "standard", "standard", "standard"},
+//            {"FUNC_MUT", 100, 0.01, false, true, "standard", "standard", "standard"},
+//            {"STANDARD_EVOL1", 100, 0.01, false, false, "uniform_crossover", "standard", "standard"},
+//            {"POP_MUT_EVOL1", 100, 0.01, true, true, "uniform_crossover", "standard", "standard"},
+            {"STANDARD_EVOL_2", 100, 0.01, false, false, "standard", "adaptive_mutation", "standard"},
+            {"POP_EVOL_2", 100, 0.01, true, false, "standard", "adaptive_mutation", "standard"},
+            {"STANDARD_EVOL_3", 100, 0.01, false, false, "standard", "standard", "stochastic_universal_selection"},
+            {"POP_EVOL_3", 100, 0.01, true, false, "standard", "standard", "stochastic_universal_selection"},
+            {"MUT_EVOL_3", 100, 0.01, false, true, "standard", "standard", "stochastic_universal_selection"},
         };
         
         PrintWriter csvWriter = new PrintWriter(new FileWriter("ga_results.csv"));
@@ -318,6 +362,7 @@ public class GA_SC_QBF extends AbstractGA<Integer, Integer> {
                 boolean useMutFunc = (Boolean) config[4];
                 String crossoverStrategy = (String) config[5];
                 String mutationStrategy = (String) config[6];
+                String parentStrategy = (String) config[7];
 
                 System.out.println("\n" + "=".repeat(50));
                 System.out.println("Config: " + configName + " | Instance: " + instanceFile);
@@ -327,7 +372,7 @@ public class GA_SC_QBF extends AbstractGA<Integer, Integer> {
                 GA_SC_QBF ga;
 
                 ga = new GA_SC_QBF(scqbf, MAX_GENERATIONS, popSize, mutRate,
-                        usePopFunc, useMutFunc, crossoverStrategy, mutationStrategy);
+                        usePopFunc, useMutFunc, crossoverStrategy, mutationStrategy, parentStrategy);
 
                 Solution<Integer> solution = ga.solve();
 

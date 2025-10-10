@@ -1,16 +1,16 @@
-Instance,BestSol,Time_ms,STANDARD,STANDARD_P2,STANDARD_M2,FUNC_POP,FUNC_MUT,STANDARD_EVOL1,POP_MUT_EVOL1,STANDARD_EVOL_2,POP_MUT_EVOL_2
-n25p1,130.23,109,1,1,1,1,1,0,1,0,1
-n25p2,295.03,121,1,1,1,1,1,1,1,1,1
-n25p3,219.29,143,1,1,1,1,1,1,1,1,1
-n50p1,695.3,834,0,1,0,0,0,1,0,0,1
-n50p2,604.28,939,1,1,0,1,1,1,1,1,1
-n50p3,519.6,977,0,1,0,0,1,0,1,0,0
-n100p1,1299.9,4201,1,0,0,0,1,0,0,0,1
-n100p2,1818.5,6882,1,0,0,1,1,0,1,0,1
-n100p3,1707.06,9354,0,0,0,0,0,0,1,0,1
-n200p1,4935.83,15286,0,0,0,0,1,0,0,0,0
-n200p2,4667.81,74789,0,0,0,0,0,0,1,0,0
-n200p3,4921.11,134006,0,0,0,0,0,0,0,0,1
-n400p1,10314.09,190357,0,0,0,0,1,0,0,0,0
-n400p2,13085.76,1169309,0,0,0,0,0,0,1,0,0
-n400p3,12848.96,1387963,0,0,0,0,0,0,1,0,0
+Instance,BestSol,Time_ms,BestConfigs
+n25p1,130.23,94,"Padrão, Padrão+P2, Padrão+M2, FuncPop, FuncMut, Pop+Mut+Alt1, Padrão+Alt2, Pop+Alt2, Padrão+Alt3, Pop+Alt3, Mut+Alt3"
+n25p2,295.03,121,"Padrão, Padrão+P2, Padrão+M2, FuncPop, FuncMut, Padrão+Alt1, Pop+Mut+Alt1, Padrão+Alt2, Pop+Alt2, Padrão+Alt3, Pop+Alt3, Mut+Alt3"
+n25p3,219.29,141,"Padrão, Padrão+P2, Padrão+M2, FuncPop, FuncMut, Padrão+Alt1, Pop+Mut+Alt1, Padrão+Alt2, Pop+Alt2, Padrão+Alt3, Pop+Alt3, Mut+Alt3"
+n50p1,695.3,958,"Padrão+P2, Padrão+Alt1"
+n50p2,604.28,841,"Padrão, Padrão+P2, FuncPop, FuncMut, Padrão+Alt1, Pop+Mut+Alt1, Pop+Alt2, Padrão+Alt3, Pop+Alt3"
+n50p3,519.6,872,"Padrão+P2, FuncMut, Pop+Mut+Alt1, Padrão+Alt2, Pop+Alt3"
+n100p1,1299.9,4201,"Padrão, FuncMut"
+n100p2,1818.5,5027,"Padrão, FuncPop, FuncMut, Pop+Mut+Alt1, Padrão+Alt2, Pop+Alt3, Mut+Alt3"
+n100p3,1707.06,7010,"Pop+Mut+Alt1, Padrão+Alt2, Pop+Alt2"
+n200p1,4935.83,15286,FuncMut
+n200p2,4667.81,74789,Pop+Mut+Alt1
+n200p3,4915.92,140533,Pop+Mut+Alt1
+n400p1,10314.09,190357,FuncMut
+n400p2,13085.76,1169309,Pop+Mut+Alt1
+n400p3,12848.96,1387963,Pop+Mut+Alt1
