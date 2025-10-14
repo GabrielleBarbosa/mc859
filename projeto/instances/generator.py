@@ -83,21 +83,18 @@ def generate_quantum_topology(
 if __name__ == "__main__":
     os.makedirs("data", exist_ok=True)
 
-    for i in range(20):
-        quantum_network = generate_quantum_topology()
-    
-        graph_data = nx.node_link_data(quantum_network)
-        
-        file_path = os.path.join("data", f"instance_{i}.json")
-        with open(file_path, 'w') as f:
-            json.dump(graph_data, f, indent=4, cls=NumpyEncoder)
+    for n in [100, 200, 300, 400, 500]:
+        for sd in [2, 4, 6, 8, 10]:
+            for i in range(5):
+                quantum_network = generate_quantum_topology(num_nodes=n, num_sd_pairs=sd)
+            
+                graph_data = nx.node_link_data(quantum_network)
+                
+                file_path = os.path.join("data", f"instance_n{n}_sd{str(sd).rjust(2, "0")}_{i}.json")
+                with open(file_path, 'w') as f:
+                    json.dump(graph_data, f, indent=4, cls=NumpyEncoder)
 
-        print(f"✅ Instance {i} generated successfully!")
-        print(f"  Nodes: {quantum_network.number_of_nodes()}")
-        print(f"  Edges: {quantum_network.number_of_edges()}")
-        print(f"  Saved to: {file_path}")
-
-    print("\n--- All instances generated ---")
+                print(f"Instance {i} n={n}, sd={sd} generated successfully!")
 
 
     quantum_network_to_plot = generate_quantum_topology()
