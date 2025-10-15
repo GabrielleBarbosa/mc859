@@ -39,7 +39,9 @@ def main():
                 filename=filename,
                 strategy=strategy,
                 search_method=local_search,
-                timeout=30*60
+                timeout=30*60, 
+                # target_value=-735.0,
+                random_seed=1
             )
             
             best_sol = ts.solve()

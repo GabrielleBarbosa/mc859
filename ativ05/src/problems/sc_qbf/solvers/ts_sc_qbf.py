@@ -1,12 +1,12 @@
-import math
+import random
 import time
-from collections import deque, defaultdict
+from collections import deque
 from src.metaheuristics.tabusearch.abstract_ts import AbstractTS
 from src.problems.sc_qbf.sc_qbf_inverse import SC_QBF_Inverse
 from src.solutions.solution import Solution
 
 class TS_SC_QBF(AbstractTS):
-    def __init__(self, tenure: int, iterations: int, timeout: int, filename: str, search_method: str, strategy: str, target_value = None):
+    def __init__(self, tenure: int, iterations: int, timeout: int, filename: str, search_method: str, strategy: str, random_seed = 42, target_value = None):
         self.fake = -1
         self.strategy = strategy
         self.search_method = search_method        
@@ -16,6 +16,8 @@ class TS_SC_QBF(AbstractTS):
         self.timeout = timeout
         self.target_value = target_value
         super().__init__(obj_function, tenure, iterations)
+
+        self.rng = random.Random(random_seed)
     
     def make_cl(self):
         return list(range(self.obj_function.get_domain_size()))
@@ -62,7 +64,7 @@ class TS_SC_QBF(AbstractTS):
         # shuffle movements to avoid bias
         self.rng.shuffle(movements)
         if self.strategy == "probabilistic":
-            movements = self.rng.sample(movements, int(0.2 * len(movements)))
+            movements = self.rng.sample(movements, int(0.8 * len(movements)))
         
         # search for best
         for movement in movements:
@@ -143,7 +145,7 @@ class TS_SC_QBF(AbstractTS):
                     self.best_sol = Solution(self.sol)
                     if self.verbose:
                         print(f"(Iter. {i}) BestSol = {self.best_sol}")
-                    if self.target_value != None and self.best_sol.cost >= self.target_value:
+                    if self.target_value != None and self.best_sol.cost <= self.target_value:
                         print(f"(Iter. {i}) Target value reached, stopping method")
                         break
 
