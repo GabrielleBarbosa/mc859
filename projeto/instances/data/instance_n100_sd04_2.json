@@ -1,0 +1,3420 @@
+{
+    "directed": false,
+    "multigraph": false,
+    "graph": {
+        "sd_pairs": [
+            [
+                37,
+                42
+            ],
+            [
+                56,
+                86
+            ],
+            [
+                89,
+                14
+            ],
+            [
+                53,
+                6
+            ]
+        ]
+    },
+    "nodes": [
+        {
+            "pos": [
+                1165.436526298934,
+                7364.029154588755
+            ],
+            "memory_size": 14,
+            "internal_link_prob": 0.9,
+            "id": 0
+        },
+        {
+            "pos": [
+                1142.6686563715093,
+                1666.1945967575243
+            ],
+            "memory_size": 14,
+            "internal_link_prob": 0.9,
+            "id": 1
+        },
+        {
+            "pos": [
+                40.47287410529954,
+                1595.4400566357185
+            ],
+            "memory_size": 13,
+            "internal_link_prob": 0.9,
+            "id": 2
+        },
+        {
+            "pos": [
+                642.8232127188604,
+                8044.310169807835
+            ],
+            "memory_size": 13,
+            "internal_link_prob": 0.9,
+            "id": 3
+        },
+        {
+            "pos": [
+                7261.1028189371755,
+                5208.29083868379
+            ],
+            "memory_size": 11,
+            "internal_link_prob": 0.9,
+            "id": 4
+        },
+        {
+            "pos": [
+                3166.8315124598257,
+                882.5055329514264
+            ],
+            "memory_size": 11,
+            "internal_link_prob": 0.9,
+            "id": 5
+        },
+        {
+            "pos": [
+                3965.0871742696827,
+                8147.992157104228
+            ],
+            "memory_size": 10,
+            "internal_link_prob": 0.9,
+            "id": 6
+        },
+        {
+            "pos": [
+                4025.266687622755,
+                617.0809414101652
+            ],
+            "memory_size": 10,
+            "internal_link_prob": 0.9,
+            "id": 7
+        },
+        {
+            "pos": [
+                9256.236929633527,
+                8918.64529366399
+            ],
+            "memory_size": 11,
+            "internal_link_prob": 0.9,
+            "id": 8
+        },
+        {
+            "pos": [
+                5082.321507612893,
+                560.7205230154
+            ],
+            "memory_size": 14,
+            "internal_link_prob": 0.9,
+            "id": 9
+        },
+        {
+            "pos": [
+                6716.043075377436,
+                9368.884236415912
+            ],
+            "memory_size": 12,
+            "internal_link_prob": 0.9,
+            "id": 10
+        },
+        {
+            "pos": [
+                1014.8485570894617,
+                707.9365247593694
+            ],
+            "memory_size": 13,
+            "internal_link_prob": 0.9,
+            "id": 11
+        },
+        {
+            "pos": [
+                2076.9786781418866,
+                1871.1966709311778
+            ],
+            "memory_size": 13,
+            "internal_link_prob": 0.9,
+            "id": 12
+        },
+        {
+            "pos": [
+                4411.429134347609,
+                2516.220710912779
+            ],
+            "memory_size": 13,
+            "internal_link_prob": 0.9,
+            "id": 13
+        },
+        {
+            "pos": [
+                3871.255668546938,
+                4449.623898326987
+            ],
+            "memory_size": 13,
+            "internal_link_prob": 0.9,
+            "id": 14
+        },
+        {
+            "pos": [
+                2181.0945341725883,
+                5249.436456180939
+            ],
+            "memory_size": 11,
+            "internal_link_prob": 0.9,
+            "id": 15
+        },
+        {
+            "pos": [
+                8050.348377195536,
+                1741.3342095907858
+            ],
+            "memory_size": 10,
+            "internal_link_prob": 0.9,
+            "id": 16
+        },
+        {
+            "pos": [
+                83.12461966565543,
+                6332.278337628599
+            ],
+            "memory_size": 12,
+            "internal_link_prob": 0.9,
+            "id": 17
+        },
+        {
+            "pos": [
+                2263.53981045895,
+                5318.443656307176
+            ],
+            "memory_size": 14,
+            "internal_link_prob": 0.9,
+            "id": 18
+        },
+        {
+            "pos": [
+                5856.801819280097,
+                9477.761961616661
+            ],
+            "memory_size": 14,
+            "internal_link_prob": 0.9,
+            "id": 19
+        },
+        {
+            "pos": [
+                7770.120903149837,
+                7016.740699974095
+            ],
+            "memory_size": 13,
+            "internal_link_prob": 0.9,
+            "id": 20
+        },
+        {
+            "pos": [
+                4482.411610859589,
+                8644.98451746787
+            ],
+            "memory_size": 10,
+            "internal_link_prob": 0.9,
+            "id": 21
+        },
+        {
+            "pos": [
+                8717.390899055792,
+                7619.774716217384
+            ],
+            "memory_size": 13,
+            "internal_link_prob": 0.9,
+            "id": 22
+        },
+        {
+            "pos": [
+                74.79881018752965,
+                443.36040249226215
+            ],
+            "memory_size": 14,
+            "internal_link_prob": 0.9,
+            "id": 23
+        },
+        {
+            "pos": [
+                1562.3887858746987,
+                9969.334489006362
+            ],
+            "memory_size": 14,
+            "internal_link_prob": 0.9,
+            "id": 24
+        },
+        {
+            "pos": [
+                8889.817103745718,
+                8291.872106326684
+            ],
+            "memory_size": 13,
+            "internal_link_prob": 0.9,
+            "id": 25
+        },
+        {
+            "pos": [
+                6794.292745528504,
+                2993.399034759312
+            ],
+            "memory_size": 12,
+            "internal_link_prob": 0.9,
+            "id": 26
+        },
+        {
+            "pos": [
+                1709.9335651462422,
+                7519.6100031641345
+            ],
+            "memory_size": 12,
+            "internal_link_prob": 0.9,
+            "id": 27
+        },
+        {
+            "pos": [
+                7959.161622391892,
+                8114.606847184897
+            ],
+            "memory_size": 14,
+            "internal_link_prob": 0.9,
+            "id": 28
+        },
+        {
+            "pos": [
+                3288.8542930834365,
+                4334.026949691001
+            ],
+            "memory_size": 10,
+            "internal_link_prob": 0.9,
+            "id": 29
+        },
+        {
+            "pos": [
+                9134.622340134085,
+                1316.2379420357295
+            ],
+            "memory_size": 11,
+            "internal_link_prob": 0.9,
+            "id": 30
+        },
+        {
+            "pos": [
+                1281.7224683462368,
+                8213.981376841433
+            ],
+            "memory_size": 14,
+            "internal_link_prob": 0.9,
+            "id": 31
+        },
+        {
+            "pos": [
+                8736.759130601915,
+                2233.3162668930217
+            ],
+            "memory_size": 11,
+            "internal_link_prob": 0.9,
+            "id": 32
+        },
+        {
+            "pos": [
+                1367.338559847948,
+                3452.506927238942
+            ],
+            "memory_size": 14,
+            "internal_link_prob": 0.9,
+            "id": 33
+        },
+        {
+            "pos": [
+                8378.413537422151,
+                9476.154614635358
+            ],
+            "memory_size": 11,
+            "internal_link_prob": 0.9,
+            "id": 34
+        },
+        {
+            "pos": [
+                2890.78248117722,
+                839.0736499457952
+            ],
+            "memory_size": 13,
+            "internal_link_prob": 0.9,
+            "id": 35
+        },
+        {
+            "pos": [
+                6053.414362740122,
+                3550.507382956144
+            ],
+            "memory_size": 11,
+            "internal_link_prob": 0.9,
+            "id": 36
+        },
+        {
+            "pos": [
+                1899.7440872679783,
+                8482.160911573292
+            ],
+            "memory_size": 14,
+            "internal_link_prob": 0.9,
+            "id": 37
+        },
+        {
+            "pos": [
+                2866.63067837011,
+                5211.580928163517
+            ],
+            "memory_size": 12,
+            "internal_link_prob": 0.9,
+            "id": 38
+        },
+        {
+            "pos": [
+                8192.279972968927,
+                6392.105568641268
+            ],
+            "memory_size": 12,
+            "internal_link_prob": 0.9,
+            "id": 39
+        },
+        {
+            "pos": [
+                5696.0656087879615,
+                8533.526085995885
+            ],
+            "memory_size": 13,
+            "internal_link_prob": 0.9,
+            "id": 40
+        },
+        {
+            "pos": [
+                6242.307774991841,
+                9616.168226832855
+            ],
+            "memory_size": 13,
+            "internal_link_prob": 0.9,
+            "id": 41
+        },
+        {
+            "pos": [
+                8468.123917989156,
+                1078.3387941489552
+            ],
+            "memory_size": 12,
+            "internal_link_prob": 0.9,
+            "id": 42
+        },
+        {
+            "pos": [
+                4340.471809255711,
+                1166.6411305609724
+            ],
+            "memory_size": 11,
+            "internal_link_prob": 0.9,
+            "id": 43
+        },
+        {
+            "pos": [
+                5393.470539621492,
+                405.3434699368641
+            ],
+            "memory_size": 13,
+            "internal_link_prob": 0.9,
+            "id": 44
+        },
+        {
+            "pos": [
+                5071.176069091345,
+                3108.853565854155
+            ],
+            "memory_size": 13,
+            "internal_link_prob": 0.9,
+            "id": 45
+        },
+        {
+            "pos": [
+                5332.293843659236,
+                8035.803153066998
+            ],
+            "memory_size": 13,
+            "internal_link_prob": 0.9,
+            "id": 46
+        },
+        {
+            "pos": [
+                6439.498268899505,
+                6446.005287566694
+            ],
+            "memory_size": 14,
+            "internal_link_prob": 0.9,
+            "id": 47
+        },
+        {
+            "pos": [
+                8471.74082016064,
+                9086.775382282156
+            ],
+            "memory_size": 10,
+            "internal_link_prob": 0.9,
+            "id": 48
+        },
+        {
+            "pos": [
+                1407.9028736437115,
+                4722.763718690866
+            ],
+            "memory_size": 13,
+            "internal_link_prob": 0.9,
+            "id": 49
+        },
+        {
+            "pos": [
+                9878.955349308948,
+                9763.077543165587
+            ],
+            "memory_size": 11,
+            "internal_link_prob": 0.9,
+            "id": 50
+        },
+        {
+            "pos": [
+                1241.1384666855486,
+                3776.333278907593
+            ],
+            "memory_size": 14,
+            "internal_link_prob": 0.9,
+            "id": 51
+        },
+        {
+            "pos": [
+                7159.377075527793,
+                9322.46667811799
+            ],
+            "memory_size": 11,
+            "internal_link_prob": 0.9,
+            "id": 52
+        },
+        {
+            "pos": [
+                4335.824216128834,
+                2945.003580235487
+            ],
+            "memory_size": 12,
+            "internal_link_prob": 0.9,
+            "id": 53
+        },
+        {
+            "pos": [
+                268.07417662116694,
+                6959.875711715759
+            ],
+            "memory_size": 14,
+            "internal_link_prob": 0.9,
+            "id": 54
+        },
+        {
+            "pos": [
+                1660.9071307946322,
+                229.49790625300227
+            ],
+            "memory_size": 13,
+            "internal_link_prob": 0.9,
+            "id": 55
+        },
+        {
+            "pos": [
+                5773.750021525285,
+                4443.059457312062
+            ],
+            "memory_size": 10,
+            "internal_link_prob": 0.9,
+            "id": 56
+        },
+        {
+            "pos": [
+                314.9063190641055,
+                6918.412287100489
+            ],
+            "memory_size": 12,
+            "internal_link_prob": 0.9,
+            "id": 57
+        },
+        {
+            "pos": [
+                3796.6913387993695,
+                9029.141354995068
+            ],
+            "memory_size": 14,
+            "internal_link_prob": 0.9,
+            "id": 58
+        },
+        {
+            "pos": [
+                6927.3552286467075,
+                2839.761448775383
+            ],
+            "memory_size": 11,
+            "internal_link_prob": 0.9,
+            "id": 59
+        },
+        {
+            "pos": [
+                7659.697301193338,
+                3807.2389558098
+            ],
+            "memory_size": 11,
+            "internal_link_prob": 0.9,
+            "id": 60
+        },
+        {
+            "pos": [
+                2100.691332535961,
+                1339.4503109308898
+            ],
+            "memory_size": 12,
+            "internal_link_prob": 0.9,
+            "id": 61
+        },
+        {
+            "pos": [
+                8255.16000837354,
+                8791.730159128885
+            ],
+            "memory_size": 13,
+            "internal_link_prob": 0.9,
+            "id": 62
+        },
+        {
+            "pos": [
+                285.1819819565982,
+                7356.5802997705705
+            ],
+            "memory_size": 11,
+            "internal_link_prob": 0.9,
+            "id": 63
+        },
+        {
+            "pos": [
+                5996.183233605553,
+                5515.801731407687
+            ],
+            "memory_size": 10,
+            "internal_link_prob": 0.9,
+            "id": 64
+        },
+        {
+            "pos": [
+                350.290692883678,
+                656.3282303360396
+            ],
+            "memory_size": 12,
+            "internal_link_prob": 0.9,
+            "id": 65
+        },
+        {
+            "pos": [
+                4585.71355575229,
+                8093.606393217765
+            ],
+            "memory_size": 11,
+            "internal_link_prob": 0.9,
+            "id": 66
+        },
+        {
+            "pos": [
+                8190.706322499559,
+                7820.5505979226455
+            ],
+            "memory_size": 11,
+            "internal_link_prob": 0.9,
+            "id": 67
+        },
+        {
+            "pos": [
+                2789.893727767032,
+                368.46121701664237
+            ],
+            "memory_size": 11,
+            "internal_link_prob": 0.9,
+            "id": 68
+        },
+        {
+            "pos": [
+                8521.371465677403,
+                550.0514125383282
+            ],
+            "memory_size": 13,
+            "internal_link_prob": 0.9,
+            "id": 69
+        },
+        {
+            "pos": [
+                4737.627396241438,
+                7383.212064625532
+            ],
+            "memory_size": 11,
+            "internal_link_prob": 0.9,
+            "id": 70
+        },
+        {
+            "pos": [
+                553.9554854716156,
+                1722.7690257141194
+            ],
+            "memory_size": 10,
+            "internal_link_prob": 0.9,
+            "id": 71
+        },
+        {
+            "pos": [
+                2215.8511053143957,
+                3453.3519285756133
+            ],
+            "memory_size": 13,
+            "internal_link_prob": 0.9,
+            "id": 72
+        },
+        {
+            "pos": [
+                6655.516992899915,
+                4413.943174867984
+            ],
+            "memory_size": 14,
+            "internal_link_prob": 0.9,
+            "id": 73
+        },
+        {
+            "pos": [
+                9102.185746889903,
+                6515.52856608147
+            ],
+            "memory_size": 12,
+            "internal_link_prob": 0.9,
+            "id": 74
+        },
+        {
+            "pos": [
+                6901.791635610288,
+                4694.163493392723
+            ],
+            "memory_size": 11,
+            "internal_link_prob": 0.9,
+            "id": 75
+        },
+        {
+            "pos": [
+                6351.175289715935,
+                5637.321309616707
+            ],
+            "memory_size": 10,
+            "internal_link_prob": 0.9,
+            "id": 76
+        },
+        {
+            "pos": [
+                6855.091313260377,
+                902.6806549862532
+            ],
+            "memory_size": 14,
+            "internal_link_prob": 0.9,
+            "id": 77
+        },
+        {
+            "pos": [
+                1565.029867239247,
+                1467.759100956002
+            ],
+            "memory_size": 13,
+            "internal_link_prob": 0.9,
+            "id": 78
+        },
+        {
+            "pos": [
+                8516.073548340324,
+                6704.887938554834
+            ],
+            "memory_size": 12,
+            "internal_link_prob": 0.9,
+            "id": 79
+        },
+        {
+            "pos": [
+                5213.38275475312,
+                2539.807516424476
+            ],
+            "memory_size": 13,
+            "internal_link_prob": 0.9,
+            "id": 80
+        },
+        {
+            "pos": [
+                6363.618320193619,
+                6064.3414187202125
+            ],
+            "memory_size": 11,
+            "internal_link_prob": 0.9,
+            "id": 81
+        },
+        {
+            "pos": [
+                3594.3297905808768,
+                9079.20523914854
+            ],
+            "memory_size": 10,
+            "internal_link_prob": 0.9,
+            "id": 82
+        },
+        {
+            "pos": [
+                713.4069357787754,
+                1500.5287260772648
+            ],
+            "memory_size": 14,
+            "internal_link_prob": 0.9,
+            "id": 83
+        },
+        {
+            "pos": [
+                5832.303560592587,
+                7719.501714936161
+            ],
+            "memory_size": 12,
+            "internal_link_prob": 0.9,
+            "id": 84
+        },
+        {
+            "pos": [
+                2119.0773810425744,
+                4689.343585970752
+            ],
+            "memory_size": 11,
+            "internal_link_prob": 0.9,
+            "id": 85
+        },
+        {
+            "pos": [
+                6308.954297358882,
+                4499.5566392436995
+            ],
+            "memory_size": 13,
+            "internal_link_prob": 0.9,
+            "id": 86
+        },
+        {
+            "pos": [
+                4492.96303338508,
+                9946.46302557501
+            ],
+            "memory_size": 12,
+            "internal_link_prob": 0.9,
+            "id": 87
+        },
+        {
+            "pos": [
+                170.8554218187841,
+                8.49319586628039
+            ],
+            "memory_size": 11,
+            "internal_link_prob": 0.9,
+            "id": 88
+        },
+        {
+            "pos": [
+                7150.993746178922,
+                9315.251498248213
+            ],
+            "memory_size": 11,
+            "internal_link_prob": 0.9,
+            "id": 89
+        },
+        {
+            "pos": [
+                105.00433149614685,
+                9670.981974533819
+            ],
+            "memory_size": 10,
+            "internal_link_prob": 0.9,
+            "id": 90
+        },
+        {
+            "pos": [
+                7995.55478763239,
+                4626.207235487974
+            ],
+            "memory_size": 11,
+            "internal_link_prob": 0.9,
+            "id": 91
+        },
+        {
+            "pos": [
+                247.84040831132947,
+                6583.993217736547
+            ],
+            "memory_size": 12,
+            "internal_link_prob": 0.9,
+            "id": 92
+        },
+        {
+            "pos": [
+                2445.1150079463036,
+                9714.085503606593
+            ],
+            "memory_size": 12,
+            "internal_link_prob": 0.9,
+            "id": 93
+        },
+        {
+            "pos": [
+                5520.2827889453565,
+                9265.605347838182
+            ],
+            "memory_size": 11,
+            "internal_link_prob": 0.9,
+            "id": 94
+        },
+        {
+            "pos": [
+                6950.80494120016,
+                5485.686872766395
+            ],
+            "memory_size": 13,
+            "internal_link_prob": 0.9,
+            "id": 95
+        },
+        {
+            "pos": [
+                2974.663917603181,
+                3079.6441079070614
+            ],
+            "memory_size": 14,
+            "internal_link_prob": 0.9,
+            "id": 96
+        },
+        {
+            "pos": [
+                5757.937750101328,
+                6671.084222116633
+            ],
+            "memory_size": 14,
+            "internal_link_prob": 0.9,
+            "id": 97
+        },
+        {
+            "pos": [
+                1359.9693366476529,
+                3215.5360709341894
+            ],
+            "memory_size": 11,
+            "internal_link_prob": 0.9,
+            "id": 98
+        },
+        {
+            "pos": [
+                3421.1140651178653,
+                6348.319293199019
+            ],
+            "memory_size": 10,
+            "internal_link_prob": 0.9,
+            "id": 99
+        }
+    ],
+    "links": [
+        {
+            "length_km": 857.85,
+            "external_link_prob": 0.8423,
+            "num_channels": 3,
+            "source": 0,
+            "target": 3
+        },
+        {
+            "length_km": 3555.72,
+            "external_link_prob": 0.4911,
+            "num_channels": 3,
+            "source": 0,
+            "target": 21
+        },
+        {
+            "length_km": 6835.06,
+            "external_link_prob": 0.2549,
+            "num_channels": 3,
+            "source": 0,
+            "target": 28
+        },
+        {
+            "length_km": 857.87,
+            "external_link_prob": 0.8423,
+            "num_channels": 3,
+            "source": 0,
+            "target": 31
+        },
+        {
+            "length_km": 984.17,
+            "external_link_prob": 0.8213,
+            "num_channels": 3,
+            "source": 0,
+            "target": 54
+        },
+        {
+            "length_km": 2839.61,
+            "external_link_prob": 0.5667,
+            "num_channels": 3,
+            "source": 0,
+            "target": 85
+        },
+        {
+            "length_km": 2539.01,
+            "external_link_prob": 0.6018,
+            "num_channels": 3,
+            "source": 0,
+            "target": 90
+        },
+        {
+            "length_km": 2170.58,
+            "external_link_prob": 0.6478,
+            "num_channels": 3,
+            "source": 1,
+            "target": 5
+        },
+        {
+            "length_km": 956.54,
+            "external_link_prob": 0.8259,
+            "num_channels": 3,
+            "source": 1,
+            "target": 12
+        },
+        {
+            "length_km": 1800.39,
+            "external_link_prob": 0.6976,
+            "num_channels": 3,
+            "source": 1,
+            "target": 33
+        },
+        {
+            "length_km": 2097.01,
+            "external_link_prob": 0.6574,
+            "num_channels": 3,
+            "source": 1,
+            "target": 68
+        },
+        {
+            "length_km": 2084.62,
+            "external_link_prob": 0.6591,
+            "num_channels": 3,
+            "source": 1,
+            "target": 72
+        },
+        {
+            "length_km": 2055.09,
+            "external_link_prob": 0.663,
+            "num_channels": 3,
+            "source": 2,
+            "target": 12
+        },
+        {
+            "length_km": 1152.59,
+            "external_link_prob": 0.7941,
+            "num_channels": 3,
+            "source": 2,
+            "target": 23
+        },
+        {
+            "length_km": 5253.42,
+            "external_link_prob": 0.3497,
+            "num_channels": 3,
+            "source": 2,
+            "target": 45
+        },
+        {
+            "length_km": 6849.74,
+            "external_link_prob": 0.2541,
+            "num_channels": 3,
+            "source": 2,
+            "target": 77
+        },
+        {
+            "length_km": 679.59,
+            "external_link_prob": 0.8729,
+            "num_channels": 3,
+            "source": 2,
+            "target": 83
+        },
+        {
+            "length_km": 3190.23,
+            "external_link_prob": 0.5283,
+            "num_channels": 3,
+            "source": 3,
+            "target": 15
+        },
+        {
+            "length_km": 3886.29,
+            "external_link_prob": 0.4597,
+            "num_channels": 3,
+            "source": 3,
+            "target": 21
+        },
+        {
+            "length_km": 1189.13,
+            "external_link_prob": 0.7883,
+            "num_channels": 3,
+            "source": 3,
+            "target": 27
+        },
+        {
+            "length_km": 1331.0,
+            "external_link_prob": 0.7663,
+            "num_channels": 3,
+            "source": 3,
+            "target": 37
+        },
+        {
+            "length_km": 775.16,
+            "external_link_prob": 0.8564,
+            "num_channels": 3,
+            "source": 3,
+            "target": 63
+        },
+        {
+            "length_km": 1512.79,
+            "external_link_prob": 0.7389,
+            "num_channels": 3,
+            "source": 3,
+            "target": 92
+        },
+        {
+            "length_km": 3920.19,
+            "external_link_prob": 0.4566,
+            "num_channels": 3,
+            "source": 4,
+            "target": 13
+        },
+        {
+            "length_km": 1878.72,
+            "external_link_prob": 0.6868,
+            "num_channels": 3,
+            "source": 4,
+            "target": 20
+        },
+        {
+            "length_km": 2263.55,
+            "external_link_prob": 0.6359,
+            "num_channels": 3,
+            "source": 4,
+            "target": 26
+        },
+        {
+            "length_km": 2051.04,
+            "external_link_prob": 0.6635,
+            "num_channels": 3,
+            "source": 4,
+            "target": 36
+        },
+        {
+            "length_km": 1672.66,
+            "external_link_prob": 0.7157,
+            "num_channels": 3,
+            "source": 4,
+            "target": 56
+        },
+        {
+            "length_km": 1006.0,
+            "external_link_prob": 0.8177,
+            "num_channels": 3,
+            "source": 4,
+            "target": 76
+        },
+        {
+            "length_km": 4324.71,
+            "external_link_prob": 0.4211,
+            "num_channels": 3,
+            "source": 4,
+            "target": 77
+        },
+        {
+            "length_km": 1186.97,
+            "external_link_prob": 0.7887,
+            "num_channels": 3,
+            "source": 4,
+            "target": 86
+        },
+        {
+            "length_km": 937.15,
+            "external_link_prob": 0.8291,
+            "num_channels": 3,
+            "source": 4,
+            "target": 91
+        },
+        {
+            "length_km": 416.21,
+            "external_link_prob": 0.9201,
+            "num_channels": 3,
+            "source": 4,
+            "target": 95
+        },
+        {
+            "length_km": 279.44,
+            "external_link_prob": 0.9456,
+            "num_channels": 3,
+            "source": 5,
+            "target": 35
+        },
+        {
+            "length_km": 5304.91,
+            "external_link_prob": 0.3461,
+            "num_channels": 3,
+            "source": 5,
+            "target": 42
+        },
+        {
+            "length_km": 1159.94,
+            "external_link_prob": 0.793,
+            "num_channels": 3,
+            "source": 5,
+            "target": 61
+        },
+        {
+            "length_km": 637.44,
+            "external_link_prob": 0.8803,
+            "num_channels": 3,
+            "source": 5,
+            "target": 68
+        },
+        {
+            "length_km": 2744.66,
+            "external_link_prob": 0.5776,
+            "num_channels": 3,
+            "source": 5,
+            "target": 71
+        },
+        {
+            "length_km": 5958.84,
+            "external_link_prob": 0.3037,
+            "num_channels": 3,
+            "source": 5,
+            "target": 95
+        },
+        {
+            "length_km": 2205.53,
+            "external_link_prob": 0.6433,
+            "num_channels": 3,
+            "source": 5,
+            "target": 96
+        },
+        {
+            "length_km": 717.37,
+            "external_link_prob": 0.8663,
+            "num_channels": 3,
+            "source": 6,
+            "target": 21
+        },
+        {
+            "length_km": 2709.48,
+            "external_link_prob": 0.5816,
+            "num_channels": 3,
+            "source": 6,
+            "target": 41
+        },
+        {
+            "length_km": 897.1,
+            "external_link_prob": 0.8358,
+            "num_channels": 3,
+            "source": 6,
+            "target": 58
+        },
+        {
+            "length_km": 623.0,
+            "external_link_prob": 0.8828,
+            "num_channels": 3,
+            "source": 6,
+            "target": 66
+        },
+        {
+            "length_km": 3463.65,
+            "external_link_prob": 0.5002,
+            "num_channels": 3,
+            "source": 6,
+            "target": 76
+        },
+        {
+            "length_km": 2182.42,
+            "external_link_prob": 0.6463,
+            "num_channels": 3,
+            "source": 6,
+            "target": 93
+        },
+        {
+            "length_km": 1915.12,
+            "external_link_prob": 0.6818,
+            "num_channels": 3,
+            "source": 6,
+            "target": 94
+        },
+        {
+            "length_km": 1058.56,
+            "external_link_prob": 0.8092,
+            "num_channels": 3,
+            "source": 7,
+            "target": 9
+        },
+        {
+            "length_km": 1156.0,
+            "external_link_prob": 0.7936,
+            "num_channels": 3,
+            "source": 7,
+            "target": 35
+        },
+        {
+            "length_km": 633.54,
+            "external_link_prob": 0.881,
+            "num_channels": 3,
+            "source": 7,
+            "target": 43
+        },
+        {
+            "length_km": 1384.49,
+            "external_link_prob": 0.7581,
+            "num_channels": 3,
+            "source": 7,
+            "target": 44
+        },
+        {
+            "length_km": 1260.14,
+            "external_link_prob": 0.7772,
+            "num_channels": 3,
+            "source": 7,
+            "target": 68
+        },
+        {
+            "length_km": 3364.29,
+            "external_link_prob": 0.5102,
+            "num_channels": 3,
+            "source": 7,
+            "target": 72
+        },
+        {
+            "length_km": 1526.07,
+            "external_link_prob": 0.737,
+            "num_channels": 3,
+            "source": 8,
+            "target": 28
+        },
+        {
+            "length_km": 1039.9,
+            "external_link_prob": 0.8122,
+            "num_channels": 3,
+            "source": 8,
+            "target": 34
+        },
+        {
+            "length_km": 802.31,
+            "external_link_prob": 0.8518,
+            "num_channels": 3,
+            "source": 8,
+            "target": 48
+        },
+        {
+            "length_km": 1009.09,
+            "external_link_prob": 0.8172,
+            "num_channels": 3,
+            "source": 8,
+            "target": 62
+        },
+        {
+            "length_km": 2408.05,
+            "external_link_prob": 0.6178,
+            "num_channels": 3,
+            "source": 8,
+            "target": 74
+        },
+        {
+            "length_km": 3627.85,
+            "external_link_prob": 0.484,
+            "num_channels": 3,
+            "source": 8,
+            "target": 84
+        },
+        {
+            "length_km": 4177.84,
+            "external_link_prob": 0.4336,
+            "num_channels": 3,
+            "source": 9,
+            "target": 29
+        },
+        {
+            "length_km": 4707.82,
+            "external_link_prob": 0.39,
+            "num_channels": 3,
+            "source": 9,
+            "target": 33
+        },
+        {
+            "length_km": 4072.34,
+            "external_link_prob": 0.4429,
+            "num_channels": 3,
+            "source": 9,
+            "target": 72
+        },
+        {
+            "length_km": 7197.96,
+            "external_link_prob": 0.237,
+            "num_channels": 3,
+            "source": 9,
+            "target": 84
+        },
+        {
+            "length_km": 866.11,
+            "external_link_prob": 0.841,
+            "num_channels": 3,
+            "source": 10,
+            "target": 19
+        },
+        {
+            "length_km": 2348.01,
+            "external_link_prob": 0.6253,
+            "num_channels": 3,
+            "source": 10,
+            "target": 21
+        },
+        {
+            "length_km": 1665.83,
+            "external_link_prob": 0.7167,
+            "num_channels": 3,
+            "source": 10,
+            "target": 34
+        },
+        {
+            "length_km": 534.39,
+            "external_link_prob": 0.8986,
+            "num_channels": 3,
+            "source": 10,
+            "target": 41
+        },
+        {
+            "length_km": 438.24,
+            "external_link_prob": 0.9161,
+            "num_channels": 3,
+            "source": 10,
+            "target": 89
+        },
+        {
+            "length_km": 2862.88,
+            "external_link_prob": 0.5641,
+            "num_channels": 3,
+            "source": 10,
+            "target": 97
+        },
+        {
+            "length_km": 803.92,
+            "external_link_prob": 0.8515,
+            "num_channels": 3,
+            "source": 11,
+            "target": 55
+        },
+        {
+            "length_km": 1256.13,
+            "external_link_prob": 0.7778,
+            "num_channels": 3,
+            "source": 11,
+            "target": 61
+        },
+        {
+            "length_km": 666.56,
+            "external_link_prob": 0.8752,
+            "num_channels": 3,
+            "source": 11,
+            "target": 65
+        },
+        {
+            "length_km": 2996.62,
+            "external_link_prob": 0.5492,
+            "num_channels": 3,
+            "source": 11,
+            "target": 72
+        },
+        {
+            "length_km": 938.1,
+            "external_link_prob": 0.8289,
+            "num_channels": 3,
+            "source": 11,
+            "target": 78
+        },
+        {
+            "length_km": 847.98,
+            "external_link_prob": 0.844,
+            "num_channels": 3,
+            "source": 11,
+            "target": 83
+        },
+        {
+            "length_km": 2459.15,
+            "external_link_prob": 0.6115,
+            "num_channels": 3,
+            "source": 12,
+            "target": 23
+        },
+        {
+            "length_km": 3432.45,
+            "external_link_prob": 0.5033,
+            "num_channels": 3,
+            "source": 12,
+            "target": 38
+        },
+        {
+            "length_km": 4946.14,
+            "external_link_prob": 0.3719,
+            "num_channels": 3,
+            "source": 12,
+            "target": 59
+        },
+        {
+            "length_km": 532.27,
+            "external_link_prob": 0.899,
+            "num_channels": 3,
+            "source": 12,
+            "target": 61
+        },
+        {
+            "length_km": 1530.24,
+            "external_link_prob": 0.7364,
+            "num_channels": 3,
+            "source": 12,
+            "target": 71
+        },
+        {
+            "length_km": 1588.24,
+            "external_link_prob": 0.7279,
+            "num_channels": 3,
+            "source": 12,
+            "target": 72
+        },
+        {
+            "length_km": 651.81,
+            "external_link_prob": 0.8778,
+            "num_channels": 3,
+            "source": 12,
+            "target": 78
+        },
+        {
+            "length_km": 3206.88,
+            "external_link_prob": 0.5266,
+            "num_channels": 3,
+            "source": 12,
+            "target": 80
+        },
+        {
+            "length_km": 1413.05,
+            "external_link_prob": 0.7538,
+            "num_channels": 3,
+            "source": 12,
+            "target": 83
+        },
+        {
+            "length_km": 2328.13,
+            "external_link_prob": 0.6277,
+            "num_channels": 3,
+            "source": 13,
+            "target": 44
+        },
+        {
+            "length_km": 886.84,
+            "external_link_prob": 0.8375,
+            "num_channels": 3,
+            "source": 13,
+            "target": 45
+        },
+        {
+            "length_km": 2387.21,
+            "external_link_prob": 0.6204,
+            "num_channels": 3,
+            "source": 13,
+            "target": 72
+        },
+        {
+            "length_km": 1827.46,
+            "external_link_prob": 0.6939,
+            "num_channels": 3,
+            "source": 14,
+            "target": 18
+        },
+        {
+            "length_km": 593.76,
+            "external_link_prob": 0.888,
+            "num_channels": 3,
+            "source": 14,
+            "target": 29
+        },
+        {
+            "length_km": 6751.33,
+            "external_link_prob": 0.2592,
+            "num_channels": 3,
+            "source": 14,
+            "target": 34
+        },
+        {
+            "length_km": 2714.93,
+            "external_link_prob": 0.581,
+            "num_channels": 3,
+            "source": 14,
+            "target": 51
+        },
+        {
+            "length_km": 1574.71,
+            "external_link_prob": 0.7298,
+            "num_channels": 3,
+            "source": 14,
+            "target": 53
+        },
+        {
+            "length_km": 4391.39,
+            "external_link_prob": 0.4155,
+            "num_channels": 3,
+            "source": 14,
+            "target": 54
+        },
+        {
+            "length_km": 2377.4,
+            "external_link_prob": 0.6216,
+            "num_channels": 3,
+            "source": 14,
+            "target": 64
+        },
+        {
+            "length_km": 3713.36,
+            "external_link_prob": 0.4758,
+            "num_channels": 3,
+            "source": 14,
+            "target": 66
+        },
+        {
+            "length_km": 2969.71,
+            "external_link_prob": 0.5521,
+            "num_channels": 3,
+            "source": 14,
+            "target": 81
+        },
+        {
+            "length_km": 2438.21,
+            "external_link_prob": 0.6141,
+            "num_channels": 3,
+            "source": 14,
+            "target": 86
+        },
+        {
+            "length_km": 2798.13,
+            "external_link_prob": 0.5714,
+            "num_channels": 3,
+            "source": 14,
+            "target": 98
+        },
+        {
+            "length_km": 2360.94,
+            "external_link_prob": 0.6236,
+            "num_channels": 3,
+            "source": 15,
+            "target": 17
+        },
+        {
+            "length_km": 107.51,
+            "external_link_prob": 0.9787,
+            "num_channels": 3,
+            "source": 15,
+            "target": 18
+        },
+        {
+            "length_km": 4760.28,
+            "external_link_prob": 0.3859,
+            "num_channels": 3,
+            "source": 15,
+            "target": 24
+        },
+        {
+            "length_km": 1437.05,
+            "external_link_prob": 0.7502,
+            "num_channels": 3,
+            "source": 15,
+            "target": 29
+        },
+        {
+            "length_km": 1972.6,
+            "external_link_prob": 0.674,
+            "num_channels": 3,
+            "source": 15,
+            "target": 33
+        },
+        {
+            "length_km": 686.58,
+            "external_link_prob": 0.8717,
+            "num_channels": 3,
+            "source": 15,
+            "target": 38
+        },
+        {
+            "length_km": 2566.17,
+            "external_link_prob": 0.5986,
+            "num_channels": 3,
+            "source": 15,
+            "target": 54
+        },
+        {
+            "length_km": 2503.63,
+            "external_link_prob": 0.6061,
+            "num_channels": 3,
+            "source": 15,
+            "target": 57
+        },
+        {
+            "length_km": 1796.42,
+            "external_link_prob": 0.6982,
+            "num_channels": 3,
+            "source": 15,
+            "target": 72
+        },
+        {
+            "length_km": 3831.53,
+            "external_link_prob": 0.4647,
+            "num_channels": 3,
+            "source": 15,
+            "target": 78
+        },
+        {
+            "length_km": 563.52,
+            "external_link_prob": 0.8934,
+            "num_channels": 3,
+            "source": 15,
+            "target": 85
+        },
+        {
+            "length_km": 1656.86,
+            "external_link_prob": 0.7179,
+            "num_channels": 3,
+            "source": 15,
+            "target": 99
+        },
+        {
+            "length_km": 2694.6,
+            "external_link_prob": 0.5834,
+            "num_channels": 3,
+            "source": 16,
+            "target": 36
+        },
+        {
+            "length_km": 1570.88,
+            "external_link_prob": 0.7304,
+            "num_channels": 3,
+            "source": 16,
+            "target": 59
+        },
+        {
+            "length_km": 2102.52,
+            "external_link_prob": 0.6567,
+            "num_channels": 3,
+            "source": 16,
+            "target": 60
+        },
+        {
+            "length_km": 1281.02,
+            "external_link_prob": 0.774,
+            "num_channels": 3,
+            "source": 16,
+            "target": 69
+        },
+        {
+            "length_km": 1460.13,
+            "external_link_prob": 0.7467,
+            "num_channels": 3,
+            "source": 16,
+            "target": 77
+        },
+        {
+            "length_km": 2014.02,
+            "external_link_prob": 0.6684,
+            "num_channels": 3,
+            "source": 17,
+            "target": 27
+        },
+        {
+            "length_km": 2084.6,
+            "external_link_prob": 0.6591,
+            "num_channels": 3,
+            "source": 17,
+            "target": 49
+        },
+        {
+            "length_km": 2806.04,
+            "external_link_prob": 0.5705,
+            "num_channels": 3,
+            "source": 17,
+            "target": 51
+        },
+        {
+            "length_km": 1044.04,
+            "external_link_prob": 0.8116,
+            "num_channels": 3,
+            "source": 17,
+            "target": 63
+        },
+        {
+            "length_km": 2616.17,
+            "external_link_prob": 0.5926,
+            "num_channels": 3,
+            "source": 17,
+            "target": 85
+        },
+        {
+            "length_km": 1042.57,
+            "external_link_prob": 0.8118,
+            "num_channels": 3,
+            "source": 18,
+            "target": 49
+        },
+        {
+            "length_km": 3989.28,
+            "external_link_prob": 0.4503,
+            "num_channels": 3,
+            "source": 18,
+            "target": 82
+        },
+        {
+            "length_km": 645.47,
+            "external_link_prob": 0.8789,
+            "num_channels": 3,
+            "source": 18,
+            "target": 85
+        },
+        {
+            "length_km": 2349.03,
+            "external_link_prob": 0.6251,
+            "num_channels": 3,
+            "source": 18,
+            "target": 96
+        },
+        {
+            "length_km": 1607.01,
+            "external_link_prob": 0.7251,
+            "num_channels": 3,
+            "source": 19,
+            "target": 21
+        },
+        {
+            "length_km": 957.82,
+            "external_link_prob": 0.8257,
+            "num_channels": 3,
+            "source": 19,
+            "target": 40
+        },
+        {
+            "length_km": 409.6,
+            "external_link_prob": 0.9213,
+            "num_channels": 3,
+            "source": 19,
+            "target": 41
+        },
+        {
+            "length_km": 1442.13,
+            "external_link_prob": 0.7494,
+            "num_channels": 3,
+            "source": 19,
+            "target": 87
+        },
+        {
+            "length_km": 397.81,
+            "external_link_prob": 0.9235,
+            "num_channels": 3,
+            "source": 19,
+            "target": 94
+        },
+        {
+            "length_km": 1122.93,
+            "external_link_prob": 0.7988,
+            "num_channels": 3,
+            "source": 20,
+            "target": 22
+        },
+        {
+            "length_km": 1114.02,
+            "external_link_prob": 0.8003,
+            "num_channels": 3,
+            "source": 20,
+            "target": 28
+        },
+        {
+            "length_km": 753.91,
+            "external_link_prob": 0.86,
+            "num_channels": 3,
+            "source": 20,
+            "target": 39
+        },
+        {
+            "length_km": 2323.72,
+            "external_link_prob": 0.6283,
+            "num_channels": 3,
+            "source": 20,
+            "target": 64
+        },
+        {
+            "length_km": 808.52,
+            "external_link_prob": 0.8507,
+            "num_channels": 3,
+            "source": 20,
+            "target": 79
+        },
+        {
+            "length_km": 1698.62,
+            "external_link_prob": 0.712,
+            "num_channels": 3,
+            "source": 20,
+            "target": 81
+        },
+        {
+            "length_km": 4400.07,
+            "external_link_prob": 0.4148,
+            "num_channels": 3,
+            "source": 20,
+            "target": 99
+        },
+        {
+            "length_km": 4511.0,
+            "external_link_prob": 0.4057,
+            "num_channels": 3,
+            "source": 21,
+            "target": 57
+        },
+        {
+            "length_km": 3476.1,
+            "external_link_prob": 0.499,
+            "num_channels": 3,
+            "source": 21,
+            "target": 64
+        },
+        {
+            "length_km": 1287.32,
+            "external_link_prob": 0.773,
+            "num_channels": 3,
+            "source": 21,
+            "target": 70
+        },
+        {
+            "length_km": 1636.68,
+            "external_link_prob": 0.7208,
+            "num_channels": 3,
+            "source": 21,
+            "target": 84
+        },
+        {
+            "length_km": 2530.02,
+            "external_link_prob": 0.6029,
+            "num_channels": 3,
+            "source": 21,
+            "target": 99
+        },
+        {
+            "length_km": 693.86,
+            "external_link_prob": 0.8704,
+            "num_channels": 3,
+            "source": 22,
+            "target": 25
+        },
+        {
+            "length_km": 1887.07,
+            "external_link_prob": 0.6856,
+            "num_channels": 3,
+            "source": 22,
+            "target": 34
+        },
+        {
+            "length_km": 1335.26,
+            "external_link_prob": 0.7656,
+            "num_channels": 3,
+            "source": 22,
+            "target": 39
+        },
+        {
+            "length_km": 1487.43,
+            "external_link_prob": 0.7427,
+            "num_channels": 3,
+            "source": 22,
+            "target": 48
+        },
+        {
+            "length_km": 563.66,
+            "external_link_prob": 0.8934,
+            "num_channels": 3,
+            "source": 22,
+            "target": 67
+        },
+        {
+            "length_km": 1169.37,
+            "external_link_prob": 0.7915,
+            "num_channels": 3,
+            "source": 22,
+            "target": 74
+        },
+        {
+            "length_km": 936.77,
+            "external_link_prob": 0.8291,
+            "num_channels": 3,
+            "source": 22,
+            "target": 79
+        },
+        {
+            "length_km": 2821.28,
+            "external_link_prob": 0.5688,
+            "num_channels": 3,
+            "source": 22,
+            "target": 81
+        },
+        {
+            "length_km": 348.21,
+            "external_link_prob": 0.9327,
+            "num_channels": 3,
+            "source": 23,
+            "target": 65
+        },
+        {
+            "length_km": 1235.08,
+            "external_link_prob": 0.7811,
+            "num_channels": 3,
+            "source": 23,
+            "target": 83
+        },
+        {
+            "length_km": 6143.07,
+            "external_link_prob": 0.2927,
+            "num_channels": 3,
+            "source": 23,
+            "target": 92
+        },
+        {
+            "length_km": 2908.22,
+            "external_link_prob": 0.559,
+            "num_channels": 3,
+            "source": 24,
+            "target": 63
+        },
+        {
+            "length_km": 918.89,
+            "external_link_prob": 0.8321,
+            "num_channels": 3,
+            "source": 24,
+            "target": 93
+        },
+        {
+            "length_km": 898.14,
+            "external_link_prob": 0.8356,
+            "num_channels": 3,
+            "source": 25,
+            "target": 48
+        },
+        {
+            "length_km": 1630.4,
+            "external_link_prob": 0.7217,
+            "num_channels": 3,
+            "source": 25,
+            "target": 79
+        },
+        {
+            "length_km": 3507.41,
+            "external_link_prob": 0.4959,
+            "num_channels": 3,
+            "source": 25,
+            "target": 94
+        },
+        {
+            "length_km": 926.97,
+            "external_link_prob": 0.8308,
+            "num_channels": 3,
+            "source": 26,
+            "target": 36
+        },
+        {
+            "length_km": 203.25,
+            "external_link_prob": 0.9602,
+            "num_channels": 3,
+            "source": 26,
+            "target": 59
+        },
+        {
+            "length_km": 1187.96,
+            "external_link_prob": 0.7885,
+            "num_channels": 3,
+            "source": 26,
+            "target": 60
+        },
+        {
+            "length_km": 1644.7,
+            "external_link_prob": 0.7197,
+            "num_channels": 3,
+            "source": 26,
+            "target": 80
+        },
+        {
+            "length_km": 6261.46,
+            "external_link_prob": 0.2858,
+            "num_channels": 3,
+            "source": 26,
+            "target": 83
+        },
+        {
+            "length_km": 815.79,
+            "external_link_prob": 0.8495,
+            "num_channels": 3,
+            "source": 27,
+            "target": 31
+        },
+        {
+            "length_km": 981.09,
+            "external_link_prob": 0.8218,
+            "num_channels": 3,
+            "source": 27,
+            "target": 37
+        },
+        {
+            "length_km": 6941.04,
+            "external_link_prob": 0.2495,
+            "num_channels": 3,
+            "source": 27,
+            "target": 48
+        },
+        {
+            "length_km": 1519.06,
+            "external_link_prob": 0.738,
+            "num_channels": 3,
+            "source": 27,
+            "target": 57
+        },
+        {
+            "length_km": 4616.58,
+            "external_link_prob": 0.3972,
+            "num_channels": 3,
+            "source": 27,
+            "target": 96
+        },
+        {
+            "length_km": 2073.66,
+            "external_link_prob": 0.6605,
+            "num_channels": 3,
+            "source": 27,
+            "target": 99
+        },
+        {
+            "length_km": 2256.9,
+            "external_link_prob": 0.6367,
+            "num_channels": 3,
+            "source": 28,
+            "target": 47
+        },
+        {
+            "length_km": 1448.65,
+            "external_link_prob": 0.7485,
+            "num_channels": 3,
+            "source": 28,
+            "target": 52
+        },
+        {
+            "length_km": 374.28,
+            "external_link_prob": 0.9279,
+            "num_channels": 3,
+            "source": 28,
+            "target": 67
+        },
+        {
+            "length_km": 1515.74,
+            "external_link_prob": 0.7385,
+            "num_channels": 3,
+            "source": 28,
+            "target": 79
+        },
+        {
+            "length_km": 2696.84,
+            "external_link_prob": 0.5831,
+            "num_channels": 3,
+            "source": 28,
+            "target": 94
+        },
+        {
+            "length_km": 6578.76,
+            "external_link_prob": 0.2683,
+            "num_channels": 3,
+            "source": 29,
+            "target": 30
+        },
+        {
+            "length_km": 2122.3,
+            "external_link_prob": 0.6541,
+            "num_channels": 3,
+            "source": 29,
+            "target": 51
+        },
+        {
+            "length_km": 3328.12,
+            "external_link_prob": 0.514,
+            "num_channels": 3,
+            "source": 29,
+            "target": 76
+        },
+        {
+            "length_km": 2631.17,
+            "external_link_prob": 0.5908,
+            "num_channels": 3,
+            "source": 29,
+            "target": 80
+        },
+        {
+            "length_km": 3782.87,
+            "external_link_prob": 0.4693,
+            "num_channels": 3,
+            "source": 29,
+            "target": 92
+        },
+        {
+            "length_km": 2229.71,
+            "external_link_prob": 0.6402,
+            "num_channels": 3,
+            "source": 29,
+            "target": 98
+        },
+        {
+            "length_km": 999.66,
+            "external_link_prob": 0.8188,
+            "num_channels": 3,
+            "source": 30,
+            "target": 32
+        },
+        {
+            "length_km": 707.68,
+            "external_link_prob": 0.868,
+            "num_channels": 3,
+            "source": 30,
+            "target": 42
+        },
+        {
+            "length_km": 2682.01,
+            "external_link_prob": 0.5848,
+            "num_channels": 3,
+            "source": 30,
+            "target": 59
+        },
+        {
+            "length_km": 673.7,
+            "external_link_prob": 0.8739,
+            "num_channels": 3,
+            "source": 31,
+            "target": 37
+        },
+        {
+            "length_km": 4437.83,
+            "external_link_prob": 0.4117,
+            "num_channels": 3,
+            "source": 31,
+            "target": 51
+        },
+        {
+            "length_km": 1616.55,
+            "external_link_prob": 0.7237,
+            "num_channels": 3,
+            "source": 31,
+            "target": 57
+        },
+        {
+            "length_km": 3554.36,
+            "external_link_prob": 0.4912,
+            "num_channels": 3,
+            "source": 31,
+            "target": 70
+        },
+        {
+            "length_km": 1898.37,
+            "external_link_prob": 0.6841,
+            "num_channels": 3,
+            "source": 31,
+            "target": 93
+        },
+        {
+            "length_km": 1185.81,
+            "external_link_prob": 0.7889,
+            "num_channels": 3,
+            "source": 32,
+            "target": 42
+        },
+        {
+            "length_km": 6858.58,
+            "external_link_prob": 0.2537,
+            "num_channels": 3,
+            "source": 32,
+            "target": 48
+        },
+        {
+            "length_km": 2304.62,
+            "external_link_prob": 0.6307,
+            "num_channels": 3,
+            "source": 32,
+            "target": 77
+        },
+        {
+            "length_km": 2505.06,
+            "external_link_prob": 0.6059,
+            "num_channels": 3,
+            "source": 32,
+            "target": 91
+        },
+        {
+            "length_km": 347.55,
+            "external_link_prob": 0.9329,
+            "num_channels": 3,
+            "source": 33,
+            "target": 51
+        },
+        {
+            "length_km": 3011.56,
+            "external_link_prob": 0.5475,
+            "num_channels": 3,
+            "source": 33,
+            "target": 53
+        },
+        {
+            "length_km": 4051.28,
+            "external_link_prob": 0.4447,
+            "num_channels": 3,
+            "source": 33,
+            "target": 63
+        },
+        {
+            "length_km": 2058.6,
+            "external_link_prob": 0.6625,
+            "num_channels": 3,
+            "source": 33,
+            "target": 83
+        },
+        {
+            "length_km": 2140.69,
+            "external_link_prob": 0.6517,
+            "num_channels": 3,
+            "source": 34,
+            "target": 41
+        },
+        {
+            "length_km": 1228.69,
+            "external_link_prob": 0.7821,
+            "num_channels": 3,
+            "source": 34,
+            "target": 52
+        },
+        {
+            "length_km": 695.43,
+            "external_link_prob": 0.8702,
+            "num_channels": 3,
+            "source": 34,
+            "target": 62
+        },
+        {
+            "length_km": 1237.92,
+            "external_link_prob": 0.7807,
+            "num_channels": 3,
+            "source": 34,
+            "target": 89
+        },
+        {
+            "length_km": 2865.88,
+            "external_link_prob": 0.5637,
+            "num_channels": 3,
+            "source": 34,
+            "target": 94
+        },
+        {
+            "length_km": 3838.66,
+            "external_link_prob": 0.4641,
+            "num_channels": 3,
+            "source": 34,
+            "target": 97
+        },
+        {
+            "length_km": 1372.65,
+            "external_link_prob": 0.7599,
+            "num_channels": 3,
+            "source": 35,
+            "target": 55
+        },
+        {
+            "length_km": 935.21,
+            "external_link_prob": 0.8294,
+            "num_channels": 3,
+            "source": 35,
+            "target": 61
+        },
+        {
+            "length_km": 2547.06,
+            "external_link_prob": 0.6008,
+            "num_channels": 3,
+            "source": 35,
+            "target": 65
+        },
+        {
+            "length_km": 5638.0,
+            "external_link_prob": 0.3238,
+            "num_channels": 3,
+            "source": 35,
+            "target": 69
+        },
+        {
+            "length_km": 2826.83,
+            "external_link_prob": 0.5682,
+            "num_channels": 3,
+            "source": 35,
+            "target": 98
+        },
+        {
+            "length_km": 3593.71,
+            "external_link_prob": 0.4874,
+            "num_channels": 3,
+            "source": 36,
+            "target": 38
+        },
+        {
+            "length_km": 935.34,
+            "external_link_prob": 0.8294,
+            "num_channels": 3,
+            "source": 36,
+            "target": 56
+        },
+        {
+            "length_km": 1626.67,
+            "external_link_prob": 0.7223,
+            "num_channels": 3,
+            "source": 36,
+            "target": 60
+        },
+        {
+            "length_km": 4775.07,
+            "external_link_prob": 0.3848,
+            "num_channels": 3,
+            "source": 36,
+            "target": 67
+        },
+        {
+            "length_km": 1052.64,
+            "external_link_prob": 0.8102,
+            "num_channels": 3,
+            "source": 36,
+            "target": 73
+        },
+        {
+            "length_km": 2107.95,
+            "external_link_prob": 0.656,
+            "num_channels": 3,
+            "source": 36,
+            "target": 76
+        },
+        {
+            "length_km": 2766.53,
+            "external_link_prob": 0.575,
+            "num_channels": 3,
+            "source": 36,
+            "target": 77
+        },
+        {
+            "length_km": 3134.53,
+            "external_link_prob": 0.5342,
+            "num_channels": 3,
+            "source": 36,
+            "target": 97
+        },
+        {
+            "length_km": 1968.18,
+            "external_link_prob": 0.6746,
+            "num_channels": 3,
+            "source": 37,
+            "target": 63
+        },
+        {
+            "length_km": 6325.66,
+            "external_link_prob": 0.2822,
+            "num_channels": 3,
+            "source": 37,
+            "target": 67
+        },
+        {
+            "length_km": 1796.69,
+            "external_link_prob": 0.6981,
+            "num_channels": 3,
+            "source": 37,
+            "target": 82
+        },
+        {
+            "length_km": 4005.83,
+            "external_link_prob": 0.4488,
+            "num_channels": 3,
+            "source": 37,
+            "target": 84
+        },
+        {
+            "length_km": 5316.92,
+            "external_link_prob": 0.3453,
+            "num_channels": 3,
+            "source": 37,
+            "target": 89
+        },
+        {
+            "length_km": 1347.24,
+            "external_link_prob": 0.7638,
+            "num_channels": 3,
+            "source": 37,
+            "target": 93
+        },
+        {
+            "length_km": 1538.45,
+            "external_link_prob": 0.7351,
+            "num_channels": 3,
+            "source": 38,
+            "target": 49
+        },
+        {
+            "length_km": 3947.16,
+            "external_link_prob": 0.4541,
+            "num_channels": 3,
+            "source": 38,
+            "target": 61
+        },
+        {
+            "length_km": 2956.62,
+            "external_link_prob": 0.5536,
+            "num_channels": 3,
+            "source": 38,
+            "target": 92
+        },
+        {
+            "length_km": 2400.45,
+            "external_link_prob": 0.6187,
+            "num_channels": 3,
+            "source": 39,
+            "target": 62
+        },
+        {
+            "length_km": 2364.48,
+            "external_link_prob": 0.6232,
+            "num_channels": 3,
+            "source": 39,
+            "target": 64
+        },
+        {
+            "length_km": 2450.28,
+            "external_link_prob": 0.6126,
+            "num_channels": 3,
+            "source": 39,
+            "target": 97
+        },
+        {
+            "length_km": 616.49,
+            "external_link_prob": 0.884,
+            "num_channels": 3,
+            "source": 40,
+            "target": 46
+        },
+        {
+            "length_km": 2557.83,
+            "external_link_prob": 0.5996,
+            "num_channels": 3,
+            "source": 40,
+            "target": 81
+        },
+        {
+            "length_km": 825.35,
+            "external_link_prob": 0.8478,
+            "num_channels": 3,
+            "source": 40,
+            "target": 84
+        },
+        {
+            "length_km": 1855.76,
+            "external_link_prob": 0.6899,
+            "num_channels": 3,
+            "source": 40,
+            "target": 87
+        },
+        {
+            "length_km": 2291.42,
+            "external_link_prob": 0.6324,
+            "num_channels": 3,
+            "source": 41,
+            "target": 48
+        },
+        {
+            "length_km": 2250.0,
+            "external_link_prob": 0.6376,
+            "num_channels": 3,
+            "source": 41,
+            "target": 66
+        },
+        {
+            "length_km": 957.22,
+            "external_link_prob": 0.8258,
+            "num_channels": 3,
+            "source": 41,
+            "target": 89
+        },
+        {
+            "length_km": 802.63,
+            "external_link_prob": 0.8517,
+            "num_channels": 3,
+            "source": 41,
+            "target": 94
+        },
+        {
+            "length_km": 2340.21,
+            "external_link_prob": 0.6262,
+            "num_channels": 3,
+            "source": 42,
+            "target": 59
+        },
+        {
+            "length_km": 1743.96,
+            "external_link_prob": 0.7055,
+            "num_channels": 3,
+            "source": 43,
+            "target": 68
+        },
+        {
+            "length_km": 3827.14,
+            "external_link_prob": 0.4651,
+            "num_channels": 3,
+            "source": 43,
+            "target": 71
+        },
+        {
+            "length_km": 3988.03,
+            "external_link_prob": 0.4504,
+            "num_channels": 3,
+            "source": 43,
+            "target": 73
+        },
+        {
+            "length_km": 2528.44,
+            "external_link_prob": 0.6031,
+            "num_channels": 3,
+            "source": 43,
+            "target": 77
+        },
+        {
+            "length_km": 1627.13,
+            "external_link_prob": 0.7222,
+            "num_channels": 3,
+            "source": 43,
+            "target": 80
+        },
+        {
+            "length_km": 6276.33,
+            "external_link_prob": 0.285,
+            "num_channels": 3,
+            "source": 44,
+            "target": 97
+        },
+        {
+            "length_km": 753.39,
+            "external_link_prob": 0.8601,
+            "num_channels": 3,
+            "source": 45,
+            "target": 53
+        },
+        {
+            "length_km": 1507.88,
+            "external_link_prob": 0.7397,
+            "num_channels": 3,
+            "source": 45,
+            "target": 56
+        },
+        {
+            "length_km": 2681.08,
+            "external_link_prob": 0.585,
+            "num_channels": 3,
+            "source": 45,
+            "target": 60
+        },
+        {
+            "length_km": 2421.64,
+            "external_link_prob": 0.6161,
+            "num_channels": 3,
+            "source": 45,
+            "target": 75
+        },
+        {
+            "length_km": 2834.0,
+            "external_link_prob": 0.5673,
+            "num_channels": 3,
+            "source": 45,
+            "target": 76
+        },
+        {
+            "length_km": 2096.72,
+            "external_link_prob": 0.6575,
+            "num_channels": 3,
+            "source": 45,
+            "target": 96
+        },
+        {
+            "length_km": 748.81,
+            "external_link_prob": 0.8609,
+            "num_channels": 3,
+            "source": 46,
+            "target": 66
+        },
+        {
+            "length_km": 4064.89,
+            "external_link_prob": 0.4435,
+            "num_channels": 3,
+            "source": 46,
+            "target": 74
+        },
+        {
+            "length_km": 591.66,
+            "external_link_prob": 0.8884,
+            "num_channels": 3,
+            "source": 46,
+            "target": 84
+        },
+        {
+            "length_km": 1244.09,
+            "external_link_prob": 0.7797,
+            "num_channels": 3,
+            "source": 46,
+            "target": 94
+        },
+        {
+            "length_km": 1811.81,
+            "external_link_prob": 0.696,
+            "num_channels": 3,
+            "source": 47,
+            "target": 75
+        },
+        {
+            "length_km": 2092.65,
+            "external_link_prob": 0.658,
+            "num_channels": 3,
+            "source": 47,
+            "target": 79
+        },
+        {
+            "length_km": 389.13,
+            "external_link_prob": 0.9251,
+            "num_channels": 3,
+            "source": 47,
+            "target": 81
+        },
+        {
+            "length_km": 1410.84,
+            "external_link_prob": 0.7541,
+            "num_channels": 3,
+            "source": 47,
+            "target": 84
+        },
+        {
+            "length_km": 2394.36,
+            "external_link_prob": 0.6195,
+            "num_channels": 3,
+            "source": 47,
+            "target": 91
+        },
+        {
+            "length_km": 6193.2,
+            "external_link_prob": 0.2898,
+            "num_channels": 3,
+            "source": 47,
+            "target": 92
+        },
+        {
+            "length_km": 1333.36,
+            "external_link_prob": 0.7659,
+            "num_channels": 3,
+            "source": 48,
+            "target": 52
+        },
+        {
+            "length_km": 366.0,
+            "external_link_prob": 0.9294,
+            "num_channels": 3,
+            "source": 48,
+            "target": 62
+        },
+        {
+            "length_km": 961.01,
+            "external_link_prob": 0.8251,
+            "num_channels": 3,
+            "source": 49,
+            "target": 51
+        },
+        {
+            "length_km": 5343.76,
+            "external_link_prob": 0.3434,
+            "num_channels": 3,
+            "source": 49,
+            "target": 84
+        },
+        {
+            "length_km": 3339.15,
+            "external_link_prob": 0.5128,
+            "num_channels": 3,
+            "source": 50,
+            "target": 74
+        },
+        {
+            "length_km": 4533.39,
+            "external_link_prob": 0.4039,
+            "num_channels": 3,
+            "source": 50,
+            "target": 84
+        },
+        {
+            "length_km": 1026.83,
+            "external_link_prob": 0.8143,
+            "num_channels": 3,
+            "source": 51,
+            "target": 72
+        },
+        {
+            "length_km": 2331.18,
+            "external_link_prob": 0.6274,
+            "num_channels": 3,
+            "source": 51,
+            "target": 78
+        },
+        {
+            "length_km": 3980.42,
+            "external_link_prob": 0.4511,
+            "num_channels": 3,
+            "source": 52,
+            "target": 64
+        },
+        {
+            "length_km": 2948.28,
+            "external_link_prob": 0.5545,
+            "num_channels": 3,
+            "source": 52,
+            "target": 79
+        },
+        {
+            "length_km": 4770.12,
+            "external_link_prob": 0.3852,
+            "num_channels": 3,
+            "source": 52,
+            "target": 91
+        },
+        {
+            "length_km": 2076.49,
+            "external_link_prob": 0.6601,
+            "num_channels": 3,
+            "source": 53,
+            "target": 56
+        },
+        {
+            "length_km": 3433.89,
+            "external_link_prob": 0.5032,
+            "num_channels": 3,
+            "source": 53,
+            "target": 60
+        },
+        {
+            "length_km": 3060.36,
+            "external_link_prob": 0.5422,
+            "num_channels": 3,
+            "source": 53,
+            "target": 64
+        },
+        {
+            "length_km": 2745.68,
+            "external_link_prob": 0.5774,
+            "num_channels": 3,
+            "source": 53,
+            "target": 73
+        },
+        {
+            "length_km": 966.59,
+            "external_link_prob": 0.8242,
+            "num_channels": 3,
+            "source": 53,
+            "target": 80
+        },
+        {
+            "length_km": 2511.95,
+            "external_link_prob": 0.6051,
+            "num_channels": 3,
+            "source": 53,
+            "target": 86
+        },
+        {
+            "length_km": 62.55,
+            "external_link_prob": 0.9876,
+            "num_channels": 3,
+            "source": 54,
+            "target": 57
+        },
+        {
+            "length_km": 397.07,
+            "external_link_prob": 0.9237,
+            "num_channels": 3,
+            "source": 54,
+            "target": 63
+        },
+        {
+            "length_km": 2716.01,
+            "external_link_prob": 0.5809,
+            "num_channels": 3,
+            "source": 54,
+            "target": 90
+        },
+        {
+            "length_km": 1193.9,
+            "external_link_prob": 0.7876,
+            "num_channels": 3,
+            "source": 55,
+            "target": 61
+        },
+        {
+            "length_km": 1378.37,
+            "external_link_prob": 0.7591,
+            "num_channels": 3,
+            "source": 55,
+            "target": 65
+        },
+        {
+            "length_km": 1585.33,
+            "external_link_prob": 0.7283,
+            "num_channels": 3,
+            "source": 55,
+            "target": 83
+        },
+        {
+            "length_km": 4483.32,
+            "external_link_prob": 0.4079,
+            "num_channels": 3,
+            "source": 55,
+            "target": 85
+        },
+        {
+            "length_km": 1095.56,
+            "external_link_prob": 0.8032,
+            "num_channels": 3,
+            "source": 56,
+            "target": 64
+        },
+        {
+            "length_km": 3117.38,
+            "external_link_prob": 0.5361,
+            "num_channels": 3,
+            "source": 56,
+            "target": 70
+        },
+        {
+            "length_km": 1984.03,
+            "external_link_prob": 0.6725,
+            "num_channels": 3,
+            "source": 56,
+            "target": 80
+        },
+        {
+            "length_km": 538.18,
+            "external_link_prob": 0.898,
+            "num_channels": 3,
+            "source": 56,
+            "target": 86
+        },
+        {
+            "length_km": 2229.34,
+            "external_link_prob": 0.6403,
+            "num_channels": 3,
+            "source": 56,
+            "target": 91
+        },
+        {
+            "length_km": 341.08,
+            "external_link_prob": 0.9341,
+            "num_channels": 3,
+            "source": 57,
+            "target": 92
+        },
+        {
+            "length_km": 1895.9,
+            "external_link_prob": 0.6844,
+            "num_channels": 3,
+            "source": 58,
+            "target": 70
+        },
+        {
+            "length_km": 208.46,
+            "external_link_prob": 0.9592,
+            "num_channels": 3,
+            "source": 58,
+            "target": 82
+        },
+        {
+            "length_km": 1739.74,
+            "external_link_prob": 0.7061,
+            "num_channels": 3,
+            "source": 58,
+            "target": 94
+        },
+        {
+            "length_km": 3067.07,
+            "external_link_prob": 0.5415,
+            "num_channels": 3,
+            "source": 58,
+            "target": 97
+        },
+        {
+            "length_km": 5138.51,
+            "external_link_prob": 0.3578,
+            "num_channels": 3,
+            "source": 59,
+            "target": 67
+        },
+        {
+            "length_km": 1597.48,
+            "external_link_prob": 0.7265,
+            "num_channels": 3,
+            "source": 59,
+            "target": 73
+        },
+        {
+            "length_km": 1854.58,
+            "external_link_prob": 0.6901,
+            "num_channels": 3,
+            "source": 59,
+            "target": 75
+        },
+        {
+            "length_km": 5019.93,
+            "external_link_prob": 0.3664,
+            "num_channels": 3,
+            "source": 60,
+            "target": 62
+        },
+        {
+            "length_km": 4048.29,
+            "external_link_prob": 0.445,
+            "num_channels": 3,
+            "source": 60,
+            "target": 67
+        },
+        {
+            "length_km": 5455.34,
+            "external_link_prob": 0.3359,
+            "num_channels": 3,
+            "source": 60,
+            "target": 72
+        },
+        {
+            "length_km": 3068.49,
+            "external_link_prob": 0.5413,
+            "num_channels": 3,
+            "source": 60,
+            "target": 74
+        },
+        {
+            "length_km": 1166.64,
+            "external_link_prob": 0.7919,
+            "num_channels": 3,
+            "source": 60,
+            "target": 75
+        },
+        {
+            "length_km": 1593.53,
+            "external_link_prob": 0.7271,
+            "num_channels": 3,
+            "source": 61,
+            "target": 71
+        },
+        {
+            "length_km": 1221.99,
+            "external_link_prob": 0.7832,
+            "num_channels": 3,
+            "source": 62,
+            "target": 89
+        },
+        {
+            "length_km": 8179.53,
+            "external_link_prob": 0.1948,
+            "num_channels": 3,
+            "source": 63,
+            "target": 91
+        },
+        {
+            "length_km": 773.49,
+            "external_link_prob": 0.8567,
+            "num_channels": 3,
+            "source": 63,
+            "target": 92
+        },
+        {
+            "length_km": 4306.35,
+            "external_link_prob": 0.4226,
+            "num_channels": 3,
+            "source": 64,
+            "target": 72
+        },
+        {
+            "length_km": 1284.06,
+            "external_link_prob": 0.7735,
+            "num_channels": 3,
+            "source": 64,
+            "target": 73
+        },
+        {
+            "length_km": 375.22,
+            "external_link_prob": 0.9277,
+            "num_channels": 3,
+            "source": 64,
+            "target": 76
+        },
+        {
+            "length_km": 3077.23,
+            "external_link_prob": 0.5404,
+            "num_channels": 3,
+            "source": 64,
+            "target": 80
+        },
+        {
+            "length_km": 660.23,
+            "external_link_prob": 0.8763,
+            "num_channels": 3,
+            "source": 64,
+            "target": 81
+        },
+        {
+            "length_km": 2706.3,
+            "external_link_prob": 0.582,
+            "num_channels": 3,
+            "source": 64,
+            "target": 99
+        },
+        {
+            "length_km": 2456.53,
+            "external_link_prob": 0.6118,
+            "num_channels": 3,
+            "source": 65,
+            "target": 68
+        },
+        {
+            "length_km": 1085.71,
+            "external_link_prob": 0.8048,
+            "num_channels": 3,
+            "source": 65,
+            "target": 71
+        },
+        {
+            "length_km": 3615.32,
+            "external_link_prob": 0.4853,
+            "num_channels": 3,
+            "source": 66,
+            "target": 67
+        },
+        {
+            "length_km": 726.46,
+            "external_link_prob": 0.8648,
+            "num_channels": 3,
+            "source": 66,
+            "target": 70
+        },
+        {
+            "length_km": 4221.85,
+            "external_link_prob": 0.4298,
+            "num_channels": 3,
+            "source": 66,
+            "target": 73
+        },
+        {
+            "length_km": 2697.94,
+            "external_link_prob": 0.583,
+            "num_channels": 3,
+            "source": 66,
+            "target": 81
+        },
+        {
+            "length_km": 1855.18,
+            "external_link_prob": 0.69,
+            "num_channels": 3,
+            "source": 66,
+            "target": 87
+        },
+        {
+            "length_km": 1820.75,
+            "external_link_prob": 0.6948,
+            "num_channels": 3,
+            "source": 67,
+            "target": 89
+        },
+        {
+            "length_km": 3036.34,
+            "external_link_prob": 0.5448,
+            "num_channels": 3,
+            "source": 67,
+            "target": 94
+        },
+        {
+            "length_km": 3451.75,
+            "external_link_prob": 0.5014,
+            "num_channels": 3,
+            "source": 70,
+            "target": 75
+        },
+        {
+            "length_km": 1145.17,
+            "external_link_prob": 0.7953,
+            "num_channels": 3,
+            "source": 70,
+            "target": 84
+        },
+        {
+            "length_km": 1244.25,
+            "external_link_prob": 0.7797,
+            "num_channels": 3,
+            "source": 70,
+            "target": 97
+        },
+        {
+            "length_km": 1042.74,
+            "external_link_prob": 0.8118,
+            "num_channels": 3,
+            "source": 71,
+            "target": 78
+        },
+        {
+            "length_km": 1756.56,
+            "external_link_prob": 0.7038,
+            "num_channels": 3,
+            "source": 71,
+            "target": 88
+        },
+        {
+            "length_km": 2089.53,
+            "external_link_prob": 0.6584,
+            "num_channels": 3,
+            "source": 72,
+            "target": 78
+        },
+        {
+            "length_km": 1239.77,
+            "external_link_prob": 0.7804,
+            "num_channels": 3,
+            "source": 72,
+            "target": 85
+        },
+        {
+            "length_km": 1260.67,
+            "external_link_prob": 0.7771,
+            "num_channels": 3,
+            "source": 73,
+            "target": 76
+        },
+        {
+            "length_km": 356.98,
+            "external_link_prob": 0.9311,
+            "num_channels": 3,
+            "source": 73,
+            "target": 86
+        },
+        {
+            "length_km": 615.94,
+            "external_link_prob": 0.8841,
+            "num_channels": 3,
+            "source": 74,
+            "target": 79
+        },
+        {
+            "length_km": 2775.49,
+            "external_link_prob": 0.574,
+            "num_channels": 3,
+            "source": 74,
+            "target": 81
+        },
+        {
+            "length_km": 3484.49,
+            "external_link_prob": 0.4981,
+            "num_channels": 3,
+            "source": 74,
+            "target": 84
+        },
+        {
+            "length_km": 3347.86,
+            "external_link_prob": 0.5119,
+            "num_channels": 3,
+            "source": 74,
+            "target": 97
+        },
+        {
+            "length_km": 2578.55,
+            "external_link_prob": 0.5971,
+            "num_channels": 3,
+            "source": 75,
+            "target": 79
+        },
+        {
+            "length_km": 623.96,
+            "external_link_prob": 0.8827,
+            "num_channels": 3,
+            "source": 75,
+            "target": 86
+        },
+        {
+            "length_km": 1095.87,
+            "external_link_prob": 0.8032,
+            "num_channels": 3,
+            "source": 75,
+            "target": 91
+        },
+        {
+            "length_km": 3299.87,
+            "external_link_prob": 0.5169,
+            "num_channels": 3,
+            "source": 76,
+            "target": 80
+        },
+        {
+            "length_km": 2145.86,
+            "external_link_prob": 0.651,
+            "num_channels": 3,
+            "source": 76,
+            "target": 84
+        },
+        {
+            "length_km": 1138.55,
+            "external_link_prob": 0.7964,
+            "num_channels": 3,
+            "source": 76,
+            "target": 86
+        },
+        {
+            "length_km": 1191.89,
+            "external_link_prob": 0.7879,
+            "num_channels": 3,
+            "source": 76,
+            "target": 97
+        },
+        {
+            "length_km": 5629.97,
+            "external_link_prob": 0.3243,
+            "num_channels": 3,
+            "source": 78,
+            "target": 86
+        },
+        {
+            "length_km": 3120.07,
+            "external_link_prob": 0.5358,
+            "num_channels": 3,
+            "source": 79,
+            "target": 86
+        },
+        {
+            "length_km": 2758.34,
+            "external_link_prob": 0.576,
+            "num_channels": 3,
+            "source": 79,
+            "target": 97
+        },
+        {
+            "length_km": 2302.89,
+            "external_link_prob": 0.6309,
+            "num_channels": 3,
+            "source": 80,
+            "target": 96
+        },
+        {
+            "length_km": 3912.21,
+            "external_link_prob": 0.4573,
+            "num_channels": 3,
+            "source": 80,
+            "target": 98
+        },
+        {
+            "length_km": 3344.9,
+            "external_link_prob": 0.5122,
+            "num_channels": 3,
+            "source": 81,
+            "target": 89
+        },
+        {
+            "length_km": 824.4,
+            "external_link_prob": 0.848,
+            "num_channels": 3,
+            "source": 81,
+            "target": 95
+        },
+        {
+            "length_km": 3539.15,
+            "external_link_prob": 0.4927,
+            "num_channels": 3,
+            "source": 82,
+            "target": 90
+        },
+        {
+            "length_km": 1312.92,
+            "external_link_prob": 0.7691,
+            "num_channels": 3,
+            "source": 82,
+            "target": 93
+        },
+        {
+            "length_km": 4917.25,
+            "external_link_prob": 0.374,
+            "num_channels": 3,
+            "source": 82,
+            "target": 95
+        },
+        {
+            "length_km": 2736.37,
+            "external_link_prob": 0.5785,
+            "num_channels": 3,
+            "source": 82,
+            "target": 99
+        },
+        {
+            "length_km": 2598.69,
+            "external_link_prob": 0.5947,
+            "num_channels": 3,
+            "source": 84,
+            "target": 87
+        },
+        {
+            "length_km": 1051.05,
+            "external_link_prob": 0.8104,
+            "num_channels": 3,
+            "source": 84,
+            "target": 97
+        },
+        {
+            "length_km": 5035.31,
+            "external_link_prob": 0.3653,
+            "num_channels": 3,
+            "source": 85,
+            "target": 93
+        },
+        {
+            "length_km": 1232.46,
+            "external_link_prob": 0.7815,
+            "num_channels": 3,
+            "source": 87,
+            "target": 94
+        },
+        {
+            "length_km": 3547.3,
+            "external_link_prob": 0.4919,
+            "num_channels": 3,
+            "source": 92,
+            "target": 98
+        },
+        {
+            "length_km": 2605.38,
+            "external_link_prob": 0.5939,
+            "num_channels": 3,
+            "source": 94,
+            "target": 97
+        },
+        {
+            "length_km": 1681.7,
+            "external_link_prob": 0.7144,
+            "num_channels": 3,
+            "source": 95,
+            "target": 97
+        }
+    ]
+}

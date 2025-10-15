@@ -24,7 +24,8 @@ def generate_quantum_topology(
     min_memory: int = 10,
     max_memory: int = 14,
     internal_link_prob: float = 0.9,
-    num_channels_per_edge: int = 3,
+    min_num_channels_per_edge: int = 2,
+    max_num_channels_per_edge: int = 6,
     num_sd_pairs: int = 6
 ) -> nx.Graph:
     """
@@ -56,7 +57,7 @@ def generate_quantum_topology(
                     v,
                     length_km=round(l_uv, 2),
                     external_link_prob=round(p_external_link, 4),
-                    num_channels=num_channels_per_edge
+                    num_channels=np.random.randint(min_num_channels_per_edge, max_num_channels_per_edge + 1),
                 )
 
     if G.number_of_nodes() > 0:
