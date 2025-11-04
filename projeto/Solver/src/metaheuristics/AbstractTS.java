@@ -88,7 +88,12 @@ public abstract class AbstractTS<E> {
      *
      * @return An local optimum solution.
      */
-    public abstract QuantumRoutingSolution neighborhoodMove();
+    public QuantumRoutingSolution neighborhoodMove() {
+        QuantumRoutingSolution currentSol = new QuantumRoutingSolution(sol);
+        int removedFlow = rng.nextInt(currentSol.getTr().size());
+        currentSol.removeFlow(removedFlow);
+        return currentSol;
+    }
 
     /**
      * The TS constructive heuristic, which is responsible for building a

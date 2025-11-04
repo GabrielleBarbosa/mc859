@@ -2,10 +2,7 @@ package solution;
 
 import instance.QuantumRoutingInstance;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class QuantumRoutingSolution {
 
@@ -80,5 +77,10 @@ public class QuantumRoutingSolution {
                 ", za=" + za +
                 ", tr=" + tr +
                 '}';
+    }
+
+    public void removeFlow(int i) {
+        this.xra.get(i).clear();
+        this.tr.set(i, 0f);
     }
 }
