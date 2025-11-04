@@ -1,12 +1,13 @@
 package solution;
 
 import instance.QuantumRoutingInstance;
+import utils.Pair;
 
 import java.util.*;
 
 public class QuantumRoutingSolution {
 
-    private List<HashMap<Integer, Integer>> xra;
+    private List<List<List<Pair<Integer, Integer>>>> xra;
 
     private HashMap<Integer, Integer> za;
 
@@ -15,7 +16,16 @@ public class QuantumRoutingSolution {
     public QuantumRoutingSolution(final QuantumRoutingSolution solution) {
         this.xra = new ArrayList<>(solution.getXra().size());
         for (int in = 0; in < solution.getXra().size(); in++) {
-            xra.add(in, new HashMap<>(solution.getXra().get(in)));
+            List<List<Pair<Integer, Integer>>> paths = new ArrayList<>();
+            xra.add(in, paths);
+            for (List<Pair<Integer, Integer>> path : solution.getXra().get(in)) {
+                List<Pair<Integer, Integer>> p = new ArrayList<>();
+                for (Pair<Integer, Integer> node : path) {
+                    p.add(new Pair<>(node.getFirst(), node.getSecond()));
+                }
+                paths.add(p);
+            }
+
         }
 
         this.za = new HashMap<>(solution.getZa());
@@ -34,7 +44,7 @@ public class QuantumRoutingSolution {
     public QuantumRoutingSolution(final QuantumRoutingInstance instance) {
         this.xra = new ArrayList<>(instance.getRequests().size());
         for (int in = 0; in < instance.getRequests().size(); in++) {
-            xra.add(in, new HashMap<>());
+            xra.add(in, new ArrayList<>());
         }
 
         this.za = new HashMap<>();
@@ -45,7 +55,7 @@ public class QuantumRoutingSolution {
         }
     }
 
-    public List<HashMap<Integer, Integer>> getXra() {
+    public List<List<List<Pair<Integer, Integer>>>> getXra() {
         return xra;
     }
 
