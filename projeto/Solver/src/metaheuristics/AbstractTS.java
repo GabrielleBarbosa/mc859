@@ -4,7 +4,6 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 import java.util.Random;
 
 import instance.QuantumRoutingInstance;
@@ -18,10 +17,6 @@ public abstract class AbstractTS<E> {
 
     protected QuantumRoutingInstance instance;
 
-    protected Double bestCost;
-
-    protected Double cost;
-
     protected QuantumRoutingSolution bestSol;
 
     protected QuantumRoutingSolution sol;
@@ -32,16 +27,6 @@ public abstract class AbstractTS<E> {
      * the tabu tenure.
      */
     protected Integer tenure;
-
-    /**
-     * the Candidate List of elements to enter the solution.
-     */
-    protected ArrayList<E> CL;
-
-    /**
-     * the Restricted Candidate List of elements to enter the solution.
-     */
-    protected ArrayList<E> RCL;
 
     /**
      * the Tabu List of elements to enter the solution.
@@ -121,19 +106,20 @@ public abstract class AbstractTS<E> {
         List<Pair<Integer, Integer>> requestList = new ArrayList<>(instance.getRequests());
 
         while (!requestList.isEmpty()) {
-
-            for (Pair<Integer, Integer> request: requestList) {
+            int bestRequest = 0;
+            for (int i = 0; i < requestList.size(); i++) {
+                Pair<Integer, Integer> request = requestList.get(i);
                 QuantumRoutingSolution newSol = findMaxFlux(request.getFirst(), request.getSecond(), instance, currentSol);
-                if (newSol != null && newSol.getCost() > currentSol.getCost()) {
+                if (newSol != null && newSol.getCost() >= currentSol.getCost()) {
                     currentSol = newSol;
+                    bestRequest = i;
                 }
             }
-
+            requestList.remove(bestRequest);
         }
 
         return currentSol;
     }
-
 
     private QuantumRoutingSolution findMaxFlux(final int source, final int dest, final QuantumRoutingInstance instance, final QuantumRoutingSolution currentSol) {
         if (dest == source) {
