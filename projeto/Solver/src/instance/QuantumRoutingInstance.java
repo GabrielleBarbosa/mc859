@@ -54,18 +54,18 @@ public class QuantumRoutingInstance {
             this.arcs = new ArrayList<>();
             for (int i = 0; i < nodes.length(); i++) {
                 this.arcs.add(new ArrayList<>());
-                for (int j = 0; i < nodes.length(); i++) {
+                for (int j = 0; j < nodes.length(); j++) {
                     this.arcs.get(i).add(null);
                 }
             }
 
             JSONArray arcs = json.getJSONArray("links");
             for (int i = 0; i < arcs.length(); i++) {
-                JSONObject link = nodes.getJSONObject(i);
-                int source = link.getInt("source");
-                int target = link.getInt("target");
-                int channels = link.getInt("channels");
-                float prob = link.getInt("external_link_prob");
+                JSONObject arc = arcs.getJSONObject(i);
+                int source = arc.getInt("source");
+                int target = arc.getInt("target");
+                int channels = arc.getInt("num_channels");
+                float prob = arc.getInt("external_link_prob");
 
                 this.arcs.get(source).set(target, new Pair<>(channels, prob));
             }
@@ -116,5 +116,10 @@ public class QuantumRoutingInstance {
         }
 
         return new QuantumRoutingInstance(newSize, newNodes, newArcs, newRequests);
+    }
+
+    public static void main(String[] args) {
+        QuantumRoutingInstance instance = new QuantumRoutingInstance("../instances/data/instance_n100_sd02_0.json");
+        System.out.println("Instance loaded successfully");
     }
 }
