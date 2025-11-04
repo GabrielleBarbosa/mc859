@@ -10,7 +10,7 @@ import instance.QuantumRoutingInstance;
 import solution.QuantumRoutingSolution;
 import utils.Pair;
 
-public abstract class AbstractTS<E> {
+public class QuantumRoutingTS {
     public static boolean verbose = true;
 
     static Random rng = new Random(0);
@@ -31,17 +31,21 @@ public abstract class AbstractTS<E> {
     /**
      * the Tabu List of elements to enter the solution.
      */
-    protected ArrayDeque<E> TL;
+    protected ArrayDeque<Integer> TL;
 
-    public AbstractTS(QuantumRoutingInstance instance, Integer tenure, Integer iterations) {
+    public QuantumRoutingTS(QuantumRoutingInstance instance, Integer tenure, Integer iterations, OptionsTS opts) {
         this.instance = instance;
         this.tenure = tenure;
         this.iterations = iterations;
     }
 
-    public abstract ArrayList<E> makeCL();
+    public ArrayList<Integer> makeCL(){
+        return null;
+    }
 
-    public abstract ArrayList<E> makeRCL();
+    public ArrayList<Integer> makeRCL() {
+        return null;
+    }
 
     /**
      * Creates the Tabu List, which is an ArrayDeque of the Tabu
@@ -50,14 +54,18 @@ public abstract class AbstractTS<E> {
      *
      * @return The Tabu List.
      */
-    public abstract ArrayDeque<E> makeTL();
+    public ArrayDeque<Integer> makeTL() {
+        return null;
+    }
 
     /**
      * Updates the Candidate List according to the incumbent solution
      * {@link #sol}. In other words, this method is responsible for
      * updating the costs of the candidate solution elements.
      */
-    public abstract void updateCL();
+    public void updateCL() {
+
+    }
 
     private QuantumRoutingSolution createEmptySol() {
         return new QuantumRoutingSolution(instance);
