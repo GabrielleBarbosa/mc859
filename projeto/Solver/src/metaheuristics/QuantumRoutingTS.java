@@ -96,9 +96,9 @@ public class QuantumRoutingTS {
      *
      * @return A feasible solution to the problem being maximized.
      */
-    public QuantumRoutingSolution randomGreedyHeuristic() {
+    public QuantumRoutingSolution randomGreedyHeuristic(final QuantumRoutingSolution startingSol) {
 
-        QuantumRoutingSolution currentSol = createEmptySol();
+        QuantumRoutingSolution currentSol = new QuantumRoutingSolution(startingSol);
 
         List<Pair<Integer, Integer>> randomRequestList = new ArrayList<>(instance.getRequests());
         Collections.shuffle(randomRequestList, this.rng);
@@ -113,9 +113,9 @@ public class QuantumRoutingTS {
         return currentSol;
     }
 
-    public QuantumRoutingSolution greedyGreedyHeuristic() {
+    public QuantumRoutingSolution greedyGreedyHeuristic(final QuantumRoutingSolution startingSol) {
 
-        QuantumRoutingSolution currentSol = createEmptySol();
+        QuantumRoutingSolution currentSol = new QuantumRoutingSolution(startingSol);
 
         List<Pair<Integer, Integer>> requestList = new ArrayList<>(instance.getRequests());
 
@@ -158,16 +158,18 @@ public class QuantumRoutingTS {
      */
     public QuantumRoutingSolution solve() {
 
-        bestSol = randomGreedyHeuristic();
+        bestSol = randomGreedyHeuristic(createEmptySol());
         TL = makeTL();
         for (int i = 0; i < this.opts.iterations; i++) {
             neighborhoodMove();
             if (bestSol.getCost() > sol.getCost()) {
                 bestSol = new QuantumRoutingSolution(sol);
                 if (verbose)
-                    System.out.println("(Iter. " + i + ") BestSol = " + bestSol);
+                    System.out.println("(Iter. " + i + ") BestSol = " + bestSol.getCost());
             }
         }
+        //Complete the solution with any remaining flow possible
+        bestSol = randomGreedyHeuristic(bestSol);
 
         return bestSol;
     }
