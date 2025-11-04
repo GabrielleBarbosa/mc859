@@ -106,7 +106,7 @@ public abstract class AbstractTS<E> {
 
         while (!randomRequestList.isEmpty()) {
 
-            Pair<Integer, Integer> sourceDestPair = randomRequestList.removeFirst();
+            Pair<Integer, Integer> sourceDestPair = randomRequestList.remove(0);
 
             currentSol = findMaxFlux(sourceDestPair.getFirst(), sourceDestPair.getSecond(), instance, currentSol);
         }
