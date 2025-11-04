@@ -13,15 +13,15 @@ import utils.Pair;
 public class QuantumRoutingTS {
     public static boolean verbose = true;
 
-    static Random rng = new Random(0);
-
     protected QuantumRoutingInstance instance;
 
     protected QuantumRoutingSolution bestSol;
 
     protected QuantumRoutingSolution sol;
 
-    protected Integer iterations;
+    protected Random rng;
+
+    protected OptionsTS opts;
 
     /**
      * the tabu tenure.
@@ -33,10 +33,11 @@ public class QuantumRoutingTS {
      */
     protected ArrayDeque<Integer> TL;
 
-    public QuantumRoutingTS(QuantumRoutingInstance instance, Integer tenure, Integer iterations, OptionsTS opts) {
+    public QuantumRoutingTS(QuantumRoutingInstance instance, Integer tenure, OptionsTS opts) {
         this.instance = instance;
         this.tenure = tenure;
-        this.iterations = iterations;
+        this.rng = new Random(opts.rngSeed);
+        this.opts = opts;
     }
 
     public ArrayList<Integer> makeCL(){
@@ -83,7 +84,7 @@ public class QuantumRoutingTS {
      */
     public QuantumRoutingSolution neighborhoodMove() {
         QuantumRoutingSolution currentSol = new QuantumRoutingSolution(sol);
-        int removedFlow = rng.nextInt(currentSol.getTr().size());
+        int removedFlow = this.rng.nextInt(currentSol.getTr().size());
         currentSol.removeFlow(removedFlow);
         return currentSol;
     }
@@ -100,7 +101,7 @@ public class QuantumRoutingTS {
         QuantumRoutingSolution currentSol = createEmptySol();
 
         List<Pair<Integer, Integer>> randomRequestList = new ArrayList<>(instance.getRequests());
-        Collections.shuffle(randomRequestList, rng);
+        Collections.shuffle(randomRequestList, this.rng);
 
         while (!randomRequestList.isEmpty()) {
 
@@ -159,7 +160,7 @@ public class QuantumRoutingTS {
 
         bestSol = randomGreedyHeuristic();
         TL = makeTL();
-        for (int i = 0; i < iterations; i++) {
+        for (int i = 0; i < this.opts.iterations; i++) {
             neighborhoodMove();
             if (bestSol.getCost() > sol.getCost()) {
                 bestSol = new QuantumRoutingSolution(sol);

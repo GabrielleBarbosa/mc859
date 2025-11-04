@@ -14,7 +14,7 @@ public class Experiment {
         );
         for (String inst : instances) {
             QuantumRoutingInstance instance = new QuantumRoutingInstance("../instances/data/" + inst + ".json");
-            QuantumRoutingTS solver = new QuantumRoutingTS(instance, 1, 1000, new OptionsTS());
+            QuantumRoutingTS solver = new QuantumRoutingTS(instance, 1, new OptionsTS());
             QuantumRoutingSolution result = solver.solve();
 
             System.out.println("Instance " + inst + " result: " + result.getCost());
