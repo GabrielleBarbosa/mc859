@@ -2,11 +2,12 @@ package metaheuristics;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Objects;
 import java.util.Random;
 
 import instance.QuantumRoutingInstance;
 import solution.QuantumRoutingSolution;
+import utils.Pair;
 
 public abstract class AbstractTS<E> {
     public static boolean verbose = true;
@@ -71,20 +72,8 @@ public abstract class AbstractTS<E> {
      */
     public abstract void updateCL();
 
-    public QuantumRoutingSolution createEmptySol() {
-        ArrayList<HashMap<Integer, Integer>> xra = new ArrayList<>(instance.getRequests().size());
-        for (int in = 0; in < instance.getRequests().size(); in++) {
-            xra.add(in, new HashMap<>());
-        }
-
-        HashMap<Integer, Integer> za = new HashMap<>();
-
-        ArrayList<Integer> tr = new ArrayList<>(instance.getRequests().size());
-        for (int in = 0; in < instance.getRequests().size(); in++) {
-            tr.add(in, 0);
-        }
-
-        return new QuantumRoutingSolution(xra, za, tr);
+    private QuantumRoutingSolution createEmptySol() {
+        return new QuantumRoutingSolution(instance);
     }
 
     /**
@@ -108,9 +97,8 @@ public abstract class AbstractTS<E> {
      */
     public QuantumRoutingSolution constructiveHeuristic() {
 
-        CL = makeCL();
-        RCL = makeRCL();
         sol = createEmptySol();
+
         cost = Double.POSITIVE_INFINITY;
 
         /* Main loop, which repeats until the stopping criteria is reached. */
@@ -154,6 +142,26 @@ public abstract class AbstractTS<E> {
         }
 
         return sol;
+    }
+
+    private QuantumRoutingSolution findMaxFlux(final int requestInd, final QuantumRoutingInstance instance, final QuantumRoutingSolution currentSol) {
+        if (requestInd <= instance.getSize()) {
+            return null;
+        }
+
+        Pair<Integer, Integer> sourceDestPair = instance.getRequests().get(requestInd);
+
+        if (sourceDestPair == null || Objects.equals(sourceDestPair.getFirst(), sourceDestPair.getSecond())) {
+            return null;
+        }
+
+        QuantumRoutingSolution partialSol = new QuantumRoutingSolution(sol);
+
+        int[] bfsPath = new int[instance.getSize()];
+
+        float maxFlow = 0;
+
+
     }
 
     /**

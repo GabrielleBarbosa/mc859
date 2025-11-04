@@ -1,5 +1,8 @@
 package solution;
 
+import instance.QuantumRoutingInstance;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
@@ -10,12 +13,39 @@ public class QuantumRoutingSolution {
 
     private HashMap<Integer, Integer> za;
 
-    private List<Integer> tr;
+    private List<Float> tr;
 
-    public QuantumRoutingSolution(List<HashMap<Integer, Integer>> xra, HashMap<Integer, Integer> za, List<Integer> tr) {
-        this.xra = xra;
-        this.za = za;
-        this.tr = tr;
+    public QuantumRoutingSolution(final QuantumRoutingSolution solution) {
+        this.xra = new ArrayList<>(solution.getXra().size());
+        for (int in = 0; in < solution.getXra().size(); in++) {
+            xra.add(in, new HashMap<>(solution.getXra().get(in)));
+        }
+
+        this.za = new HashMap<>(solution.getZa());
+
+        this.tr = new ArrayList<>(solution.getTr());
+    }
+
+    public Float getCost() {
+        float cost = 0;
+        for (Float t : tr) {
+            cost += t;
+        }
+        return cost;
+    }
+
+    public QuantumRoutingSolution(final QuantumRoutingInstance instance) {
+        this.xra = new ArrayList<>(instance.getRequests().size());
+        for (int in = 0; in < instance.getRequests().size(); in++) {
+            xra.add(in, new HashMap<>());
+        }
+
+        this.za = new HashMap<>();
+
+        this.tr = new ArrayList<>(instance.getRequests().size());
+        for (int in = 0; in < instance.getRequests().size(); in++) {
+            tr.add(in, 0f);
+        }
     }
 
     public List<HashMap<Integer, Integer>> getXra() {
@@ -26,7 +56,7 @@ public class QuantumRoutingSolution {
         return za;
     }
 
-    public List<Integer> getTr() {
+    public List<Float> getTr() {
         return tr;
     }
 
