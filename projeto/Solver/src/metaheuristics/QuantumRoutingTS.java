@@ -18,22 +18,18 @@ public class QuantumRoutingTS {
     protected QuantumRoutingSolution bestSol;
 
     protected QuantumRoutingSolution sol;
+    protected List<SolutionMetadata> bestSolutions;
 
     protected Random rng;
 
     protected OptionsTS opts;
 
-    /**
-     * the tabu tenure.
-     */
     protected Integer tenure;
 
-    /**
-     * the Tabu List of elements to enter the solution.
-     */
     protected ArrayDeque<Integer> TL;
 
     public QuantumRoutingTS(QuantumRoutingInstance instance, Integer tenure, OptionsTS opts) {
+        this.bestSolutions = new ArrayList<>();
         this.instance = instance;
         this.tenure = tenure;
         this.rng = new Random(opts.rngSeed);
@@ -156,21 +152,36 @@ public class QuantumRoutingTS {
      *
      * @return The best feasible solution obtained throughout all iterations.
      */
-    public QuantumRoutingSolution solve() {
+    public List<SolutionMetadata> solve() {
+        long startTime = System.currentTimeMillis();
+        long timeoutMillis = this.opts.timeoutSeconds * 1000L;
 
         bestSol = randomGreedyHeuristic(createEmptySol());
         TL = makeTL();
-        for (int i = 0; i < this.opts.iterations; i++) {
+
+        int i;
+        for (i = 0; i < this.opts.iterations; i++) {
+            long elapsed = System.currentTimeMillis() - startTime;
+            if (elapsed >= timeoutMillis) {
+                if (verbose)
+                    System.out.println("Timeout reached after " + i + " iterations (" +
+                            (elapsed / 1000.0) + "s). Stopping early.");
+                break;
+            }
             neighborhoodMove();
             if (bestSol.getCost() > sol.getCost()) {
                 bestSol = new QuantumRoutingSolution(sol);
                 if (verbose)
                     System.out.println("(Iter. " + i + ") BestSol = " + bestSol.getCost());
+                bestSolutions.add(new SolutionMetadata(bestSol, elapsed, i+1));
             }
         }
-        //Complete the solution with any remaining flow possible
-        bestSol = randomGreedyHeuristic(bestSol);
 
-        return bestSol;
+        // Complete the solution with any remaining flow possible
+        bestSol = randomGreedyHeuristic(bestSol);
+        long elapsed = System.currentTimeMillis() - startTime;
+        bestSolutions.add(new SolutionMetadata(bestSol, elapsed, i+1));
+        return bestSolutions;
     }
+
 }

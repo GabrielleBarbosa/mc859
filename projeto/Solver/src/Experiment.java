@@ -1,6 +1,7 @@
 import instance.QuantumRoutingInstance;
 import metaheuristics.OptionsTS;
 import metaheuristics.QuantumRoutingTS;
+import metaheuristics.SolutionMetadata;
 import solution.QuantumRoutingSolution;
 
 import java.util.List;
@@ -12,14 +13,19 @@ public class Experiment {
                 "instance_n100_sd02_1",
                 "instance_n100_sd02_2"
         );
+
+        List<OptionsTS> configurations = List.of(
+                new OptionsTS(1000, 1800, false, 0, 0, 1)
+        );
+
         for (String inst : instances) {
-            QuantumRoutingInstance instance = new QuantumRoutingInstance("../instances/data/" + inst + ".json");
-            QuantumRoutingTS solver = new QuantumRoutingTS(instance, 1, new OptionsTS());
-            QuantumRoutingSolution result = solver.solve();
+            for (OptionsTS config : configurations) {
+                QuantumRoutingInstance instance = new QuantumRoutingInstance("../instances/data/" + inst + ".json");
+                QuantumRoutingTS solver = new QuantumRoutingTS(instance, 1, config);
+                List<SolutionMetadata> result = solver.solve();
 
-            System.out.println("Instance " + inst + " result: " + result.getCost());
+                System.out.println("Instance " + inst + " best cost: " + result.get(result.size() - 1).getSol().getCost());
+            }
         }
-
-
     }
 }
