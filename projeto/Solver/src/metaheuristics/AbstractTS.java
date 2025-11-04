@@ -2,6 +2,8 @@ package metaheuristics;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
@@ -93,65 +95,48 @@ public abstract class AbstractTS<E> {
      * feasible solution by selecting in a greedy fashion, candidate
      * elements to enter the solution.
      *
-     * @return A feasible solution to the problem being minimized.
+     * @return A feasible solution to the problem being maximized.
      */
-    public QuantumRoutingSolution constructiveHeuristic() {
+    public QuantumRoutingSolution randomGreedyHeuristic() {
 
-        sol = createEmptySol();
+        QuantumRoutingSolution currentSol = createEmptySol();
 
-        cost = Double.POSITIVE_INFINITY;
+        List<Pair<Integer, Integer>> randomRequestList = new ArrayList<>(instance.getRequests());
+        Collections.shuffle(randomRequestList, rng);
 
-        /* Main loop, which repeats until the stopping criteria is reached. */
-        while (!constructiveStopCriteria()) {
+        while (!randomRequestList.isEmpty()) {
 
-            Double maxCost = Double.NEGATIVE_INFINITY, minCost = Double.POSITIVE_INFINITY;
-            cost = sol.cost;
-            updateCL();
+            Pair<Integer, Integer> sourceDestPair = randomRequestList.removeFirst();
 
-            /*
-             * Explore all candidate elements to enter the solution, saving the
-             * highest and lowest cost variation achieved by the candidates.
-             */
-            for (E c : CL) {
-                Double deltaCost = ObjFunction.evaluateInsertionCost(c, sol);
-                if (deltaCost < minCost)
-                    minCost = deltaCost;
-                if (deltaCost > maxCost)
-                    maxCost = deltaCost;
-            }
+            currentSol = findMaxFlux(sourceDestPair.getFirst(), sourceDestPair.getSecond(), instance, currentSol);
+        }
 
-            /*
-             * Among all candidates, insert into the RCL those with the highest
-             * performance.
-             */
-            for (E c : CL) {
-                Double deltaCost = ObjFunction.evaluateInsertionCost(c, sol);
-                if (deltaCost <= minCost) {
-                    RCL.add(c);
+        return currentSol;
+    }
+
+    public QuantumRoutingSolution greedyGreedyHeuristic() {
+
+        QuantumRoutingSolution currentSol = createEmptySol();
+
+        List<Pair<Integer, Integer>> requestList = new ArrayList<>(instance.getRequests());
+
+        while (!requestList.isEmpty()) {
+
+            for (Pair<Integer, Integer> request: requestList) {
+                QuantumRoutingSolution newSol = findMaxFlux(request.getFirst(), request.getSecond(), instance, currentSol);
+                if (newSol != null && newSol.getCost() > currentSol.getCost()) {
+                    currentSol = newSol;
                 }
             }
 
-            /* Choose a candidate randomly from the RCL */
-            int rndIndex = rng.nextInt(RCL.size());
-            E inCand = RCL.get(rndIndex);
-            CL.remove(inCand);
-            sol.add(inCand);
-            ObjFunction.evaluate(sol);
-            RCL.clear();
-
         }
 
-        return sol;
+        return currentSol;
     }
 
-    private QuantumRoutingSolution findMaxFlux(final int requestInd, final QuantumRoutingInstance instance, final QuantumRoutingSolution currentSol) {
-        if (requestInd <= instance.getSize()) {
-            return null;
-        }
 
-        Pair<Integer, Integer> sourceDestPair = instance.getRequests().get(requestInd);
-
-        if (sourceDestPair == null || Objects.equals(sourceDestPair.getFirst(), sourceDestPair.getSecond())) {
+    private QuantumRoutingSolution findMaxFlux(final int source, final int dest, final QuantumRoutingInstance instance, final QuantumRoutingSolution currentSol) {
+        if (dest == source) {
             return null;
         }
 
@@ -161,7 +146,7 @@ public abstract class AbstractTS<E> {
 
         float maxFlow = 0;
 
-
+        return null;
     }
 
     /**
@@ -173,13 +158,12 @@ public abstract class AbstractTS<E> {
      */
     public QuantumRoutingSolution solve() {
 
-        bestSol = createEmptySol();
-        constructiveHeuristic();
+        bestSol = randomGreedyHeuristic();
         TL = makeTL();
         for (int i = 0; i < iterations; i++) {
             neighborhoodMove();
-            if (bestSol.cost > sol.cost) {
-                bestSol = new Solution<E>(sol);
+            if (bestSol.getCost() > sol.getCost()) {
+                bestSol = new QuantumRoutingSolution(sol);
                 if (verbose)
                     System.out.println("(Iter. " + i + ") BestSol = " + bestSol);
             }
@@ -187,16 +171,4 @@ public abstract class AbstractTS<E> {
 
         return bestSol;
     }
-
-    /**
-     * A standard stopping criteria for the constructive heuristic is to repeat
-     * until the incumbent solution improves by inserting a new candidate
-     * element.
-     *
-     * @return true if the criteria is met.
-     */
-    public Boolean constructiveStopCriteria() {
-        return (cost > sol.cost) ? false : true;
-    }
-
 }
