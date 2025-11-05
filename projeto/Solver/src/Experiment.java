@@ -1,7 +1,7 @@
 import instance.QuantumRoutingInstance;
 import metaheuristics.OptionsTS;
 import metaheuristics.QuantumRoutingTS;
-import metaheuristics.SolutionMetadata;
+import solution.SolutionMetadata;
 
 import java.io.FileWriter;
 import java.io.IOException;

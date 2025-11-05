@@ -1,6 +1,4 @@
-package metaheuristics;
-
-import solution.QuantumRoutingSolution;
+package solution;
 
 public class SolutionMetadata {
     protected QuantumRoutingSolution sol;

@@ -10,6 +10,7 @@ import java.util.Random;
 
 import instance.QuantumRoutingInstance;
 import solution.QuantumRoutingSolution;
+import solution.SolutionMetadata;
 import utils.Pair;
 
 public class QuantumRoutingTS {
