@@ -28,7 +28,7 @@ public class QuantumRoutingTS {
 
     protected Integer tenure;
 
-    protected ArrayDeque<Integer> TL;
+    protected ArrayDeque<NeighborhoodMove> TL;
 
     public QuantumRoutingTS(QuantumRoutingInstance instance, Integer tenure, OptionsTS opts) {
         this.bestSolutions = new ArrayList<>();
@@ -53,8 +53,8 @@ public class QuantumRoutingTS {
      *
      * @return The Tabu List.
      */
-    public ArrayDeque<Integer> makeTL() {
-        return null;
+    public ArrayDeque<NeighborhoodMove> makeTL() {
+        return new ArrayDeque<>();
     }
 
     /**
@@ -241,7 +241,7 @@ public class QuantumRoutingTS {
                             (elapsed / 1000.0) + "s). Stopping early.");
                 break;
             }
-            neighborhoodMove();
+            this.sol = neighborhoodMove();
             if (bestSol.getCost() > sol.getCost()) {
                 bestSol = new QuantumRoutingSolution(sol);
                 if (verbose)
