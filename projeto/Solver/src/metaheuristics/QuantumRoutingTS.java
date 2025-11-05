@@ -4,6 +4,8 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 import java.util.Random;
 
 import instance.QuantumRoutingInstance;
@@ -80,8 +82,78 @@ public class QuantumRoutingTS {
      */
     public QuantumRoutingSolution neighborhoodMove() {
         QuantumRoutingSolution currentSol = new QuantumRoutingSolution(sol);
-        int removedFlow = this.rng.nextInt(currentSol.getTr().size());
-        currentSol.removeFlow(removedFlow);
+
+        // Step 1: Find subpaths with the same origin/destination
+        Map<Pair<Integer, Integer>, List<int[]>> subpaths = new HashMap<>();
+        for (int r = 0; r < currentSol.getXra().size(); r++) {
+            for (int p = 0; p < currentSol.getXra().get(r).size(); p++) {
+                List<Pair<Integer, Integer>> path = currentSol.getXra().get(r).get(p);
+                for (int i = 0; i < path.size(); i++) {
+                    for (int j = i + 1; j < path.size(); j++) {
+                        Pair<Integer, Integer> originDest = new Pair<>(path.get(i).getFirst(), path.get(j).getFirst());
+                        subpaths.computeIfAbsent(originDest, k -> new ArrayList<>()).add(new int[]{r, p, i, j});
+                    }
+                }
+            }
+        }
+
+        // Step 2: Create a list of possible exchanges
+        List<Object[]> possibleExchanges = new ArrayList<>();
+        for (Pair<Integer, Integer> originDest : subpaths.keySet()) {
+            List<int[]> candidates = subpaths.get(originDest);
+            if (candidates.size() > 1) {
+                for (int i = 0; i < candidates.size(); i++) {
+                    for (int j = i + 1; j < candidates.size(); j++) {
+                        int[] candidate1 = candidates.get(i);
+                        int[] candidate2 = candidates.get(j);
+
+                        if (candidate1[0] != candidate2[0]) { // different requests
+                            possibleExchanges.add(new Object[]{candidate1, candidate2});
+                        }
+                    }
+                }
+            }
+        }
+
+        if (!possibleExchanges.isEmpty()) {
+            // Step 3: Perform an exchange
+            Object[] exchange = possibleExchanges.get(this.rng.nextInt(possibleExchanges.size()));
+            int[] candidate1 = (int[]) exchange[0];
+            int[] candidate2 = (int[]) exchange[1];
+
+            int req1 = candidate1[0];
+            int path_idx1 = candidate1[1];
+            int start1 = candidate1[2];
+            int end1 = candidate1[3];
+
+            int req2 = candidate2[0];
+            int path_idx2 = candidate2[1];
+            int start2 = candidate2[2];
+            int end2 = candidate2[3];
+
+            List<Pair<Integer, Integer>> path1 = currentSol.getXra().get(req1).get(path_idx1);
+            List<Pair<Integer, Integer>> path2 = currentSol.getXra().get(req2).get(path_idx2);
+
+            List<Pair<Integer, Integer>> subpath1 = new ArrayList<>(path1.subList(start1, end1 + 1));
+            List<Pair<Integer, Integer>> subpath2 = new ArrayList<>(path2.subList(start2, end2 + 1));
+
+            // Create new paths by swapping subpaths
+            List<Pair<Integer, Integer>> newPath1 = new ArrayList<>(path1.subList(0, start1));
+            newPath1.addAll(subpath2);
+            newPath1.addAll(path1.subList(end1 + 1, path1.size()));
+
+            List<Pair<Integer, Integer>> newPath2 = new ArrayList<>(path2.subList(0, start2));
+            newPath2.addAll(subpath1);
+            newPath2.addAll(path2.subList(end2 + 1, path2.size()));
+
+            currentSol.getXra().get(req1).set(path_idx1, newPath1);
+            currentSol.getXra().get(req2).set(path_idx2, newPath2);
+        }
+
+        int requestToRemoveFlow = this.rng.nextInt(currentSol.getTr().size());
+        int flowToRemove = this.rng.nextInt(currentSol.getXra().get(requestToRemoveFlow).size());
+        currentSol.removeFlow(requestToRemoveFlow, flowToRemove);
+
         return currentSol;
     }
 

@@ -89,8 +89,11 @@ public class QuantumRoutingSolution {
                 '}';
     }
 
-    public void removeFlow(int i) {
-        this.xra.get(i).clear();
-        this.tr.set(i, 0f);
+    public void removeFlow(int r, int i) {
+        double pathCost = this.xra.get(r).get(i).stream().mapToDouble(Pair::getSecond).sum(); // FIXME: multiplicar pela probabilidade
+        this.xra.get(r).get(i).clear();
+
+        float flowCost = this.tr.get(r);
+        this.tr.set(i, flowCost - (float)pathCost);
     }
 }
