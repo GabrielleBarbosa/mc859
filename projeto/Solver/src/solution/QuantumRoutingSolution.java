@@ -9,7 +9,7 @@ public class QuantumRoutingSolution {
 
     private List<List<List<Pair<Integer, Integer>>>> xra;
 
-    private HashMap<Integer, Integer> za;
+    private List<List<Integer>> za;
 
     private List<Float> tr;
 
@@ -25,10 +25,12 @@ public class QuantumRoutingSolution {
                 }
                 paths.add(p);
             }
-
         }
 
-        this.za = new HashMap<>(solution.getZa());
+        this.za = new ArrayList<>(solution.getZa().size());
+        for (int in = 0; in < solution.getZa().size(); in++) {
+            za.add(new ArrayList<>(solution.getZa().get(in)));
+        }
 
         this.tr = new ArrayList<>(solution.getTr());
     }
@@ -47,7 +49,10 @@ public class QuantumRoutingSolution {
             xra.add(in, new ArrayList<>());
         }
 
-        this.za = new HashMap<>();
+        this.za = new ArrayList<>();
+        for (int in = 0; in < instance.getSize(); in++) {
+            za.add(new ArrayList<>(instance.getSize()));
+        }
 
         this.tr = new ArrayList<>(instance.getRequests().size());
         for (int in = 0; in < instance.getRequests().size(); in++) {
@@ -59,7 +64,7 @@ public class QuantumRoutingSolution {
         return xra;
     }
 
-    public HashMap<Integer, Integer> getZa() {
+    public List<List<Integer>> getZa() {
         return za;
     }
 
