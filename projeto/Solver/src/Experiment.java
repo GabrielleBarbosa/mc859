@@ -2,8 +2,9 @@ import instance.QuantumRoutingInstance;
 import metaheuristics.OptionsTS;
 import metaheuristics.QuantumRoutingTS;
 import metaheuristics.SolutionMetadata;
-import solution.QuantumRoutingSolution;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
 
 public class Experiment {
@@ -18,14 +19,32 @@ public class Experiment {
                 new OptionsTS(1000, 1800, false, 0, 0, 1)
         );
 
-        for (String inst : instances) {
-            for (OptionsTS config : configurations) {
-                QuantumRoutingInstance instance = new QuantumRoutingInstance("../instances/data/" + inst + ".json");
-                QuantumRoutingTS solver = new QuantumRoutingTS(instance, 1, config);
-                List<SolutionMetadata> result = solver.solve();
+        try (FileWriter writer = new FileWriter("results.csv")) {
+            writer.write("Instance,Configuration,Cost,Time,Iteration\n");
 
-                System.out.println("Instance " + inst + " best cost: " + result.get(result.size() - 1).getSol().getCost());
+            for (String inst : instances) {
+                int configIndex = 1;
+                for (OptionsTS config : configurations) {
+                    QuantumRoutingInstance instance = new QuantumRoutingInstance("../instances/data/" + inst + ".json");
+                    QuantumRoutingTS solver = new QuantumRoutingTS(instance, 1, config);
+                    List<SolutionMetadata> results = solver.solve();
+
+                    String configName = "CONFIG" + configIndex;
+                    StringBuilder csvLines = new StringBuilder();
+                    for (SolutionMetadata result : results) {
+                        csvLines.append(inst).append(",");
+                        csvLines.append(configName).append(",");
+                        csvLines.append(result.getSol().getCost()).append(",");
+                        csvLines.append(result.getTime()).append(",");
+                        csvLines.append(result.getIterations()).append("\n");
+                    }
+                    writer.write(csvLines.toString());
+                    writer.flush();
+                    configIndex++;
+                }
             }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
