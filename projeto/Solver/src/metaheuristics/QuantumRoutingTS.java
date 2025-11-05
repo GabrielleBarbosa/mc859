@@ -22,6 +22,7 @@ public class QuantumRoutingTS {
 
     protected QuantumRoutingSolution sol;
     protected List<SolutionMetadata> bestSolutions;
+    protected HashMap<Pair<Integer, Integer>, Integer> edgeUsage;
 
     protected Random rng;
 
@@ -33,6 +34,7 @@ public class QuantumRoutingTS {
 
     public QuantumRoutingTS(QuantumRoutingInstance instance, Integer tenure, OptionsTS opts) {
         this.bestSolutions = new ArrayList<>();
+        this.edgeUsage = new HashMap<>();
         this.instance = instance;
         this.tenure = tenure;
         this.rng = new Random(opts.rngSeed);
@@ -69,6 +71,21 @@ public class QuantumRoutingTS {
 
     private QuantumRoutingSolution createEmptySol() {
         return new QuantumRoutingSolution(instance);
+    }
+
+    private void computeEdgeUsage(QuantumRoutingSolution sol) {
+        for (List<List<Pair<Integer, Integer>>> requestPaths : sol.getXra()) {
+            for (List<Pair<Integer, Integer>> path : requestPaths) {
+                for (int i = 0; i < path.size() - 1; i++) {
+                    int u = path.get(i).getFirst();
+                    int v = path.get(i + 1).getFirst();
+
+                    Pair<Integer, Integer> edge = new Pair<>(u, v);
+
+                    this.edgeUsage.put(edge, this.edgeUsage.getOrDefault(edge, 0) + 1);
+                }
+            }
+        }
     }
 
     /**
@@ -155,6 +172,8 @@ public class QuantumRoutingTS {
         int requestToRemoveFlow = this.rng.nextInt(currentSol.getTr().size());
         int flowToRemove = this.rng.nextInt(currentSol.getXra().get(requestToRemoveFlow).size());
         currentSol.removeFlow(requestToRemoveFlow, flowToRemove);
+
+        this.computeEdgeUsage(currentSol);
 
         return currentSol;
     }
