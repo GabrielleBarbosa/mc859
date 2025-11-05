@@ -89,7 +89,8 @@ public class QuantumRoutingTS {
             for (int p = 0; p < currentSol.getXra().get(r).size(); p++) {
                 List<Pair<Integer, Integer>> path = currentSol.getXra().get(r).get(p);
                 for (int i = 0; i < path.size(); i++) {
-                    for (int j = i + 1; j < path.size(); j++) {
+                    // subpaths with at least 5 nodes
+                    for (int j = i + 5; j < path.size(); j++) {
                         Pair<Integer, Integer> originDest = new Pair<>(path.get(i).getFirst(), path.get(j).getFirst());
                         subpaths.computeIfAbsent(originDest, k -> new ArrayList<>()).add(new int[]{r, p, i, j});
                     }
