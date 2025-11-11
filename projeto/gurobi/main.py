@@ -108,3 +108,4 @@ if __name__ == "__main__":
             print(f"End instance {i} in {total_time} seconds")
 
             csv_writer.writerow([i, result, total_time, is_optimal])
+            csvfile.flush()
