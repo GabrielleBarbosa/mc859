@@ -41,18 +41,27 @@ public class QuantumRoutingSolution {
 
     public QuantumRoutingSolution(final QuantumRoutingInstance instance) {
         this.xra = new ArrayList<>(instance.getRequests().size());
-        for (int in = 0; in < instance.getRequests().size(); in++) {
-            xra.add(in, new ArrayList<>());
+        for (int r = 0; r < instance.getRequests().size(); r++) {
+            xra.add(r, new ArrayList<>());
+            for (int i = 0; i < instance.getSize(); i++) {
+                xra.get(r).add(new ArrayList<>(instance.getSize()));
+                for (int e = 0; e < instance.getSize(); e++) {
+                    xra.get(r).get(i).add(0);
+                }
+            }
         }
 
         this.za = new ArrayList<>();
-        for (int in = 0; in < instance.getSize(); in++) {
+        for (int i = 0; i < instance.getSize(); i++) {
             za.add(new ArrayList<>(instance.getSize()));
+            for (int e = 0; e < instance.getSize(); e++) {
+                za.get(i).add(0);
+            }
         }
 
         this.tr = new ArrayList<>(instance.getRequests().size());
-        for (int in = 0; in < instance.getRequests().size(); in++) {
-            tr.add(in, 0f);
+        for (int r = 0; r < instance.getRequests().size(); r++) {
+            tr.add(r, 0f);
         }
     }
 
