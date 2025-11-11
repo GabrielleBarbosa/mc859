@@ -1,4 +1,6 @@
 import json
+import os
+import time
 from gurobipy import Model, GRB, quicksum
 
 def solve_instance(filename: str):
@@ -75,14 +77,21 @@ def solve_instance(filename: str):
             name=f"memory[{v}]"
         )
 
+    model.setParam('TimeLimit', 600)
     model.optimize()
 
     if model.status == GRB.OPTIMAL:
         print(f"\nValor ótimo: {model.objVal}\n")
-        # for r in range(len(R)):
-        #     print(f"t[{r}] = {t[r].X}")
-        # for a in A:
-        #     print(f"z{a} = {z[a].X}")
+    else:
+        print(f"\nNão atingiu valor ótimo, melhor: {model.objVal}\n")
 
 if __name__ == "__main__":
-    solve_instance("instances/data/instance_n100_sd04_0.json")
+    instances = os.listdir("instances/data")
+
+    for i in sorted(instances):
+        start = time.time()
+        print(f"Running instance {i}")
+        solve_instance(f"instances/data/{i}")
+        end = time.time()
+        print(f"End instance {i} in {end - start} seconds")
+

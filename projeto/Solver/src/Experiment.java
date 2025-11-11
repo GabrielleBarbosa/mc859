@@ -10,9 +10,7 @@ import java.util.List;
 public class Experiment {
     public static void main(String[] args) {
         List<String> instances = List.of(
-                "instance_n100_sd02_0",
-                "instance_n100_sd02_1",
-                "instance_n100_sd02_2"
+                "instance_n010_sd02_0"
         );
 
         List<OptionsTS> configurations = List.of(
