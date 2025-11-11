@@ -7,7 +7,7 @@ import java.util.*;
 
 public class QuantumRoutingSolution {
 
-    private List<List<List<Pair<Integer, Integer>>>> xra;
+    private List<List<List<Integer>>> xra;
 
     private List<List<Integer>> za;
 
@@ -16,14 +16,10 @@ public class QuantumRoutingSolution {
     public QuantumRoutingSolution(final QuantumRoutingSolution solution) {
         this.xra = new ArrayList<>(solution.getXra().size());
         for (int in = 0; in < solution.getXra().size(); in++) {
-            List<List<Pair<Integer, Integer>>> paths = new ArrayList<>();
-            xra.add(in, paths);
-            for (List<Pair<Integer, Integer>> path : solution.getXra().get(in)) {
-                List<Pair<Integer, Integer>> p = new ArrayList<>();
-                for (Pair<Integer, Integer> node : path) {
-                    p.add(new Pair<>(node.getFirst(), node.getSecond()));
-                }
-                paths.add(p);
+            List<List<Integer>> flows = new ArrayList<>();
+            xra.add(in, flows);
+            for (List<Integer> flow : solution.getXra().get(in)) {
+                flows.add(new ArrayList<>(flow));
             }
         }
 
@@ -60,7 +56,7 @@ public class QuantumRoutingSolution {
         }
     }
 
-    public List<List<List<Pair<Integer, Integer>>>> getXra() {
+    public List<List<List<Integer>>> getXra() {
         return xra;
     }
 
@@ -95,10 +91,10 @@ public class QuantumRoutingSolution {
     }
 
     public void removeFlow(int r, int i) {
-        double pathCost = this.xra.get(r).get(i).stream().mapToDouble(Pair::getSecond).sum(); // FIXME: multiplicar pela probabilidade
-        this.xra.get(r).get(i).clear();
+        //double pathCost = this.xra.get(r).get(i).stream().mapToDouble(Pair::getSecond).sum(); // FIXME: multiplicar pela probabilidade
+        //this.xra.get(r).get(i).clear();
 
-        float flowCost = this.tr.get(r);
-        this.tr.set(i, flowCost - (float)pathCost);
+        //float flowCost = this.tr.get(r);
+        //this.tr.set(i, flowCost - (float)pathCost);
     }
 }
