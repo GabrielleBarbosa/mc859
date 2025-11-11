@@ -69,6 +69,7 @@ public class QuantumRoutingInstance {
                 this.arcs.get(source).set(target, new Pair<>(channels, prob));
             }
 
+            this.size = this.nodes.size();
         } catch (Exception e) {
             e.printStackTrace();
         }
