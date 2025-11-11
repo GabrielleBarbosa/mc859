@@ -1,6 +1,7 @@
 import json
 import os
 import time
+import csv
 from gurobipy import Model, GRB, quicksum
 
 def solve_instance(filename: str):
@@ -80,18 +81,30 @@ def solve_instance(filename: str):
     model.setParam('TimeLimit', 600)
     model.optimize()
 
-    if model.status == GRB.OPTIMAL:
+    is_optimal = model.status == GRB.OPTIMAL
+    if is_optimal:
         print(f"\nValor ótimo: {model.objVal}\n")
     else:
         print(f"\nNão atingiu valor ótimo, melhor: {model.objVal}\n")
 
+    return model.objVal, is_optimal
+
+
 if __name__ == "__main__":
-    instances = os.listdir("instances/data")
+    instances_path = "instances/data"
+    instances = os.listdir(instances_path)
 
-    for i in sorted(instances):
-        start = time.time()
-        print(f"Running instance {i}")
-        solve_instance(f"instances/data/{i}")
-        end = time.time()
-        print(f"End instance {i} in {end - start} seconds")
+    with open('gurobi_results.csv', 'w', newline='') as csvfile:
+        csv_writer = csv.writer(csvfile)
+        csv_writer.writerow(['instance', 'result', 'time', 'is_optimal'])
 
+        for i in sorted(instances):
+            instance_path = os.path.join(instances_path, i)
+            start = time.time()
+            print(f"Running instance {i}")
+            result, is_optimal = solve_instance(instance_path)
+            end = time.time()
+            total_time = end - start
+            print(f"End instance {i} in {total_time} seconds")
+
+            csv_writer.writerow([i, result, total_time, is_optimal])
