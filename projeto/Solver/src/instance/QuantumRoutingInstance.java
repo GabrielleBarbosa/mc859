@@ -64,7 +64,7 @@ public class QuantumRoutingInstance {
                 int source = arc.getInt("source");
                 int target = arc.getInt("target");
                 int channels = arc.getInt("num_channels");
-                float prob = arc.getInt("external_link_prob");
+                float prob = arc.getFloat("external_link_prob");
 
                 this.arcs.get(source).set(target, new Pair<>(channels, prob));
             }

@@ -87,7 +87,8 @@
       "id": 7
     }
   ],
-  "links": [    {
+  "links": [
+    {
     "length_km": 3950.27,
     "external_link_prob": 0.9,
     "num_channels": 3,

@@ -2,20 +2,21 @@ package utils;
 
 import com.jgalgo.alg.flow.Flow;
 import com.jgalgo.alg.flow.MaximumFlow;
-import com.jgalgo.alg.flow.MaximumFlowDinic;
-import com.jgalgo.graph.Weights;
-import com.jgalgo.graph.WeightsDouble;
+import com.jgalgo.graph.NoSuchEdgeException;
 import com.jgalgo.graph.WeightsFloat;
 import instance.QuantumRoutingInstance;
 import solution.QuantumRoutingSolution;
 import com.jgalgo.graph.Graph;
 
+import java.util.List;
+
 
 public class MaxFlowSolver {
 
-    public static QuantumRoutingSolution solve(final QuantumRoutingSolution current, final QuantumRoutingInstance instance, int request) {
-        Flow<Integer, String> flow = calculateFlowApproximation(current, instance, 0);
-        return null;
+    public static QuantumRoutingSolution solve(final QuantumRoutingSolution current, final QuantumRoutingInstance instance, final int request) {
+        Flow<Integer, String> flow = calculateFlowApproximation(current, instance, request);
+
+        return convertToSolution(current, instance, request, flow);
     }
 
     private static Flow<Integer, String> calculateFlowApproximation(final QuantumRoutingSolution current, final QuantumRoutingInstance instance, int request) {
@@ -39,8 +40,23 @@ public class MaxFlowSolver {
         return MaximumFlow.newInstance().computeMaximumFlow(graph, weights, requestPair.getFirst(), requestPair.getSecond());
     }
 
-    private static QuantumRoutingSolution convertToSolution(final QuantumRoutingSolution current, final QuantumRoutingInstance instance, int request) {
-        return null;
+    private static QuantumRoutingSolution convertToSolution(final QuantumRoutingSolution current, final QuantumRoutingInstance instance, int request, Flow<Integer, String> flow) {
+        QuantumRoutingSolution sol = new QuantumRoutingSolution(current);
+        for (int i = 0; i <= instance.getSize(); i++) {
+            for (int e = i + 1; e <= instance.getSize(); e++) {
+                try {
+                    double f = flow.getFlow(i + "_" + e);
+                    if (f > 0) {
+                        sol.getXra().get(request).get(i).set(e, (int) Math.round(f));
+                    } else {
+                        sol.getXra().get(request).get(e).set(i, (int) Math.round(f));
+                    }
+                } catch (NoSuchEdgeException exception) {
+                    continue;
+                }
+            }
+        }
+        return sol;
     }
 
     private static QuantumRoutingSolution fixSolution() {

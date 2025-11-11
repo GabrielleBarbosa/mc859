@@ -7,10 +7,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import instance.QuantumRoutingInstance;
 import solution.QuantumRoutingSolution;
 import solution.SolutionMetadata;
+import utils.MaxFlowSolver;
 import utils.Pair;
 
 public class QuantumRoutingTS {
@@ -162,14 +165,16 @@ public class QuantumRoutingTS {
 
         QuantumRoutingSolution currentSol = new QuantumRoutingSolution(startingSol);
 
-        List<Pair<Integer, Integer>> randomRequestList = new ArrayList<>(instance.getRequests());
+        List<Integer> randomRequestList = IntStream.rangeClosed(0, instance.getRequests().size())
+                .boxed()
+                .collect(Collectors.toList());
         Collections.shuffle(randomRequestList, this.rng);
 
         while (!randomRequestList.isEmpty()) {
 
-            Pair<Integer, Integer> sourceDestPair = randomRequestList.remove(0);
+            Integer request = randomRequestList.remove(0);
 
-            currentSol = findMaxFlux(sourceDestPair.getFirst(), sourceDestPair.getSecond(), instance, currentSol);
+            currentSol = MaxFlowSolver.solve(currentSol, instance, request);
         }
 
         return currentSol;
@@ -179,13 +184,15 @@ public class QuantumRoutingTS {
 
         QuantumRoutingSolution currentSol = new QuantumRoutingSolution(startingSol);
 
-        List<Pair<Integer, Integer>> requestList = new ArrayList<>(instance.getRequests());
+        List<Integer> requestList = IntStream.rangeClosed(0, instance.getRequests().size())
+                .boxed()
+                .collect(Collectors.toList());
 
         while (!requestList.isEmpty()) {
             int bestRequest = 0;
             for (int i = 0; i < requestList.size(); i++) {
-                Pair<Integer, Integer> request = requestList.get(i);
-                QuantumRoutingSolution newSol = findMaxFlux(request.getFirst(), request.getSecond(), instance, currentSol);
+                Integer request = requestList.get(i);
+                QuantumRoutingSolution newSol = MaxFlowSolver.solve(currentSol, instance, request);
                 if (newSol != null && newSol.getCost() >= currentSol.getCost()) {
                     currentSol = newSol;
                     bestRequest = i;
@@ -195,20 +202,6 @@ public class QuantumRoutingTS {
         }
 
         return currentSol;
-    }
-
-    private QuantumRoutingSolution findMaxFlux(final int source, final int dest, final QuantumRoutingInstance instance, final QuantumRoutingSolution currentSol) {
-        if (dest == source) {
-            return null;
-        }
-
-        QuantumRoutingSolution partialSol = new QuantumRoutingSolution(sol);
-
-        int[] bfsPath = new int[instance.getSize()];
-
-        float maxFlow = 0;
-
-        return null;
     }
 
     /**
