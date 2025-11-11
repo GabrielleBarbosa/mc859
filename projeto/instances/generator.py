@@ -84,21 +84,32 @@ def generate_quantum_topology(
 if __name__ == "__main__":
     os.makedirs("data", exist_ok=True)
 
-    for n in [100, 200, 300, 400, 500]:
-        for sd in [2, 4, 6, 8, 10]:
-            for i in range(5):
-                quantum_network = generate_quantum_topology(num_nodes=n, num_sd_pairs=sd)
+    # for n in [100, 200, 300, 400, 500]:
+    #     for sd in [2, 4, 6, 8, 10]:
+    #         for i in range(5):
+    #             quantum_network = generate_quantum_topology(num_nodes=n, num_sd_pairs=sd)
             
-                graph_data = nx.node_link_data(quantum_network)
+    #             graph_data = nx.node_link_data(quantum_network)
                 
-                file_path = os.path.join("data", f"instance_n{n}_sd{str(sd).rjust(2, "0")}_{i}.json")
-                with open(file_path, 'w') as f:
-                    json.dump(graph_data, f, indent=4, cls=NumpyEncoder)
+    #             file_path = os.path.join("data", f"instance_n{n}_sd{str(sd).rjust(2, "0")}_{i}.json")
+    #             with open(file_path, 'w') as f:
+    #                 json.dump(graph_data, f, indent=4, cls=NumpyEncoder)
 
-                print(f"Instance {i} n={n}, sd={sd} generated successfully!")
+    #             print(f"Instance {i} n={n}, sd={sd} generated successfully!")
+
+    n = 10
+    sd = 2
+    i = 0
+    quantum_network = generate_quantum_topology(num_nodes=n, num_sd_pairs=sd, area_side_km=10, beta=0.3)
+            
+    graph_data = nx.node_link_data(quantum_network)
+    
+    file_path = os.path.join("data", f"instance_n{str(n).rjust(3, "0")}_sd{str(sd).rjust(2, "0")}_{i}.json")
+    with open(file_path, 'w') as f:
+        json.dump(graph_data, f, indent=4, cls=NumpyEncoder)
 
 
-    quantum_network_to_plot = generate_quantum_topology()
+    quantum_network_to_plot = quantum_network # generate_quantum_topology()
 
     plt.figure(figsize=(10, 10))
     node_positions = nx.get_node_attributes(quantum_network_to_plot, 'pos')
