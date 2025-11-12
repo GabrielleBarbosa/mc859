@@ -81,7 +81,7 @@ public class QuantumRoutingTS {
     private void computeEdgeUsage(QuantumRoutingSolution sol) {
         for (List<List<Integer>> request : sol.getXra()) {
             for (int i = 0; i < request.size(); i++) {
-                for (int j = 0; i < request.get(i).size(); j++) {
+                for (int j = 0; j < request.get(i).size(); j++) {
                     if (request.get(i).get(j) > 0) {
                         Pair<Integer, Integer> edge = new Pair<>(i, j);
                         this.edgeUsage.put(edge, this.edgeUsage.getOrDefault(edge, 0) + 1);
@@ -118,7 +118,6 @@ public class QuantumRoutingTS {
         visited[current] = false;
     }
 
-
     /**
      * The TS local search phase is responsible for repeatedly applying a
      * neighborhood operation while the solution is getting improved, i.e.,
@@ -132,12 +131,43 @@ public class QuantumRoutingTS {
     public QuantumRoutingSolution neighborhoodMove() {
         QuantumRoutingSolution currentSol = new QuantumRoutingSolution(sol);
 
+        List<List<List<Pair<Integer, Integer>>>> requestPaths = calculateReqPaths(currentSol);
+        Map<Pair<Integer, Integer>, List<int[]>> subpaths = calculateSubpaths(requestPaths);
+        List<Pair<int[], int[]>> possibleExchanges = calculatePossibleExchanges(subpaths);
+
+        if (!possibleExchanges.isEmpty()) {
+            int exchangeIdx = this.rng.nextInt(possibleExchanges.size());
+            Pair<int[], int[]> exchange = possibleExchanges.get(exchangeIdx);
+            int[] candidate1 = exchange.getFirst();
+            int[] candidate2 = exchange.getSecond();
+
+            makeExchangeOfPaths(candidate1, candidate2, requestPaths);
+        }
+
+
+//        Integer requestToRemove = this.rng.nextInt(requests.size());
+//        Integer pathToRemove = this.rng.nextInt(requestPaths.get(requestToRemove).size());
+
+
+        this.computeEdgeUsage(currentSol);
+        return currentSol;
+    }
+
+    private List<List<List<Pair<Integer, Integer>>>> calculateReqPaths(QuantumRoutingSolution currentSol) {
         List<List<List<Pair<Integer, Integer>>>> requestPaths = new ArrayList<>();
         List<Pair<Integer, Integer>> requests = this.instance.getRequests();
         for (int r = 0; r < requests.size(); r++) {
             Integer source = requests.get(r).getFirst();
             Integer destiny = requests.get(r).getSecond();
             List<List<Integer>> requestFlow = currentSol.getXra().get(r);
+
+            for (int i = 0; i < requestFlow.size(); i++) {
+                for (int j = 0; j < requestFlow.get(i).size(); j++) {
+                    if (requestFlow.get(i).get(j) < 0) {
+                        requestFlow.get(i).set(j, - requestFlow.get(i).get(j));
+                    }
+                }
+            }
 
             List<List<Pair<Integer, Integer>>> paths = new ArrayList<>();
             boolean[] visited = new boolean[requestFlow.size()];
@@ -146,12 +176,79 @@ public class QuantumRoutingTS {
             requestPaths.add(paths);
         }
 
-        Integer requestToRemove = this.rng.nextInt(requests.size());
-        Integer pathToRemove = this.rng.nextInt(requestPaths.get(requestToRemove).size());
+        return requestPaths;
+    }
 
+    private void makeExchangeOfPaths(int[] candidate1, int[] candidate2, List<List<List<Pair<Integer, Integer>>>> requestPaths) {
+        int req1 = candidate1[0];
+        int req2 = candidate2[0];
 
-        this.computeEdgeUsage(currentSol);
-        return currentSol;
+        int start1 = candidate1[2];
+        int end1 = candidate1[3];
+        int path_idx1 = candidate1[1];
+        List<Pair<Integer, Integer>> path1 = requestPaths.get(req1).get(path_idx1);
+        NeighborhoodMove move = NeighborhoodMove.FlowExchange(req1, req2, new Pair<>(path1.get(start1).getFirst(), path1.get(end1).getSecond()));
+        if (!TL.contains(move)) {
+            List<Pair<Integer, Integer>> subpath1 = new ArrayList<>(path1.subList(start1, end1 + 1));
+            for (Pair<Integer, Integer> edge : subpath1) {
+                Integer v1 = sol.getXra().get(req1).get(edge.getFirst()).get(edge.getSecond());
+                Integer v2 = sol.getXra().get(req2).get(edge.getFirst()).get(edge.getSecond());
+                sol.getXra().get(req1).get(edge.getFirst()).set(edge.getSecond(), v2);
+                sol.getXra().get(req2).get(edge.getFirst()).set(edge.getSecond(), v1);
+            }
+
+            int start2 = candidate2[2];
+            int end2 = candidate2[3];
+            int path_idx2 = candidate2[1];
+            List<Pair<Integer, Integer>> path2 = requestPaths.get(req2).get(path_idx2);
+            List<Pair<Integer, Integer>> subpath2 = new ArrayList<>(path2.subList(start2, end2 + 1));
+            for (Pair<Integer, Integer> edge : subpath2) {
+                if (!subpath1.contains(edge)) {
+                    Integer v1 = sol.getXra().get(req1).get(edge.getFirst()).get(edge.getSecond());
+                    Integer v2 = sol.getXra().get(req2).get(edge.getFirst()).get(edge.getSecond());
+                    sol.getXra().get(req1).get(edge.getFirst()).set(edge.getSecond(), v2);
+                    sol.getXra().get(req2).get(edge.getFirst()).set(edge.getSecond(), v1);
+                }
+            }
+
+            TL.add(move);
+        }
+    }
+
+    private List<Pair<int[], int[]>> calculatePossibleExchanges(Map<Pair<Integer, Integer>, List<int[]>> subpaths) {
+        List<Pair<int[], int[]>> possibleExchanges = new ArrayList<>();
+        for (Pair<Integer, Integer> originDest : subpaths.keySet()) {
+            List<int[]> candidates = subpaths.get(originDest);
+            if (candidates.size() > 1) {
+                for (int i = 0; i < candidates.size(); i++) {
+                    for (int j = i + 1; j < candidates.size(); j++) {
+                        int[] candidate1 = candidates.get(i);
+                        int[] candidate2 = candidates.get(j);
+
+                        if (candidate1[0] != candidate2[0]) { // different requests
+                            possibleExchanges.add(new Pair<>(candidate1, candidate2));
+                        }
+                    }
+                }
+            }
+        }
+        return possibleExchanges;
+    }
+
+    private Map<Pair<Integer, Integer>, List<int[]>> calculateSubpaths(List<List<List<Pair<Integer, Integer>>>> requestPaths) {
+        Map<Pair<Integer, Integer>, List<int[]>> subpaths = new HashMap<>();
+        for (int r = 0; r < requestPaths.size(); r++) {
+            for (int p = 0; p < requestPaths.get(r).size(); p++) {
+                List<Pair<Integer, Integer>> path = requestPaths.get(r).get(p);
+                for (int i = 0; i < path.size(); i++) {
+                    for (int j = i; j < path.size(); j++) {
+                        Pair<Integer, Integer> originDest = new Pair<>(path.get(i).getFirst(), path.get(j).getSecond());
+                        subpaths.computeIfAbsent(originDest, k -> new ArrayList<>()).add(new int[]{r, p, i, j});
+                    }
+                }
+            }
+        }
+        return subpaths;
     }
 
     /**
@@ -165,7 +262,7 @@ public class QuantumRoutingTS {
 
         QuantumRoutingSolution currentSol = new QuantumRoutingSolution(startingSol);
 
-        List<Integer> randomRequestList = IntStream.rangeClosed(0, instance.getRequests().size())
+        List<Integer> randomRequestList = IntStream.rangeClosed(0, instance.getRequests().size() - 1)
                 .boxed()
                 .collect(Collectors.toList());
         Collections.shuffle(randomRequestList, this.rng);
@@ -216,6 +313,7 @@ public class QuantumRoutingTS {
         long timeoutMillis = this.opts.timeoutSeconds * 1000L;
 
         bestSol = randomGreedyHeuristic(createEmptySol());
+        sol = bestSol;
         TL = makeTL();
 
         int i;
