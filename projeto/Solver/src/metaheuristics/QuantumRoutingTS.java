@@ -141,7 +141,7 @@ public class QuantumRoutingTS {
             int[] candidate1 = exchange.getFirst();
             int[] candidate2 = exchange.getSecond();
 
-            makeExchangeOfPaths(candidate1, candidate2, requestPaths);
+            makeExchangeOfPaths(candidate1, candidate2, requestPaths, currentSol);
         }
 
 
@@ -179,7 +179,7 @@ public class QuantumRoutingTS {
         return requestPaths;
     }
 
-    private void makeExchangeOfPaths(int[] candidate1, int[] candidate2, List<List<List<Pair<Integer, Integer>>>> requestPaths) {
+    private void makeExchangeOfPaths(int[] candidate1, int[] candidate2, List<List<List<Pair<Integer, Integer>>>> requestPaths, QuantumRoutingSolution currentSol) {
         int req1 = candidate1[0];
         int req2 = candidate2[0];
 
@@ -191,10 +191,10 @@ public class QuantumRoutingTS {
         if (!TL.contains(move)) {
             List<Pair<Integer, Integer>> subpath1 = new ArrayList<>(path1.subList(start1, end1 + 1));
             for (Pair<Integer, Integer> edge : subpath1) {
-                Integer v1 = sol.getXra().get(req1).get(edge.getFirst()).get(edge.getSecond());
-                Integer v2 = sol.getXra().get(req2).get(edge.getFirst()).get(edge.getSecond());
-                sol.getXra().get(req1).get(edge.getFirst()).set(edge.getSecond(), v2);
-                sol.getXra().get(req2).get(edge.getFirst()).set(edge.getSecond(), v1);
+                Integer v1 = currentSol.getXra().get(req1).get(edge.getFirst()).get(edge.getSecond());
+                Integer v2 = currentSol.getXra().get(req2).get(edge.getFirst()).get(edge.getSecond());
+                currentSol.getXra().get(req1).get(edge.getFirst()).set(edge.getSecond(), v2);
+                currentSol.getXra().get(req2).get(edge.getFirst()).set(edge.getSecond(), v1);
             }
 
             int start2 = candidate2[2];
@@ -204,10 +204,10 @@ public class QuantumRoutingTS {
             List<Pair<Integer, Integer>> subpath2 = new ArrayList<>(path2.subList(start2, end2 + 1));
             for (Pair<Integer, Integer> edge : subpath2) {
                 if (!subpath1.contains(edge)) {
-                    Integer v1 = sol.getXra().get(req1).get(edge.getFirst()).get(edge.getSecond());
-                    Integer v2 = sol.getXra().get(req2).get(edge.getFirst()).get(edge.getSecond());
-                    sol.getXra().get(req1).get(edge.getFirst()).set(edge.getSecond(), v2);
-                    sol.getXra().get(req2).get(edge.getFirst()).set(edge.getSecond(), v1);
+                    Integer v1 = currentSol.getXra().get(req1).get(edge.getFirst()).get(edge.getSecond());
+                    Integer v2 = currentSol.getXra().get(req2).get(edge.getFirst()).get(edge.getSecond());
+                    currentSol.getXra().get(req1).get(edge.getFirst()).set(edge.getSecond(), v2);
+                    currentSol.getXra().get(req2).get(edge.getFirst()).set(edge.getSecond(), v1);
                 }
             }
 
