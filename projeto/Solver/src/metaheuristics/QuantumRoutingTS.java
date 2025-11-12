@@ -135,7 +135,7 @@ public class QuantumRoutingTS {
         Map<Pair<Integer, Integer>, List<int[]>> subpaths = calculateSubpaths(requestPaths);
         List<Pair<int[], int[]>> possibleExchanges = calculatePossibleExchanges(subpaths);
 
-        if (!possibleExchanges.isEmpty()) {
+        if (!possibleExchanges.isEmpty() && opts.exchangeEnabled) {
             int exchangeIdx = this.rng.nextInt(possibleExchanges.size());
             Pair<int[], int[]> exchange = possibleExchanges.get(exchangeIdx);
             int[] candidate1 = exchange.getFirst();
@@ -144,10 +144,27 @@ public class QuantumRoutingTS {
             makeExchangeOfPaths(candidate1, candidate2, requestPaths, currentSol);
         }
 
+        if (!subpaths.isEmpty() && opts.removeEnabled) {
+            List<Pair<Integer, Integer>> subPathKeys = new ArrayList<>(subpaths.keySet());
+            Pair<Integer, Integer> subpathToRemove = subPathKeys.get(this.rng.nextInt(subPathKeys.size()));
+            int[] requestToRemove = subpaths.get(subpathToRemove).get(this.rng.nextInt(subpaths.get(subpathToRemove).size()));
 
-//        Integer requestToRemove = this.rng.nextInt(requests.size());
-//        Integer pathToRemove = this.rng.nextInt(requestPaths.get(requestToRemove).size());
+            int r = requestToRemove[0];
+            int p = requestToRemove[1];
+            int start = requestToRemove[2];
+            int end = requestToRemove[3];
+            List<Pair<Integer, Integer>> path = requestPaths.get(r).get(p);
 
+            NeighborhoodMove move = NeighborhoodMove.RemoveFlow(r, subpathToRemove);
+            if (!TL.contains(move)) {
+                List<Pair<Integer, Integer>> subpath = new ArrayList<>(path.subList(start, end + 1));
+                for (Pair<Integer, Integer> edge : subpath) {
+                    currentSol.getXra().get(r).get(edge.getFirst()).set(edge.getSecond(), 0);
+                }
+                TL.add(move);
+            }
+
+        }
 
         this.computeEdgeUsage(currentSol);
         return currentSol;

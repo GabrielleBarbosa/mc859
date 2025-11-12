@@ -21,10 +21,11 @@ public class NeighborhoodMove {
         return ret;
     }
 
-    public static NeighborhoodMove RemoveFlow(int r1) {
+    public static NeighborhoodMove RemoveFlow(int r1, Pair<Integer, Integer> path) {
         NeighborhoodMove ret = new NeighborhoodMove();
         ret.type = "remove_flow";
         ret.r1 = r1;
+        ret.path = path;
         return ret;
     }
 
@@ -35,6 +36,10 @@ public class NeighborhoodMove {
         NeighborhoodMove that = (NeighborhoodMove) o;
         if (that.type.equals("flow_exchange")) {
             return Objects.equals(path, that.path) && ((r1 == that.r1 && r2 == that.r2) || (r1 == that.r2 && r2 == that.r1 ));
+        }
+
+        if (that.type.equals("remove_flow")) {
+            return Objects.equals(path, that.path) && (r1 == that.r1);
         }
 
 

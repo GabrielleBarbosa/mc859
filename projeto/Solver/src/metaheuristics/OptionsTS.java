@@ -2,6 +2,8 @@ package metaheuristics;
 
 public class OptionsTS {
     protected boolean adaptiveTL = false;
+    protected boolean removeEnabled = true;
+    protected boolean exchangeEnabled = true;
     protected float intensifyRate = 0f;
     protected float diversifyRate = 0f;
     protected int rngSeed = 0;
