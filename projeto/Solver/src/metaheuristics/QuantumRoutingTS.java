@@ -336,6 +336,12 @@ public class QuantumRoutingTS {
         int i;
         for (i = 0; i < this.opts.iterations; i++) {
             long elapsed = System.currentTimeMillis() - startTime;
+            if (opts.target != null && bestSol.getCost() >= opts.target) {
+                if (verbose)
+                    System.out.println("Target reached after " + i + " iterations (" +
+                            (elapsed / 1000.0) + "s). Stopping early.");
+                break;
+            }
             if (elapsed >= timeoutMillis) {
                 if (verbose)
                     System.out.println("Timeout reached after " + i + " iterations (" +
@@ -354,7 +360,7 @@ public class QuantumRoutingTS {
         // Complete the solution with any remaining flow possible
         bestSol = randomGreedyHeuristic(bestSol);
         long elapsed = System.currentTimeMillis() - startTime;
-        bestSolutions.add(new SolutionMetadata(bestSol, elapsed, i+1));
+        bestSolutions.add(new SolutionMetadata(bestSol, elapsed, i));
         return bestSolutions;
     }
 

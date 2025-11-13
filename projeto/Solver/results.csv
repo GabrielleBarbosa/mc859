@@ -1,2 +1,4 @@
-Instance,Configuration,Cost,Time,Iteration
-instance_n010_sd02_0,CONFIG1,0.0,185370,1001
+Instance,Configuration,BestSol,Target,Time,Iteration
+instance_n200_sd02_2,CONFIG1,0.0,null,539,1000
+instance_n300_sd10_2,CONFIG1,0.0,null,7397,1000
+instance_n300_sd04_0,CONFIG1,0.0,null,1728,1000
