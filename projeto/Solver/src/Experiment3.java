@@ -31,7 +31,7 @@ public class Experiment3 {
 
         List<OptionsTS> performanceProfileConfigurations = List.of(
                 new OptionsTS("PP1",1000, 1800, null, true, true, false, 0, 0, 1),
-        new OptionsTS("PP2",1000, 1800, null, true, true, false, 0, 0, 1)
+                new OptionsTS("PP2",1000, 1800, null, true, true, false, 0, 0, 1)
         );
 
         List<OptionsTS> tttConfigurations = List.of(
@@ -51,7 +51,6 @@ public class Experiment3 {
         }
 
         return allConfigurations;
-
     }
 
     public static void main(String[] args) throws Exception {
@@ -63,7 +62,7 @@ public class Experiment3 {
         FileWriter writer = null;
         try {
             writer = new FileWriter("results.csv");
-            writer.write("Instance,Configuration,BestSol,Target,TimeMS,Iteration\n");
+            writer.write("Instance,Configuration,Seed,Target,BestSol,TimeMS,Iteration\n");
 
             final FileWriter finalWriter = writer;
             for (OptionsTS config : configurations) {
@@ -78,8 +77,9 @@ public class Experiment3 {
                         for (SolutionMetadata result : results) {
                             csvLines.append(config.getInstanceName()).append(",");
                             csvLines.append(config.getName()).append(",");
-                            csvLines.append(result.getSol().getCost()).append(",");
+                            csvLines.append(config.getRngSeed()).append(",");
                             csvLines.append(config.getTarget()).append(",");
+                            csvLines.append(result.getSol().getCost()).append(",");
                             csvLines.append(result.getTime()).append(",");
                             csvLines.append(result.getIterations()).append("\n");
                         }
