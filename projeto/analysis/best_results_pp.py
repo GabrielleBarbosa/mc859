@@ -77,4 +77,4 @@ result = result.reset_index()
 result = result.merge(mean_time, on=["Configuration", "InstanceSize"]).merge(mean_iterations, on=["Configuration", "InstanceSize"])
 result = result.sort_values(["InstanceSize", "Configuration"], ascending=[True, True])
 
-result.to_csv("out/tabu_instance_stats.csv", header=True, index=False)
+result.to_csv("out/tabu_instance_stats_pp.csv", header=True, index=False)
