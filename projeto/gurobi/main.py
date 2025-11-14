@@ -78,7 +78,7 @@ def solve_instance(filename: str):
             name=f"memory[{v}]"
         )
 
-    model.setParam('TimeLimit', 600)
+    model.setParam('TimeLimit', 300)
     model.optimize()
 
     is_optimal = model.status == GRB.OPTIMAL

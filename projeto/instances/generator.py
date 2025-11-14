@@ -62,7 +62,7 @@ def generate_quantum_topology(
 
     if G.number_of_nodes() > 0:
         node_list = list(G.nodes())
-        num_nodes_for_pairs = min(len(node_list), num_sd_pairs * 2)
+        num_nodes_for_pairs = min(len(node_list) // 2, num_sd_pairs)
         if num_nodes_for_pairs % 2 != 0:
             num_nodes_for_pairs -= 1
 
@@ -72,7 +72,15 @@ def generate_quantum_topology(
                 size=num_nodes_for_pairs,
                 replace=False
             )
-            sd_pairs = list(zip(selected_nodes[::2], selected_nodes[1::2]))
+
+            n = len(node_list)
+            shift = n // 4
+
+            sd_pairs = []
+            for s in selected_nodes:
+                i = node_list.index(s)                   # position of s in full list
+                dest = node_list[(i + shift) % n]        # shift + wrap
+                sd_pairs.append((s, dest))
             G.graph['sd_pairs'] = sd_pairs
         else:
             G.graph['sd_pairs'] = []
@@ -91,7 +99,7 @@ if __name__ == "__main__":
             
                 graph_data = nx.node_link_data(quantum_network)
                 
-                file_path = os.path.join("data", f"instance_n{n}_sd{str(sd).rjust(2, "0")}_{i}.json")
+                file_path = os.path.join("data", f"instance_n{n}_sd{str(sd).rjust(2, '0')}_{i}.json")
                 with open(file_path, 'w') as f:
                     json.dump(graph_data, f, indent=4, cls=NumpyEncoder)
 
