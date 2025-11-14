@@ -35,12 +35,12 @@ public class Experiment3 {
                 new OptionsTS("PP3", 0, 999999, 10000 ,300, null, true, 0.2f, false, 0.2f, 0.2f),
                 new OptionsTS("PP4", 0, 999999, 10000 ,300, null, false, 0.2f, false, 0.2f, 0.2f)
                 );
-
+        performanceProfileConfigurations = new ArrayList<>();
         List<OptionsTS> tttConfigurations = List.of(
-                new OptionsTS("TTT1", "instance_n300_sd10_0", 0, 99999, 10000, 300, 64, true, 0.2f, true, 0.2f, 0.2f),
-                new OptionsTS("TTT2", "instance_n300_sd10_0", 0, 99999,10000, 300, 64, false, 0.2f, true, 0.2f, 0.2f),
-                new OptionsTS("TTT3", "instance_n300_sd10_0", 0, 99999, 10000, 300, 64, true, 0.2f, false, 0.2f, 0.2f),
-                new OptionsTS("TTT4", "instance_n300_sd10_0", 0, 99999, 10000, 300, 64, false, 0.2f, false, 0.2f, 0.2f)
+                new OptionsTS("TTT1", "instance_n300_sd10_0", 0, 99999, 10000, 300, 110, true, 0.2f, true, 0.2f, 0.2f),
+                new OptionsTS("TTT2", "instance_n300_sd10_0", 0, 99999,10000, 300, 110, false, 0.2f, true, 0.2f, 0.2f),
+                new OptionsTS("TTT3", "instance_n300_sd10_0", 0, 99999, 10000, 300, 110, true, 0.2f, false, 0.2f, 0.2f),
+                new OptionsTS("TTT4", "instance_n300_sd10_0", 0, 99999, 10000, 300, 110, false, 0.2f, false, 0.2f, 0.2f)
         );
 
         for (String instance : instances) {
@@ -75,7 +75,7 @@ public class Experiment3 {
                     try {
                         System.out.println("Running instance: " + config.getInstanceName() + " with config " + config.getName());
                         QuantumRoutingInstance instance = new QuantumRoutingInstance("../instances/data/" + config.getInstanceName() + ".json");
-                        QuantumRoutingTS solver = new QuantumRoutingTS(instance, 1, config);
+                        QuantumRoutingTS solver = new QuantumRoutingTS(instance, 3, config);
                         List<SolutionMetadata> results = solver.solve();
 
                         StringBuilder csvLines = new StringBuilder();
