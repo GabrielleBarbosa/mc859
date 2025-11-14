@@ -165,7 +165,7 @@ public class QuantumRoutingTS {
 
     //TODO
     //Métodos para troca de caminhos
-    protected List<Integer> shuffleReqIndexes(int n) {
+    protected List<Integer> shuffleIndexes(int n) {
         List<Integer> list = new ArrayList<>(n + 1);
 
         for (int i = 0; i < n; i++) {
@@ -196,6 +196,7 @@ public class QuantumRoutingTS {
     private boolean findDifferingCommonSD(int r1_index, int r2_index, int p1_index, int p2_index) {
         List<Pair<Integer, Integer>> p1 = currentSol.getPathsPerRequest().get(r1_index).get(p1_index);
         List<Pair<Integer, Integer>> p2 = currentSol.getPathsPerRequest().get(r2_index).get(p2_index);
+
         int n1 = p1.size();
         int n2 = p2.size();
 
@@ -216,37 +217,35 @@ public class QuantumRoutingTS {
 
                     if (d1 == d2) {
                         if (!subpathsEqual(p1, i1, k1, p2, i2, k2)) {
-                            NeighborhoodMove move = new FlowExchange(r1_index, r2_index, p1_index, p2_index);
-                            if (!TL.contains(move)) {
-                                List<Pair<Integer, Integer>> sub1 = new ArrayList<>(p1.subList(i1, k1 + 1));
-                                List<Pair<Integer, Integer>> sub2 = new ArrayList<>(p2.subList(i2, k2 + 1));
+                            List<Pair<Integer, Integer>> sub1 = new ArrayList<>(p1.subList(i1, k1 + 1));
+                            List<Pair<Integer, Integer>> sub2 = new ArrayList<>(p2.subList(i2, k2 + 1));
 
-                                List<Pair<Integer, Integer>> newP1 = new ArrayList<>();
-                                if (i1 > 0) newP1.addAll(p1.subList(0, i1));
-                                newP1.addAll(sub2);
-                                if (k1 + 1 < p1.size()) newP1.addAll(p1.subList(k1 + 1, p1.size()));
+                            List<Pair<Integer, Integer>> newP1 = new ArrayList<>();
+                            if (i1 > 0) newP1.addAll(p1.subList(0, i1));
+                            newP1.addAll(sub2);
+                            if (k1 + 1 < p1.size()) newP1.addAll(p1.subList(k1 + 1, p1.size()));
 
-                                Float p1Cost = evaluatePath(p1);
-                                Float newP1Cost = evaluatePath(newP1);
-                                if (newP1Cost < p1Cost) {
-                                    continue;
-                                }
-
-                                List<Pair<Integer, Integer>> newP2 = new ArrayList<>();
-
-                                if (i2 > 0) newP2.addAll(p2.subList(0, i2));
-                                newP2.addAll(sub1);
-                                if (k2 + 1 < p2.size()) newP2.addAll(p2.subList(k2 + 1, p2.size()));
-
-                                Float p2Cost = evaluatePath(p2);
-                                Float newP2Cost = evaluatePath(newP2);
-                                if (newP2Cost < p2Cost) {
-                                    continue;
-                                }
-
-                                currentSol.getPathsPerRequest().get(r1_index).set(p1_index, newP1);
-                                currentSol.getPathsPerRequest().get(r2_index).set(p2_index, newP2);
+                            Float p1Cost = evaluatePath(p1);
+                            Float newP1Cost = evaluatePath(newP1);
+                            if (newP1Cost < p1Cost) {
+                                break;
                             }
+
+                            List<Pair<Integer, Integer>> newP2 = new ArrayList<>();
+
+                            if (i2 > 0) newP2.addAll(p2.subList(0, i2));
+                            newP2.addAll(sub1);
+                            if (k2 + 1 < p2.size()) newP2.addAll(p2.subList(k2 + 1, p2.size()));
+
+                            Float p2Cost = evaluatePath(p2);
+                            Float newP2Cost = evaluatePath(newP2);
+                            if (newP2Cost < p2Cost) {
+                                break;
+                            }
+
+                            currentSol.getPathsPerRequest().get(r1_index).set(p1_index, newP1);
+                            currentSol.getPathsPerRequest().get(r2_index).set(p2_index, newP2);
+
                             return true;
                         }
                         break;
@@ -263,7 +262,7 @@ public class QuantumRoutingTS {
 
     protected boolean exchangeFlowMove() {
         List<List<List<Pair<Integer, Integer>>>> paths = currentSol.getPathsPerRequest();
-        List<Integer> requests = shuffleReqIndexes(paths.size());
+        List<Integer> requests = shuffleIndexes(paths.size());
 
         if (requests.size() < 2) {
             return false;
@@ -272,8 +271,8 @@ public class QuantumRoutingTS {
         int r1_index = requests.get(0);
         int r2_index = requests.get(1);
 
-        List<Integer> p1s = shuffleReqIndexes(paths.get(r1_index).size());
-        List<Integer> p2s = shuffleReqIndexes(paths.get(r2_index).size());
+        List<Integer> p1s = shuffleIndexes(paths.get(r1_index).size());
+        List<Integer> p2s = shuffleIndexes(paths.get(r2_index).size());
         for (int p1_index : p1s) {
             for (int p2_index : p2s) {
                 if (findDifferingCommonSD(r1_index, r2_index, p1_index, p2_index)) {
@@ -511,7 +510,9 @@ public class QuantumRoutingTS {
     protected boolean neighbourhoodMove() {
         if (addFlowMove()) {
             return true;
-        } else if (exchangeFlowMove()) {
+        }
+
+        if (exchangeFlowMove()) {
             return true;
         }
 
