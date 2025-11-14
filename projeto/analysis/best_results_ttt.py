@@ -1,6 +1,6 @@
 import pandas as pd
 
-df = pd.read_csv("results/tabu.csv")
+df = pd.read_csv("results/tabu2.csv")
 
 # Extract instance size (everything before the last _)
 df["InstanceSize"] = df["Instance"].str.rsplit("_", n=1).str[0]
