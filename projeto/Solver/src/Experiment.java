@@ -14,7 +14,7 @@ public class Experiment {
         );
 
         List<OptionsTS> configurations = List.of(
-                new OptionsTS("CONFIG1", 1000, 1800, null, true, true, false, 0, 0, 1)
+                new OptionsTS("CONFIG1", 1000, 1800, null, false, 0, 0, 1)
         );
 
         try (FileWriter writer = new FileWriter("results.csv")) {

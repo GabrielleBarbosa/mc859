@@ -12,7 +12,7 @@ public class OptionsTS {
     protected boolean adaptiveTL = false;
 
     //Restart, intensify and difersify configs
-    protected Integer restarts = 4; //Enable the restart of the heuristic, creating a solution from the ground
+    protected Integer restarts = 20; //Enable the restart of the heuristic, creating a solution from the ground
     protected boolean intensifyEnabled = true;  //Enables intensify data gathering (best paths) and application (creates the instance with the paths)
     protected float intensifyRate = 0.05f; //Percentage of the best solution to keep
     protected boolean diversifyEnabled = true; //Enables diversify data gathering and application, removing edges from the graph until a certain point

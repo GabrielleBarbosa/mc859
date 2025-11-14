@@ -498,7 +498,7 @@ public class QuantumRoutingTS {
 
     public Float practicalEvaluation() {
         float acc = 0;
-        for (List<List<Pair<Integer, Integer>>> request : currentSol.getPathsPerRequest()) {
+        for (List<List<Pair<Integer, Integer>>> request : bestSol.getPathsPerRequest()) {
             for (List<Pair<Integer, Integer>> path : request) {
                 float cost = 1;
                 for (Pair<Integer, Integer> edge : path) {
