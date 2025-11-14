@@ -1,6 +1,5 @@
 package metaheuristics;
 
-import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -9,6 +8,7 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.Objects;
 import java.util.Random;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -43,13 +43,13 @@ public class QuantumRoutingTS {
 
     protected OptionsTS opts;
 
-
     protected List<SolutionMetadata> bestSolutions;
 
-    //List[request, path]
     protected List<Pair<Integer, List<Pair<Integer, Integer>>>> bestPaths;
 
     protected HashMap<Pair<Integer, Integer>, Integer> edgeUsage;
+
+    protected Set<Pair<Integer, Integer>> lockedEdges;
 
     protected Integer tenure;
 
@@ -123,7 +123,32 @@ public class QuantumRoutingTS {
     }
 
     private void diversify() {
-        //TODO
+        List<Map.Entry<Pair<Integer, Integer>, Integer>> edges = new ArrayList<>(edgeUsage.entrySet());
+        edges.sort(Map.Entry.comparingByValue());
+
+        for (int i = Math.round(opts.diversifyRate * edges.size()); i >= 0; i--) {
+            lockedEdges.add(edges.get(i).getKey());
+        }
+
+        for (Pair<Integer, Integer> edge: lockedEdges) {
+            if (restrictionGraph.containsEdge(edge.getFirst(), edge.getSecond())) {
+                restrictionGraph.removeEdge(edge.getFirst() + "_" + edge.getSecond());
+            }
+        }
+    }
+
+    private void unlockGraph() {
+        for (Pair<Integer, Integer> edge: lockedEdges) {
+            int source = edge.getFirst();
+            int dest = edge.getSecond();
+            if (!restrictionGraph.containsEdge(source, dest)) {
+                if (currentSol.getEdgeUsage().get(source).get(dest) < instance.getArcs().get(source).get(dest).getFirst()) {
+                    if (restrictionGraph.vertices().contains(source) && restrictionGraph.vertices().contains(dest)) {
+                        restrictionGraph.addEdge(source, dest, source + "_" + dest);
+                    }
+                }
+            }
+        }
     }
 
     //Preenche a solução atual de maneira gulosa
@@ -321,7 +346,8 @@ public class QuantumRoutingTS {
                 try {
                     if (edge != null &&
                             currentSol.getEdgeUsage().get(i).get(node) < edge.getFirst() &&
-                            !restrictionGraph.containsEdge(i, node)) {
+                            !restrictionGraph.containsEdge(i, node) &&
+                            !lockedEdges.contains(new Pair<>(i, node))) {
                         restrictionGraph.addEdge(i, node, i + "_" + node);
                         restrictionGraph.edgesWeights(WEIGHT_KEY).setAsObj(
                                 i + "_" + node,
@@ -337,7 +363,8 @@ public class QuantumRoutingTS {
                 try {
                     if (edge != null &&
                             currentSol.getEdgeUsage().get(node).get(i) < edge.getFirst() &&
-                            !restrictionGraph.containsEdge(node, i)) {
+                            !restrictionGraph.containsEdge(node, i) &&
+                            !lockedEdges.contains(new Pair<>(node, i))) {
                         restrictionGraph.addEdge(node, i, node + "_" + i);
                         restrictionGraph.edgesWeights(WEIGHT_KEY).setAsObj(
                                 node + "_" + i,
@@ -451,14 +478,12 @@ public class QuantumRoutingTS {
 
     //Métodos para coleta de métricas para intensificação e diversificação
 
-    protected void computeEdgeUsage(QuantumRoutingSolution sol) {
-        for (List<List<Integer>> request : sol.getEdgeUsagePerRequest()) {
-            for (int i = 0; i < request.size(); i++) {
-                for (int j = 0; j < request.get(i).size(); j++) {
-                    if (request.get(i).get(j) > 0) {
-                        Pair<Integer, Integer> edge = new Pair<>(i, j);
-                        this.edgeUsage.put(edge, this.edgeUsage.getOrDefault(edge, 0) + 1);
-                    }
+    protected void computeEdgeUsage() {
+        for (int i = 0; i < instance.getSize(); i++) {
+            for (int j = 0; j < instance.getSize(); j++) {
+                if (bestSol.getEdgeUsage().get(i).get(j) > 0) {
+                    Pair<Integer, Integer> edge = new Pair<>(i, j);
+                    this.edgeUsage.put(edge, this.edgeUsage.getOrDefault(edge, 0) + 1);
                 }
             }
         }
@@ -502,7 +527,7 @@ public class QuantumRoutingTS {
             bestSol = new QuantumRoutingSolution(currentSol);
             bestSolutions.add(new SolutionMetadata(bestSol, elapsed, iteration));
             if (opts.diversifyEnabled) {
-                //Collect edge usage
+                computeEdgeUsage();
             }
         }
     }
@@ -552,7 +577,7 @@ public class QuantumRoutingTS {
                 intensify();
             }
             if (opts.diversifyEnabled) {
-                //TODO diversify
+                diversify();
             }
             randomGreedyHeuristic();
             elapsed = System.currentTimeMillis() - startTime;
@@ -567,7 +592,10 @@ public class QuantumRoutingTS {
                     elapsed = System.currentTimeMillis() - startTime;
                     evaluateNewSolution(elapsed, r * opts.iterations + i);
                 }
-                //TODO check if should enable diversify edges
+                if (opts.diversifyEnabled && !lockedEdges.isEmpty() && i >= opts.diversifyDuration * opts.iterations) {
+                    lockedEdges.clear();
+                    unlockGraph();
+                }
             }
 
             //Fill the current solution and validate it
