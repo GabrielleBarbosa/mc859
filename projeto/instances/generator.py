@@ -19,7 +19,7 @@ def generate_quantum_topology(
     num_nodes: int = 100,
     area_side_km: float = 10000.0,
     gamma: float = 0.9,
-    beta: float = 0.1,  
+    beta: float = 0.3,  
     alpha: float = 0.0002,
     min_memory: int = 10,
     max_memory: int = 14,
