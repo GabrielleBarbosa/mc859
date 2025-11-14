@@ -33,31 +33,44 @@ public class OptionsTS {
         this.instanceName = opts.instanceName;
     }
 
-    public OptionsTS(String name, int iterations, int timeoutSeconds, Integer target,
-                     boolean adaptiveTL, float intensifyRate, float diversifyRate, int rngSeed) {
+    public OptionsTS(String name, int rngSeed,
+                     int restarts, int iterations, int timeoutSeconds, Integer target,
+                     boolean intensifyEnabled, float intensifyRate,
+                     boolean diversifyEnabled, float diversifyRate, float diversifyDuration) {
         this.name = name;
+        this.rngSeed = rngSeed;
+
         this.iterations = iterations;
+        this.restarts = restarts;
         this.timeoutSeconds = timeoutSeconds;
         this.target = target;
-        this.adaptiveTL = adaptiveTL;
+
+        this.intensifyEnabled = intensifyEnabled;
         this.intensifyRate = intensifyRate;
+        this.diversifyEnabled = diversifyEnabled;
         this.diversifyRate = diversifyRate;
-        this.rngSeed = rngSeed;
+        this.diversifyDuration = diversifyDuration;
     }
 
-    public OptionsTS(String name, String instanceName, int iterations, int timeoutSeconds, Integer target,
-                     boolean adaptiveTL, float intensifyRate, float diversifyRate, int rngSeed) {
+    public OptionsTS(String name, String instanceName, int rngSeed,
+                     int restarts, int iterations, int timeoutSeconds, Integer target,
+                     boolean intensifyEnabled, float intensifyRate,
+                     boolean diversifyEnabled, float diversifyRate, float diversifyDuration) {
         this.name = name;
-        this.iterations = iterations;
-        this.timeoutSeconds = timeoutSeconds;
-        this.target = target;
-        this.adaptiveTL = adaptiveTL;
-        this.intensifyRate = intensifyRate;
-        this.diversifyRate = diversifyRate;
-        this.rngSeed = rngSeed;
         this.instanceName = instanceName;
-    }
+        this.rngSeed = rngSeed;
 
+        this.iterations = iterations;
+        this.restarts = restarts;
+        this.timeoutSeconds = timeoutSeconds;
+        this.target = target;
+
+        this.intensifyEnabled = intensifyEnabled;
+        this.intensifyRate = intensifyRate;
+        this.diversifyEnabled = diversifyEnabled;
+        this.diversifyRate = diversifyRate;
+        this.diversifyDuration = diversifyDuration;
+    }
     public String getInstanceName() {
         return instanceName;
     }

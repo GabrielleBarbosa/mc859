@@ -62,10 +62,9 @@ def solve_instance(filename: str):
         model.addConstr(
             quicksum(
                 (x[r, (u, v)] if (u, v) in A else 0)
-                + (x[r, (v, u)] if (v, u) in A else 0)
                 for r in range(len(R))
             )
-            <= P[(u, v)] * z[(u, v)],
+            <= z[(u, v)],
             name=f"link_reserve[{u},{v}]"
         )
 
@@ -75,6 +74,12 @@ def solve_instance(filename: str):
     for v in V:
         model.addConstr(
             quicksum(z[a] for a in A if a[1] == v) <= M[v],
+            name=f"memory[{v}]"
+        )
+
+    for v in V:
+        model.addConstr(
+            quicksum(z[a] for a in A if a[0] == v) <= M[v],
             name=f"memory[{v}]"
         )
 

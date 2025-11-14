@@ -11,8 +11,6 @@ import com.jgalgo.graph.NoSuchVertexException;
 import com.jgalgo.graph.WeightsFloat;
 import instance.QuantumRoutingInstance;
 import metaheuristics.neighbourhoodMove.AddFlow;
-import metaheuristics.neighbourhoodMove.FlowExchange;
-import metaheuristics.neighbourhoodMove.NeighborhoodMove;
 import metaheuristics.neighbourhoodMove.RemoveFlow;
 import solution.QuantumRoutingSolution;
 import solution.SolutionMetadata;
@@ -140,8 +138,10 @@ public class QuantumRoutingTS {
         }
 
         for (Pair<Integer, Integer> edge: lockedEdges) {
-            if (restrictionGraph.containsEdge(edge.getFirst(), edge.getSecond())) {
-                restrictionGraph.removeEdge(edge.getFirst() + "_" + edge.getSecond());
+            if (restrictionGraph.vertices().contains(edge.getFirst()) && restrictionGraph.vertices().contains(edge.getSecond())) {
+                if (restrictionGraph.containsEdge(edge.getFirst(), edge.getSecond())) {
+                    restrictionGraph.removeEdge(edge.getFirst() + "_" + edge.getSecond());
+                }
             }
         }
     }
@@ -621,15 +621,5 @@ public class QuantumRoutingTS {
             }
         }
         return acc;
-    }
-
-    public void test() {
-        createEmptySol();
-        randomGreedyHeuristic();
-        bestSol = new QuantumRoutingSolution(currentSol);
-        getBestPaths();
-        createEmptySol();
-        intensify();
-        practicalEvaluation();
     }
 }

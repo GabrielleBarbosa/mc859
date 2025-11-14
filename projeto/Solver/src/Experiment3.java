@@ -30,12 +30,17 @@ public class Experiment3 {
         List<OptionsTS> allConfigurations = new ArrayList<>();
 
         List<OptionsTS> performanceProfileConfigurations = List.of(
-                new OptionsTS("PP1",1000, 1800, null, false, 0, 0, 1),
-                new OptionsTS("PP2",1000, 1800, null, false, 0, 0, 1)
-        );
+                new OptionsTS("PP1", 0, 999999, 10000 ,300, null, true, 0.2f, true, 0.2f, 0.2f),
+                new OptionsTS("PP2", 0, 999999, 10000 ,300, null, false, 0.2f, false, 0.2f, 0.2f),
+                new OptionsTS("PP3", 0, 999999, 10000 ,300, null, true, 0.2f, false, 0.2f, 0.2f),
+                new OptionsTS("PP4", 0, 999999, 10000 ,300, null, false, 0.2f, false, 0.2f, 0.2f)
+                );
 
         List<OptionsTS> tttConfigurations = List.of(
-                new OptionsTS("TTT1", "instance_n300_sd10_0", 1000, 1800, 20, false, 0, 0, 1)
+                new OptionsTS("TTT1", "instance_n300_sd10_0", 0, 99999, 10000, 300, 64, true, 0.2f, true, 0.2f, 0.2f),
+                new OptionsTS("TTT2", "instance_n300_sd10_0", 0, 99999,10000, 300, 64, false, 0.2f, true, 0.2f, 0.2f),
+                new OptionsTS("TTT3", "instance_n300_sd10_0", 0, 99999, 10000, 300, 64, true, 0.2f, false, 0.2f, 0.2f),
+                new OptionsTS("TTT4", "instance_n300_sd10_0", 0, 99999, 10000, 300, 64, false, 0.2f, false, 0.2f, 0.2f)
         );
 
         for (String instance : instances) {
@@ -99,7 +104,7 @@ public class Experiment3 {
         } finally {
             executor.shutdown();
             try {
-                if (!executor.awaitTermination(1, TimeUnit.HOURS)) {
+                if (!executor.awaitTermination(10, TimeUnit.HOURS)) {
                     executor.shutdownNow();
                 }
             } catch (InterruptedException e) {
