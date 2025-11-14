@@ -10,11 +10,9 @@ public class OptionsTS {
     protected Integer target = null;
     //Advanced procedures
     protected boolean adaptiveTL = false;
-    protected boolean removeEnabled = true;
-    protected boolean exchangeEnabled = true;
 
     //Restart, intensify and difersify configs
-    protected Integer restarts = 0; //Enable the restart of the heuristic, creating a solution from the ground
+    protected Integer restarts = 20; //Enable the restart of the heuristic, creating a solution from the ground
     protected boolean intensifyEnabled = true;  //Enables intensify data gathering (best paths) and application (creates the instance with the paths)
     protected float intensifyRate = 0.05f; //Percentage of the best solution to keep
     protected boolean diversifyEnabled = true; //Enables diversify data gathering and application, removing edges from the graph until a certain point
@@ -28,8 +26,6 @@ public class OptionsTS {
         this.iterations = opts.iterations;
         this.timeoutSeconds = opts.timeoutSeconds;
         this.target = opts.target;
-        this.removeEnabled = opts.removeEnabled;
-        this.exchangeEnabled = opts.exchangeEnabled;
         this.adaptiveTL = opts.adaptiveTL;
         this.intensifyRate = opts.intensifyRate;
         this.diversifyRate = opts.diversifyRate;
@@ -37,28 +33,24 @@ public class OptionsTS {
         this.instanceName = opts.instanceName;
     }
 
-    public OptionsTS(String name, int iterations, int timeoutSeconds, Integer target, boolean removeEnabled, boolean exchangeEnabled,
+    public OptionsTS(String name, int iterations, int timeoutSeconds, Integer target,
                      boolean adaptiveTL, float intensifyRate, float diversifyRate, int rngSeed) {
         this.name = name;
         this.iterations = iterations;
         this.timeoutSeconds = timeoutSeconds;
         this.target = target;
-        this.removeEnabled = removeEnabled;
-        this.exchangeEnabled = exchangeEnabled;
         this.adaptiveTL = adaptiveTL;
         this.intensifyRate = intensifyRate;
         this.diversifyRate = diversifyRate;
         this.rngSeed = rngSeed;
     }
 
-    public OptionsTS(String name, String instanceName, int iterations, int timeoutSeconds, Integer target, boolean removeEnabled, boolean exchangeEnabled,
+    public OptionsTS(String name, String instanceName, int iterations, int timeoutSeconds, Integer target,
                      boolean adaptiveTL, float intensifyRate, float diversifyRate, int rngSeed) {
         this.name = name;
         this.iterations = iterations;
         this.timeoutSeconds = timeoutSeconds;
         this.target = target;
-        this.removeEnabled = removeEnabled;
-        this.exchangeEnabled = exchangeEnabled;
         this.adaptiveTL = adaptiveTL;
         this.intensifyRate = intensifyRate;
         this.diversifyRate = diversifyRate;
@@ -90,24 +82,6 @@ public class OptionsTS {
 
     public OptionsTS setAdaptiveTL(boolean adaptiveTL) {
         this.adaptiveTL = adaptiveTL;
-        return this;
-    }
-
-    public boolean isRemoveEnabled() {
-        return removeEnabled;
-    }
-
-    public OptionsTS setRemoveEnabled(boolean removeEnabled) {
-        this.removeEnabled = removeEnabled;
-        return this;
-    }
-
-    public boolean isExchangeEnabled() {
-        return exchangeEnabled;
-    }
-
-    public OptionsTS setExchangeEnabled(boolean exchangeEnabled) {
-        this.exchangeEnabled = exchangeEnabled;
         return this;
     }
 
