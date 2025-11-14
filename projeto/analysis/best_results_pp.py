@@ -2,9 +2,6 @@ import pandas as pd
 
 df = pd.read_csv("results/tabu.csv")
 
-# Extract instance size (everything before the last _)
-df["InstanceSize"] = df["Instance"].str.rsplit("_", n=1).str[0]
-
 configs = ["PP1", "PP2", "PP3", "PP4"]
 df_filt = df[df["Configuration"].isin(configs)]
 
@@ -17,7 +14,7 @@ best_per_conf = (
 )
 
 # Correct extraction of instance size again
-best_per_conf["InstanceSize"] = best_per_conf["Instance"].str.rsplit("_", n=2).str[0]
+best_per_conf["InstanceSize"] = best_per_conf["Instance"].str.split("_").str[1]
 
 # Mean time per config + instance size
 mean_time = (
@@ -55,20 +52,11 @@ wins = (
     .rename("Wins")
 )
 
-totals = (
-    merged
-    .groupby(["Configuration", "InstanceSize"])
-    .size()
-    .rename("Total")
-)
-
 result = (
-    pd.concat([wins, totals], axis=1)
+    pd.concat([wins], axis=1)
     .fillna(0)
     .astype(int)
 )
-
-result["Losses"] = result["Total"] - result["Wins"]
 
 # restore groupby index → normal columns
 result = result.reset_index()

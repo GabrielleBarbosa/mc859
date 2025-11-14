@@ -45,12 +45,12 @@ for cfg in configs:
     # Add the ECDF curve to the same plot
     plt.step(times, y, where="post", label=cfg)
 
-plt.title("Time-To-Target ECDF (All Configurations)")
+plt.title("Time-To-Target (All Configurations)")
 plt.xlabel("Time (ms)")
 plt.ylabel("Cumulative Probability")
 plt.grid(True)
 plt.legend()
 plt.tight_layout()
 
-plt.savefig("out/ttt_plot.png", dpi=150)
+plt.savefig("out/ttt_plot2.png", dpi=150)
 plt.close()
