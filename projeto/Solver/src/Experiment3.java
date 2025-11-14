@@ -30,12 +30,12 @@ public class Experiment3 {
         List<OptionsTS> allConfigurations = new ArrayList<>();
 
         List<OptionsTS> performanceProfileConfigurations = List.of(
-                new OptionsTS("PP1",1000, 1800, null, true, true, false, 0, 0, 1),
-                new OptionsTS("PP2",1000, 1800, null, true, true, false, 0, 0, 1)
+                new OptionsTS("PP1",1000, 1800, null, false, 0, 0, 1),
+                new OptionsTS("PP2",1000, 1800, null, false, 0, 0, 1)
         );
 
         List<OptionsTS> tttConfigurations = List.of(
-                new OptionsTS("TTT1", "instance_n300_sd10_0", 1000, 1800, 20, true, true, false, 0, 0, 1)
+                new OptionsTS("TTT1", "instance_n300_sd10_0", 1000, 1800, 20, false, 0, 0, 1)
         );
 
         for (String instance : instances) {

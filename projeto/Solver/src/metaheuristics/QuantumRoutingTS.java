@@ -3,6 +3,7 @@ package metaheuristics;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
@@ -57,11 +58,18 @@ public class QuantumRoutingTS {
 
     public QuantumRoutingTS(QuantumRoutingInstance instance, Integer tenure, OptionsTS opts) {
         this.bestSolutions = new ArrayList<>();
-        this.edgeUsage = new HashMap<>();
         this.instance = instance;
         this.tenure = tenure;
         this.rng = new Random(opts.rngSeed);
         this.opts = opts;
+        if (opts.diversifyEnabled) {
+            this.edgeUsage = new HashMap<>();
+            this.lockedEdges = new HashSet<>();
+        }
+        if (opts.intensifyEnabled) {
+            bestPaths = new ArrayList<>();
+        }
+
     }
 
     /**
@@ -101,6 +109,14 @@ public class QuantumRoutingTS {
         currentSol = new QuantumRoutingSolution(instance);
     }
 
+    //Preenche a solução atual de maneira gulosa
+    protected void randomGreedyHeuristic() {
+        boolean added = addFlowMove();
+        while (added) {
+            added = addFlowMove();
+        }
+    }
+
     //Adciona os caminhos mais usados da ultima melhor solução à nova
     protected void intensify() {
         for (Pair<Integer, List<Pair<Integer, Integer>>> requestPathPair : bestPaths) {
@@ -122,11 +138,12 @@ public class QuantumRoutingTS {
         }
     }
 
+    //Remove arestas mais utilizadas do grafo que calcula caminhos
     private void diversify() {
         List<Map.Entry<Pair<Integer, Integer>, Integer>> edges = new ArrayList<>(edgeUsage.entrySet());
         edges.sort(Map.Entry.comparingByValue());
 
-        for (int i = Math.round(opts.diversifyRate * edges.size()); i >= 0; i--) {
+        for (int i = Math.round(opts.diversifyRate * edges.size() - 1); i >= 0; i--) {
             lockedEdges.add(edges.get(i).getKey());
         }
 
@@ -137,6 +154,7 @@ public class QuantumRoutingTS {
         }
     }
 
+    //Adciona de volta as arestas travadas pela diversificação
     private void unlockGraph() {
         for (Pair<Integer, Integer> edge: lockedEdges) {
             int source = edge.getFirst();
@@ -145,150 +163,16 @@ public class QuantumRoutingTS {
                 if (currentSol.getEdgeUsage().get(source).get(dest) < instance.getArcs().get(source).get(dest).getFirst()) {
                     if (restrictionGraph.vertices().contains(source) && restrictionGraph.vertices().contains(dest)) {
                         restrictionGraph.addEdge(source, dest, source + "_" + dest);
+                        restrictionGraph.edgesWeights(WEIGHT_KEY)
+                                .setAsObj(source + "_" + dest, 1 / instance.getArcs().get(source).get(dest).getSecond());
                     }
                 }
             }
         }
-    }
-
-    //Preenche a solução atual de maneira gulosa
-    protected void randomGreedyHeuristic() {
-        boolean added = addFlowMove();
-        while (added) {
-            added = addFlowMove();
-        }
-    }
-
-    // Algoritmos para a troca de caminhos
-    protected void findPathsDFS(
-            int current,
-            int target,
-            List<List<Integer>> flow,
-            List<Pair<Integer, Integer>> currentPath,
-            List<List<Pair<Integer, Integer>>> allPaths,
-            boolean[] visited) {
-
-        if (current == target) {
-            allPaths.add(currentPath);
-            return;
-        }
-
-        visited[current] = true;
-
-        for (int next = 0; next < flow.get(current).size(); next++) {
-            int value = flow.get(current).get(next);
-            if (value > 0 && !visited[next]) {
-                currentPath.add(new Pair<>(current, next));
-                findPathsDFS(next, target, flow, new ArrayList<>(currentPath), allPaths, visited);
-                currentPath.remove(currentPath.size() - 1);
-            }
-        }
-
-        visited[current] = false;
-    }
-
-
-    private List<List<List<Pair<Integer, Integer>>>> calculateReqPaths(QuantumRoutingSolution currentSol) {
-        List<List<List<Pair<Integer, Integer>>>> requestPaths = new ArrayList<>();
-        List<Pair<Integer, Integer>> requests = this.instance.getRequests();
-        for (int r = 0; r < requests.size(); r++) {
-            Integer source = requests.get(r).getFirst();
-            Integer destiny = requests.get(r).getSecond();
-            List<List<Integer>> requestFlow = currentSol.getEdgeUsagePerRequest().get(r);
-
-            for (int i = 0; i < requestFlow.size(); i++) {
-                for (int j = 0; j < requestFlow.get(i).size(); j++) {
-                    if (requestFlow.get(i).get(j) < 0) {
-                        requestFlow.get(i).set(j, - requestFlow.get(i).get(j));
-                    }
-                }
-            }
-
-            List<List<Pair<Integer, Integer>>> paths = new ArrayList<>();
-            boolean[] visited = new boolean[requestFlow.size()];
-
-            findPathsDFS(source, destiny, requestFlow, new ArrayList<>(), paths, visited);
-            requestPaths.add(paths);
-        }
-
-        return requestPaths;
-    }
-
-    private void makeExchangeOfPaths(int[] candidate1, int[] candidate2, List<List<List<Pair<Integer, Integer>>>> requestPaths, QuantumRoutingSolution currentSol) {
-        int req1 = candidate1[0];
-        int req2 = candidate2[0];
-
-        int start1 = candidate1[2];
-        int end1 = candidate1[3];
-        int path_idx1 = candidate1[1];
-        List<Pair<Integer, Integer>> path1 = requestPaths.get(req1).get(path_idx1);
-        NeighborhoodMove move = NeighborhoodMove.FlowExchange(req1, req2, new Pair<>(path1.get(start1).getFirst(), path1.get(end1).getSecond()));
-        if (!TL.contains(move)) {
-            List<Pair<Integer, Integer>> subpath1 = new ArrayList<>(path1.subList(start1, end1 + 1));
-            for (Pair<Integer, Integer> edge : subpath1) {
-                Integer v1 = currentSol.getEdgeUsagePerRequest().get(req1).get(edge.getFirst()).get(edge.getSecond());
-                Integer v2 = currentSol.getEdgeUsagePerRequest().get(req2).get(edge.getFirst()).get(edge.getSecond());
-                currentSol.getEdgeUsagePerRequest().get(req1).get(edge.getFirst()).set(edge.getSecond(), v2);
-                currentSol.getEdgeUsagePerRequest().get(req2).get(edge.getFirst()).set(edge.getSecond(), v1);
-            }
-
-            int start2 = candidate2[2];
-            int end2 = candidate2[3];
-            int path_idx2 = candidate2[1];
-            List<Pair<Integer, Integer>> path2 = requestPaths.get(req2).get(path_idx2);
-            List<Pair<Integer, Integer>> subpath2 = new ArrayList<>(path2.subList(start2, end2 + 1));
-            for (Pair<Integer, Integer> edge : subpath2) {
-                if (!subpath1.contains(edge)) {
-                    Integer v1 = currentSol.getEdgeUsagePerRequest().get(req1).get(edge.getFirst()).get(edge.getSecond());
-                    Integer v2 = currentSol.getEdgeUsagePerRequest().get(req2).get(edge.getFirst()).get(edge.getSecond());
-                    currentSol.getEdgeUsagePerRequest().get(req1).get(edge.getFirst()).set(edge.getSecond(), v2);
-                    currentSol.getEdgeUsagePerRequest().get(req2).get(edge.getFirst()).set(edge.getSecond(), v1);
-                }
-            }
-
-            TL.add(move);
-        }
-    }
-
-    private List<Pair<int[], int[]>> calculatePossibleExchanges(Map<Pair<Integer, Integer>, List<int[]>> subpaths) {
-        List<Pair<int[], int[]>> possibleExchanges = new ArrayList<>();
-        for (Pair<Integer, Integer> originDest : subpaths.keySet()) {
-            List<int[]> candidates = subpaths.get(originDest);
-            if (candidates.size() > 1) {
-                for (int i = 0; i < candidates.size(); i++) {
-                    for (int j = i + 1; j < candidates.size(); j++) {
-                        int[] candidate1 = candidates.get(i);
-                        int[] candidate2 = candidates.get(j);
-
-                        if (candidate1[0] != candidate2[0]) { // different requests
-                            possibleExchanges.add(new Pair<>(candidate1, candidate2));
-                        }
-                    }
-                }
-            }
-        }
-        return possibleExchanges;
-    }
-
-    private Map<Pair<Integer, Integer>, List<int[]>> calculateSubpaths(List<List<List<Pair<Integer, Integer>>>> requestPaths) {
-        Map<Pair<Integer, Integer>, List<int[]>> subpaths = new HashMap<>();
-        for (int r = 0; r < requestPaths.size(); r++) {
-            for (int p = 0; p < requestPaths.get(r).size(); p++) {
-                List<Pair<Integer, Integer>> path = requestPaths.get(r).get(p);
-                for (int i = 0; i < path.size(); i++) {
-                    for (int j = i; j < path.size(); j++) {
-                        Pair<Integer, Integer> originDest = new Pair<>(path.get(i).getFirst(), path.get(j).getSecond());
-                        subpaths.computeIfAbsent(originDest, k -> new ArrayList<>()).add(new int[]{r, p, i, j});
-                    }
-                }
-            }
-        }
-        return subpaths;
     }
 
     //TODO
     //Métodos para troca de caminhos
-
 
 
     //Métodos para remover um fluxo
@@ -571,7 +455,7 @@ public class QuantumRoutingTS {
         int i = 0;
 
         for (int r = 0; r <= opts.restarts; r++) {
-
+            makeTL();
             createEmptySol();
             if (opts.intensifyEnabled) {
                 intensify();
@@ -624,15 +508,5 @@ public class QuantumRoutingTS {
             }
         }
         return acc;
-    }
-
-    public void test() {
-        createEmptySol();
-        randomGreedyHeuristic();
-        bestSol = new QuantumRoutingSolution(currentSol);
-        getBestPaths();
-        createEmptySol();
-        intensify();
-        practicalEvaluation();
     }
 }
