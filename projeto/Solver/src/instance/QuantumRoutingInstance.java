@@ -67,6 +67,7 @@ public class QuantumRoutingInstance {
                 float prob = arc.getFloat("external_link_prob");
 
                 this.arcs.get(source).set(target, new Pair<>(channels, prob));
+                this.arcs.get(target).set(source, new Pair<>(channels, prob));
             }
 
             this.size = this.nodes.size();

@@ -1,17 +1,27 @@
 package metaheuristics;
 
 public class OptionsTS {
+    //Basic configurations
     protected String name;
     protected String instanceName;
-    protected boolean adaptiveTL = false;
-    protected boolean removeEnabled = true;
-    protected boolean exchangeEnabled = true;
-    protected float intensifyRate = 0f;
-    protected float diversifyRate = 0f;
     protected int rngSeed = 0;
     protected int timeoutSeconds = 1800;
     protected Integer iterations = 1000;
     protected Integer target = null;
+    //Advanced procedures
+    protected boolean adaptiveTL = false;
+    protected boolean removeEnabled = true;
+    protected boolean exchangeEnabled = true;
+
+    //Restart, intensify and difersify configs
+    protected Integer restarts = 0; //Enable the restart of the heuristic, creating a solution from the ground
+    protected boolean intensifyEnabled = true;  //Enables intensify data gathering (best paths) and application (creates the instance with the paths)
+    protected float intensifyRate = 0.05f; //Percentage of the best solution to keep
+    protected boolean diversifyEnabled = true; //Enables diversify data gathering and application, removing edges from the graph until a certain point
+    protected float diversifyRate = 0.05f; //How many of the most used edges will be locked from the start
+    protected float diversifyDuration = 0.05f; //How long will it last
+
+
 
     public OptionsTS(OptionsTS opts) {
         this.name = opts.name;

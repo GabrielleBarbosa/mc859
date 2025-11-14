@@ -17,6 +17,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.ehcache</groupId>
+            <artifactId>sizeof</artifactId>
+            <version>0.2.0</version>
+        </dependency>
+        <dependency>
             <groupId>com.jgalgo</groupId>
             <artifactId>jgalgo-core</artifactId>
             <version>0.5.1</version>
