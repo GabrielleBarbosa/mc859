@@ -3,6 +3,14 @@ package metaheuristics.neighbourhoodMove;
 import java.util.Objects;
 
 public class AddFlow extends NeighborhoodMove{
+    public void setIndex(int index) {
+        this.index = index;
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
     protected int index;
 
     public AddFlow(int request, int index) {

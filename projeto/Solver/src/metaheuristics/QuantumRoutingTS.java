@@ -320,7 +320,7 @@ public class QuantumRoutingTS {
             decrementMemory(edge.getSecond());
             decrementEdgeUsage(worseRequest, edge.getFirst(), edge.getSecond());
         }
-        TL.add(new RemoveFlow(worseRequest, worsePath));
+        TL.add(new RemoveFlow(worseRequest, worsePath), worseIndex);
         TL.removeExchange(worseRequest, worseIndex);
         currentSol.getThroughputPerRequest().set(worseRequest, currentSol.getThroughputPerRequest().get(worseRequest) - 1);
 
@@ -512,10 +512,6 @@ public class QuantumRoutingTS {
             return true;
         }
 
-        if (exchangeFlowMove()) {
-            return true;
-        }
-
         return removeFlow();
     }
 
@@ -582,16 +578,19 @@ public class QuantumRoutingTS {
 
             //Run local procedures
             for (i = 0; i < opts.iterations; i++) {
+                elapsed = System.currentTimeMillis() - startTime;
                 if (evaluateReturn(elapsed, timeoutMillis, r * opts.iterations + i)) {
                     return bestSolutions;
                 }
                 if (neighbourhoodMove()) {
                     elapsed = System.currentTimeMillis() - startTime;
                     evaluateNewSolution(elapsed, r * opts.iterations + i);
+                } else {
+                    TL.pop();
                 }
                 if (opts.diversifyEnabled && !lockedEdges.isEmpty() && i >= opts.diversifyDuration * opts.iterations) {
-                    lockedEdges.clear();
                     unlockGraph();
+                    lockedEdges.clear();
                 }
             }
 

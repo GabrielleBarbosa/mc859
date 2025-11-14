@@ -34,4 +34,14 @@ public class SolutionMetadata {
     public void setIterations(int iterations) {
         this.iterations = iterations;
     }
+
+    public String log() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(sol.getCost());
+        stringBuilder.append("|");
+        stringBuilder.append(time);
+        stringBuilder.append("|");
+        stringBuilder.append(iterations);
+        return stringBuilder.toString();
+    }
 }

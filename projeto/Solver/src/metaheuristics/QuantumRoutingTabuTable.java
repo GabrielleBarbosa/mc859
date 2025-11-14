@@ -1,7 +1,9 @@
 package metaheuristics;
 
+import metaheuristics.neighbourhoodMove.AddFlow;
 import metaheuristics.neighbourhoodMove.FlowExchange;
 import metaheuristics.neighbourhoodMove.NeighborhoodMove;
+import metaheuristics.neighbourhoodMove.RemoveFlow;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
@@ -22,6 +24,19 @@ public class QuantumRoutingTabuTable {
         table.add(move);
     }
 
+    public void add(RemoveFlow removeFlow, int index) {
+        for (NeighborhoodMove  move: table) {
+            if (move instanceof AddFlow) {
+                AddFlow addFlow = (AddFlow) move;
+                if (move.getRequest() == removeFlow.getRequest() && index <= addFlow.getIndex()) {
+                    addFlow.setIndex(addFlow.getIndex() - 1);
+                }
+            }
+        }
+
+        add(removeFlow);
+    }
+
     public boolean contains(NeighborhoodMove move) {
         return table.contains(move);
     }
@@ -37,5 +52,9 @@ public class QuantumRoutingTabuTable {
 
         }
         return false;
+    }
+
+    public void pop() {
+        table.removeFirst();
     }
 }
