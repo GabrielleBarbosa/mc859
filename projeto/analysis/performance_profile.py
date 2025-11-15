@@ -32,7 +32,7 @@ for col, label in [("tau_pp1", "PP1"), ("tau_gurobi", "Gurobi")]:
 
 plt.xlabel(r"Performance Ratio $\tau$")
 plt.ylabel("Fraction of Instances")
-plt.title("Performance Profile — PP1 vs Gurobi")
+plt.title("Performance Profile — Tabu vs Gurobi")
 plt.grid(True)
 plt.legend()
 plt.tight_layout()
